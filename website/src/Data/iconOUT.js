@@ -1,0 +1,5 @@
+export default[
+    {name : 'Cartoon',url : 'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2FiconOUT%2Fkisspng-take-out-cafe-restaurant-computer-icons-hotel-takeaway-5add9fe12cd801.5172356015244738251837.jpg?alt=media&token=993d5cf8-bdbf-45ad-9290-633bdf625890'},
+    {name : 'Epuré', url :'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2FiconOUT%2Fkisspng-take-out-food-packaging-packaging-and-labeling-take-pictures-5adea986551029.2929450515245418303484.jpg?alt=media&token=c00ffc5a-16d6-4999-b90e-43f49eb2d1b1'},
+    {name : 'Brulant', url :'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2FiconOUT%2Ftake-away-food.png?alt=media&token=c1fc3c57-8267-4020-856b-2a0ea33a8f96'},
+]
