@@ -54,6 +54,32 @@
       </tr>
       <tr>
           <td>
+              Espacement hauteur px
+          </td>
+          <td>
+            <v-slider
+              v-model="borne.valid.recap.marginT"
+              class="align-center"
+              :max="1000"
+              :min="0"
+              hide-details
+            >
+              <template v-slot:append>
+                <v-text-field
+                  v-model="borne.valid.recap.marginT"
+                  class="mt-0 pt-0"
+                  hide-details
+                  step="0.1"
+                  single-line
+                  type="number"
+                  style="width: 60px"
+                ></v-text-field>
+              </template>
+            </v-slider>
+          </td>
+      </tr>
+      <tr>
+          <td>
               Couleur Background
           </td>
           <td>

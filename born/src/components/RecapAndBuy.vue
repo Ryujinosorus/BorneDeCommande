@@ -1,9 +1,10 @@
 <template>
     <div class="full" :style="{backgroundColor: settings.valid.backgroundColor}">
-        <v-card :height="settings.valid.recap.hauteur" :width="settings.valid.recap.largeur" :style="{
+        <v-card  :height="settings.valid.recap.hauteur" :width="settings.valid.recap.largeur" :style="{
                                                                                                         border : settings.valid.recap.borderSize + 'px solid ' + settings.valid.recap.borderColor,
-                                                                                                        margin : 'auto 50px 0 auto'
+                                                                                                        margin :  settings.valid.recap.marginT + 'px auto 0px auto'
         }">
+        <v<s
         </v-card>
         <div>
             <h1 :style="{

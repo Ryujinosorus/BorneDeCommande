@@ -243,18 +243,19 @@ export default class BorneSetting{
                 },
             }
             this.valid = {
-                'backgroundColor' : '#eee',
+                'backgroundColor' : '#B82626FF',
                 'text' : 'Que voulez vous faire ? ',
-                'fontColor' : '#eee',
+                'fontColor' : '#EEEEEEFF',
                 'font' : 'Open Sans',
                 'fontSize' : 20,
                 'marginT' : 0,
                 'recap' : {
-                    'largeur' : 500,
-                    'hauteur' : 750,
-                    'backgroundColor' : '#eee',
-                    'borderSize' : 5,
-                    'borderColor' : '#eee'
+                    'largeur' : 802,
+                    'hauteur' : 913,
+                    'backgroundColor' : '#EEEEEEFF',
+                    'marginT' : 25,
+                    'borderSize' : 17,
+                    'borderColor' : '#00FF3AFF'
                 }
             }
             this.type="OrganisÃ©"
