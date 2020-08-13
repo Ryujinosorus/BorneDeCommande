@@ -270,7 +270,6 @@ export default {
   methods: {
     clickOnCard(data) {
       this.selectable = data;
-      console.log(data);
       for(let i=0;i<data.modifiable.sauce[0].length;i++) this.sauceArray.push(false);
       for(let i=0;i<data.modifiable.legume[0].length;i++) this.legumeArray.push(true);
       for(let i=0;i<data.modifiable.supplement[0].length;i++) this.supplementArray.push(false);
@@ -332,7 +331,6 @@ export default {
   },
   mounted() {
     this.carte = this.$store.getters.platByCate[this.$route.params.id];
-    console.log(this.settings.list);
 
     new FontPicker(
       "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",

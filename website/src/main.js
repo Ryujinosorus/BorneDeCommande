@@ -57,6 +57,8 @@ import Custom from './components/BorneSetting/Custom'
 import CustomCarrouselTitle from './components/BorneSetting/CustomCarrouselTitle';
 import CustomCarousel from './components/BorneSetting/CustomCarousel'
 import CustomCardDeatils from './components/BorneSetting/CustomCardDetail'
+import ValidCommandeGeneral from './components/BorneSetting/ValidCommandeGeneral';
+import ValidCommandeRecap from './components/BorneSetting/ValidCommandeRecap';
 Vue.config.productionTip = false;
 var firebaseConfig = {
     apiKey: "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
@@ -109,6 +111,8 @@ Vue.component('app-custom',Custom);
 Vue.component('app-customCarrouselTitle',CustomCarrouselTitle);
 Vue.component('app-customCarousel',CustomCarousel);
 Vue.component('app-customCardDeatils',CustomCardDeatils);
+Vue.component('app-validCommandeGeneral',ValidCommandeGeneral);
+Vue.component('app-validCommandeRecap',ValidCommandeRecap);
 //Vue.component('app-bornefirstpage',BorneFirstPage);
 
 

@@ -13,6 +13,7 @@ const store = new Vuex.Store({
     plat: [],
     menu: [],
     platByCate: [],
+    menuByPlat : [],
     supplements : []
   },
   getters: {
@@ -57,11 +58,13 @@ const store = new Vuex.Store({
         state.platByCate[res.tab['categorie']] = [];
       }
       let cv = Convertor.fromPlatToSelectable(res);
-      console.log(cv);
       state.platByCate[res.tab['categorie']].push(cv);
     },
     INIT_MENU(state, res) {
-      state.menu = res;
+      for(let i=0; i< res.plat.length;i++)
+        state.menuByPlat[res.plat[i]] = res;
+      state.menu.push(res);
+      console.log(state.menuByPlat);
     },
     INIT_SUPPLEMENT(state,res){
       state.supplements = res;
@@ -92,7 +95,6 @@ export default store;
 class Convertor {
   static fromPlatToSelectable(plat) {
     let sele = new Selectable();
-    console.log(plat);
     
     sele.modifiable.sauce = [plat.tab['sauces libre'],[]];
     sele.modifiable.legume = [plat.tab['legumes'],[]];

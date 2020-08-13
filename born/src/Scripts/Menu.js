@@ -191,6 +191,12 @@ export class Menu {
                     this.prix=content;
                     break;
                 }
+                case 'Plat':{
+                    let data = content.split(", ");
+                    for(let i=0;i<data.length;i++)
+                        this.plat.push(data[i]);
+                    break;
+                }
                 case 'picture':{
                     this.picture=content;
                     break;

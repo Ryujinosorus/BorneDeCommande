@@ -141,6 +141,24 @@
             ></app-customCardDeatils>
           </v-expansion-panel-content>
         </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Validation Commande Génerale</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-validCommandeGeneral
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-validCommandeGeneral>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Validation Commande Récap</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-validCommandeRecap
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-validCommandeRecap>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
       </v-expansion-panels>
     </v-container>
   </div>

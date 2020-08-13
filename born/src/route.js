@@ -3,6 +3,7 @@ import Login from './components/Login';
 import Where from './components/Where';
 import Desorganise from './components/Listing/Desorganise';
 import ShowCate from './components/Show.vue';
+import RecapAndBuy from './components/RecapAndBuy';
 export default[
     {
       path: '/',
@@ -21,5 +22,10 @@ export default[
       component:Desorganise
     },
     { path: '/Show/:id',
-     component: ShowCate }
+     component: ShowCate 
+    },
+    {
+      path : '/RecapAndBuy',
+      component : RecapAndBuy
+    }
 ]

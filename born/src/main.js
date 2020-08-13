@@ -12,7 +12,6 @@ import * as firebase from "firebase";
 import {Plat} from './Scripts//Plat.js';
 import {Menu} from './Scripts//Menu.js';
 import BorneSetting from './Scripts/BorneSetting.js'
-
 Vue.config.productionTip = false;
 var firebaseConfig = {
     apiKey: "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
@@ -128,7 +127,6 @@ function ADD_PLAT_START(data){
 }
 
 function ADD_MENU_START(data){
-  let res=[];
   let file = data.split('\n');
   for(let x=0;x<file.length;x++){
       if(file[x]!=''){
@@ -137,7 +135,7 @@ function ADD_MENU_START(data){
           storageRef.getDownloadURL().then(function(url) {
               xhr.responseType = '';
               xhr.onload = function() {
-                  res.push(new Menu().init(xhr.response));
+                  store.commit('INIT_MENU',new Menu().init(xhr.response));
               }
               xhr.open('GET', url);
               xhr.send();
@@ -146,7 +144,6 @@ function ADD_MENU_START(data){
           });
       }
   }
-  store.commit('INIT_MENU',res);
 }
 function ADD_DEFAULT_START(data,name){
   let res=[];

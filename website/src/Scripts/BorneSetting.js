@@ -231,15 +231,30 @@ export default class BorneSetting{
                     'hideDelimiters' : false
                 },
                 'cardDetail' : {
-                    'largeur' : 250,
                     'hauteur' : 250,
+                    'largeur' : 250,
                     'marginL' : 50,
                     'marginT' : 50,
                     'imgHeight' : 200,
-                    'bakgroundColor' : '#eee',
+                    'backgroundColor' : '#eee',
                     'fontSize' : 20,
                     'fontColor' : '#eee',
                     'font' : 'Open Sans'
+                },
+            }
+            this.valid = {
+                'backgroundColor' : '#eee',
+                'text' : 'Que voulez vous faire ? ',
+                'fontColor' : '#eee',
+                'font' : 'Open Sans',
+                'fontSize' : 20,
+                'marginT' : 0,
+                'recap' : {
+                    'largeur' : 500,
+                    'hauteur' : 750,
+                    'backgroundColor' : '#eee',
+                    'borderSize' : 5,
+                    'borderColor' : '#eee'
                 }
             }
             this.type="OrganisÃ©"
