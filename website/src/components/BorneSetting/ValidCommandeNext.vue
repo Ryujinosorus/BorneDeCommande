@@ -262,13 +262,12 @@
 </template>
 
 <script>
-import IconNEXT from '../../Data/back'
 import FontPicker from 'font-picker'
 export default {
     props : ['borne','globalSettings'],
     data(){
       return{
-        iconNEXT : IconNEXT,
+        iconNEXT : null,
       }
     },
     methods : {
@@ -295,6 +294,9 @@ export default {
             },
         );
         font.setOnChange((font) => this.borne.valid.nextBTN.font = font.family);
+    },
+    created(){
+      this.iconNEXT = this.$store.getters.icon['next'];
     }
 }
 </script>

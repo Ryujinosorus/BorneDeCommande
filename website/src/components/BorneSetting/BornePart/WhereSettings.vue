@@ -185,8 +185,6 @@
 </template>
 
 <script>
-import IconIN from '../../../Data/iconIN';
-import IconOUT from '../../../Data/iconOUT';
 import FontPicker from "font-picker";
 
 export default {
@@ -222,9 +220,8 @@ export default {
         }
     },
     created(){
-        console.log(this.borne);
-        this.iconIN = IconIN;
-        this.iconOUT = IconOUT;
+        this.iconIN = this.$store.getters.icon['iconIN'];
+        this.iconOUT = this.$store.getters.icon['iconOUT'];
         this.OUTWithText = this.borne.icon.iconOUT.withText;
         this.INWithText = this.borne.icon.iconIN.withText;
         console.log(this.borne);

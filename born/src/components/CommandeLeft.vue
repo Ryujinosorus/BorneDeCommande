@@ -46,14 +46,16 @@
         }"> Prix : 6.50 </p>
         </div>
       </div>
+      <router-link to="/RecapAndBuy">
       <div :style="{
-        height : '12.8vh', 
+        height : 'auto', 
         backgroundColor : settings.list.recap.backgroundColorBouttonCommander,
         color : settings.list.recap.fontColorBouttonCommander,
         fontSize : settings.list.recap.fontSizeBouttonCommander + 'px'
         }">
         <p class="apply-font-commandeBoutton center">{{settings.list.recap.textBouttonCommander}} </p>
       </div>
+      </router-link>
     </div>
 </div>
 </template>

@@ -40,6 +40,7 @@
         </div>
 
         <!-- BACK BTN -->
+        <router-link to="/desorganise">
         <div :style="{
             height : settings.valid.backBTN.hauteur + 'px',
             width : settings.valid.backBTN.largeur + 'px',
@@ -63,8 +64,10 @@
                     }" class="apply-font-backFont">{{settings.valid.backBTN.text}}</h2>
             </div>
         </div>
+        </router-link>
         
         <!-- NEXT BTN -->
+        <router-link to="/howPay">
         <div :style="{
             height : settings.valid.nextBTN.hauteur + 'px',
             width : settings.valid.nextBTN.largeur + 'px',
@@ -88,6 +91,7 @@
                     }" class="apply-font-nextFont">{{settings.valid.nextBTN.text}}</h2>
             </div>
         </div>
+        </router-link>
         <div class="hidden">
             <div id="font-picker-textFont"></div>
             <div id="font-picker-titreRecapFont"></div>
@@ -139,7 +143,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .full{
     min-height: 100vh;
     width: 100%;

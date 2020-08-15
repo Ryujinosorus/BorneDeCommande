@@ -45,6 +45,12 @@ export default new Vuex.Store({
                 'min':10,
                 'max':500
             }
+        },
+        icon : {
+            'back' : null,
+            'next' : null,
+            'iconIN' : null,
+            'iconOUT' : null
         }
     },
     getters: {
@@ -80,6 +86,9 @@ getAllMenu(state){
 },
 globalSettings(state){
     return state.globalSettings;
+},
+icon(state){
+    return state.icon;
 }
 },
 mutations: {
@@ -88,6 +97,9 @@ mutations: {
     },
     changeCarouselFont(state,data){
         state.fontPicker['carrousel'] = data;
+    },
+    SET_ICON(state,data){
+        state.icon[data[0]] = data[1];
     },
     SET_LOGGED_IN(state, value) {
         state.user.loggedIn = value;

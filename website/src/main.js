@@ -139,6 +139,11 @@ load('supplements.txt')
 load('Menu.txt');
 load('BorneSettings.txt');
 
+loadIcon('back');
+loadIcon('iconIN');
+loadIcon('iconOUT');
+loadIcon('next')
+
 store.commit("START");
 const router = new VueRouter({
     mode: 'history',
@@ -177,6 +182,38 @@ function load(name){
     });
 }
 
+function loadIcon(name){
+    let storageRef = fb.storage().ref('picture/iconSelector/');
+    let res=[];
+    var xhr = new XMLHttpRequest();
+    storageRef.child(name+'.txt').getDownloadURL().then(function(url) {
+        xhr.responseType = '';
+        xhr.onload = function() {
+            let data = xhr.response.split('\n');
+            for(let i=0;i<data.length;i++)
+                if(data[i]!=''){
+                    let line = data[i].split(' : ');
+                    let obj = {
+                        name : '',
+                        url : '',
+                    }
+                    obj.name = line[0];
+                    obj.url = line[1];
+                    res.push(obj);
+                }
+            store.commit('SET_ICON',[name,res]);
+        }
+        xhr.open('GET', url);
+        xhr.send();
+    }).catch(function() {
+        if(name =='BorneSettings.txt'){
+            store.commit('ADD_BORNESETTINGS',new BorneSetting());
+            getFont();
+        }
+
+        console.log("file not found");
+    });
+}
 //REDIR
 function SET_UP(name,data){
     switch(name){

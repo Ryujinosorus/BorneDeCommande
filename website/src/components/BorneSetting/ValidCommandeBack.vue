@@ -262,13 +262,12 @@
 </template>
 
 <script>
-import IconBACK from '../../Data/back'
 import FontPicker from 'font-picker'
 export default {
     props : ['borne','globalSettings'],
     data(){
       return{
-        iconBACK : IconBACK,
+        iconBACK : null,
       }
     },
     methods : {
@@ -295,6 +294,9 @@ export default {
             },
         );
         font.setOnChange((font) => this.borne.valid.backBTN.font = font.family);
+    },
+    created(){
+      this.iconBACK = this.$store.getters.icon['back'];
     }
 }
 </script>

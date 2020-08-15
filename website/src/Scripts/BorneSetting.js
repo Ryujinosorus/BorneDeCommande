@@ -297,7 +297,7 @@ export default class BorneSetting{
                     'hauteur' : 250,
                     'backgroundColor' : '#eee',
                     'backgroundTextColor' : '#eee',
-                    'url' : 'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2Fback%2Fquitter-signboard-lumiere-fleche-forme_1095-13.jpg?alt=media&token=85f18060-4584-4c75-a9e3-e1527534618b',
+                    'url' : 'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2Fnext%2Faccelerer-emoji_53876-25526.jpg?alt=media&token=940b601e-2328-4788-9191-5107eff6bedf',
                     'withText' : false,
                     'text' :'Annuler',
                     'textHeight' : 100,
