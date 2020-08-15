@@ -59,6 +59,11 @@ import CustomCarousel from './components/BorneSetting/CustomCarousel'
 import CustomCardDeatils from './components/BorneSetting/CustomCardDetail'
 import ValidCommandeGeneral from './components/BorneSetting/ValidCommandeGeneral';
 import ValidCommandeRecap from './components/BorneSetting/ValidCommandeRecap';
+import ValidCommandeRecapTitre from './components/BorneSetting/ValidCommandeRecapTitre';
+import ValidCommandeRecapDetails from './components/BorneSetting/ValidCommandeRecapDetails';
+import ValidCommandeBack from './components/BorneSetting/ValidCommandeBack';
+import ValidCommandeNext from './components/BorneSetting/ValidCommandeNext';
+
 Vue.config.productionTip = false;
 var firebaseConfig = {
     apiKey: "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
@@ -113,6 +118,10 @@ Vue.component('app-customCarousel',CustomCarousel);
 Vue.component('app-customCardDeatils',CustomCardDeatils);
 Vue.component('app-validCommandeGeneral',ValidCommandeGeneral);
 Vue.component('app-validCommandeRecap',ValidCommandeRecap);
+Vue.component('app-validCommandeRecapTitre',ValidCommandeRecapTitre);
+Vue.component('app-validCommandeRecapDetails',ValidCommandeRecapDetails);
+Vue.component('app-validCommandeBack',ValidCommandeBack);
+Vue.component('app-validCommandeNext',ValidCommandeNext);
 //Vue.component('app-bornefirstpage',BorneFirstPage);
 
 

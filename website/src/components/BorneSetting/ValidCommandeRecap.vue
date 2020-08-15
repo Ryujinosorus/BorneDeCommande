@@ -132,6 +132,38 @@
             ></v-color-picker>   
           </td>
       </tr>
+      <tr>
+          <td>
+              Bordure gauche
+          </td>
+          <td>
+              <v-checkbox v-model="borne.valid.recap.borderL"></v-checkbox>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              Bordure droit
+          </td>
+          <td>
+              <v-checkbox v-model="borne.valid.recap.borderR"></v-checkbox>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              Bordure haut
+          </td>
+          <td>
+              <v-checkbox v-model="borne.valid.recap.borderT"></v-checkbox>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              Bordure bas
+          </td>
+          <td>
+              <v-checkbox v-model="borne.valid.recap.borderB"></v-checkbox>
+          </td>
+      </tr>
   </table>
 </template>
 

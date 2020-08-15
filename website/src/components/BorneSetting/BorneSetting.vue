@@ -159,6 +159,42 @@
             ></app-validCommandeRecap>
           </v-expansion-panel-content>
         </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Validation Commande Récap Titre</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-validCommandeRecapTitre
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-validCommandeRecapTitre>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Validation Commande Récap Détails</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-validCommandeRecapDetails
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-validCommandeRecapDetails>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Validation Commande Récap Boutton annuler</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-validCommandeBack
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-validCommandeBack>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Validation Commande Récap Boutton continuer</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-validCommandeNext
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-validCommandeNext>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
       </v-expansion-panels>
     </v-container>
   </div>
