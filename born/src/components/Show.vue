@@ -120,6 +120,7 @@
           }"
           >{{settings.custom.toolbar.text}}</v-toolbar-title>
         </v-toolbar>
+        <!--
         <div
           :style="{width : settings.custom.carousel.largeur +'px',
                     marginTop :settings.custom.carousel.marginT + 'px',
@@ -147,7 +148,7 @@
                 </div>
                 <div class="detail">
 
-                  <!-- SAUCE -->
+                  <!- SAUCE ->
 
                   <v-row v-if="i == 'sauce'">
                     <v-card
@@ -173,7 +174,7 @@
                   </v-row>
 
 
-                  <!-- LEGUMES --->
+                  <!- LEGUMES ->
 
 
 
@@ -202,7 +203,7 @@
 
 
 
-                  <!-- supplement --->
+                  <!- supplement ->
 
 
 
@@ -234,6 +235,122 @@
             </v-carousel-item>
           </v-carousel>
         </div>
+        -->
+
+      <div :style="{
+                  width : settings.custom.carousel.largeur +'px',
+                  height : settings.custom.carousel.hauteur +'px',
+                  marginTop :settings.custom.carousel.marginT + 'px',
+                  marginLeft: 'auto',
+                  marginRight : 'auto',
+                  backgroundColor : settings.custom.carousel.backgroundColor,
+                  overflowY : 'scroll'
+                  }">
+
+        <!-- SAUCE -->
+        <div>
+          <h1>Sauce {{selectable.modifiable.sauce[1].length + '/' + selectable.maxSauce}}</h1>
+          <div>
+            <v-row>
+               <v-card
+                  v-for="(detail,index) in selectable.modifiable['sauce'][0]"
+                  @click="addSauce(detail,index)"
+                  :key="detail"
+                  :style="{
+                  height : settings.custom.cardDetail.hauteur + 'px',
+                  width : settings.custom.cardDetail.largeur + 'px',
+                  marginLeft:settings.custom.cardDetail.marginL + 'px',
+                  marginTop:settings.custom.cardDetail.marginT + 'px',
+                  backgroundColor : 'blue'
+                }">
+                <v-img
+                  :src="getURL('sauce',detail)"
+                  :height="settings.custom.cardDetail.hauteur - 50"
+                ></v-img>
+                <div>
+                  <p class="apply-font-detailTitreFont" :style="{
+                    fontSize :  settings.custom.cardDetail.fontSize+ 'px',
+                    color : settings.custom.cardDetail.imgHeight,
+                    float : 'left'
+                  }">{{detail}}</p>
+                    <v-checkbox dark v-model="sauceArray[index]" readonly :style="{float : 'right',marginTop: '0px'}" ></v-checkbox>
+                  </div>
+                </v-card>
+            </v-row>
+          </div>
+        </div>
+
+        <!-- LEGUME -->
+        <div>
+          <h1>Legume</h1>
+          <div>
+            <v-row>
+               <v-card
+                  v-for="(detail,index) in selectable.modifiable['legume'][0]"
+                  @click="addLegume(detail,index)"
+                  :key="detail"
+                  :style="{
+                  height : settings.custom.cardDetail.hauteur + 'px',
+                  width : settings.custom.cardDetail.largeur + 'px',
+                  marginLeft:settings.custom.cardDetail.marginL + 'px',
+                  marginTop:settings.custom.cardDetail.marginT + 'px',
+                  backgroundColor : 'blue'
+                }">
+                <v-img
+                  :src="getURL('legume',detail)"
+                  :height="settings.custom.cardDetail.hauteur - 50"
+                ></v-img>
+                <div>
+                  <p class="apply-font-detailTitreFont" :style="{
+                    fontSize :  settings.custom.cardDetail.fontSize+ 'px',
+                    color : settings.custom.cardDetail.imgHeight,
+                    float : 'left'
+                  }">{{detail}}</p>
+                    <v-checkbox dark v-model="legumeArray[index]" readonly :style="{float : 'right',marginTop: '0px'}" ></v-checkbox>
+                  </div>
+                </v-card>
+            </v-row>
+          </div>
+        </div>
+
+
+        <!-- SUPPLEMENTS -->
+        <div>
+          <h1> SUPPLEMENTS</h1>
+          <div>
+            <v-row>
+               <v-card
+                  v-for="(detail,index) in selectable.modifiable['supplement'][0]"
+                  @click="addSupplement(detail[1],index)"
+                  :key="detail[1]"
+                  :style="{
+                  height : settings.custom.cardDetail.hauteur + 'px',
+                  width : settings.custom.cardDetail.largeur + 'px',
+                  marginLeft:settings.custom.cardDetail.marginL + 'px',
+                  marginTop:settings.custom.cardDetail.marginT + 'px',
+                  backgroundColor : 'blue'
+                }">
+                <v-img
+                  :src="detail[2]"
+                  :height="settings.custom.cardDetail.hauteur - 50"
+                ></v-img>
+                <div>
+                  <p class="apply-font-detailTitreFont" :style="{
+                    fontSize :  settings.custom.cardDetail.fontSize+ 'px',
+                    color : settings.custom.cardDetail.imgHeight,
+                    float : 'left',
+                    maxWidth : settings.custom.cardDetail.largeur - 40 + 'px'
+                  }">{{detail[0] + detail[1]}}</p>
+                    <v-checkbox dark v-model="supplementArray[index]" readonly :style="{float : 'right',marginTop: '0px'}" ></v-checkbox>
+                  </div>
+                </v-card>
+            </v-row>
+          </div>
+        </div>
+
+
+      </div>
+      <v-btn @click="add()">Valider</v-btn>
       </v-card>
     </v-dialog>
 
@@ -294,6 +411,11 @@ export default {
         }
       }
     },
+    add(){
+      this.$store.commit('ADD_SELECTABLE',this.selectable);
+      this.dialog = false;
+      this.$router.replace('/desorganise');
+    },
     addSauce(name,index){
       let pos = this.selectable.modifiable.sauce[1].indexOf(name);
       if(pos==-1)
@@ -302,7 +424,7 @@ export default {
          this.selectable.modifiable.sauce[1].splice(pos,1);
       this.sauceArray[index] = !this.sauceArray[index];
 
-      if(this.selectable.modifiable.sauce[1].length > 2){
+      if(this.selectable.modifiable.sauce[1].length > this.selectable.maxSauce){
         let a = this.selectable.modifiable.sauce[1].shift();
         let posDel = this.selectable.modifiable.sauce[0].indexOf(a);
         this.sauceArray[posDel] = false;

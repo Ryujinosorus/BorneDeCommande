@@ -115,7 +115,7 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
           <v-expansion-panel>
-          <v-expansion-panel-header>Customisation Carrousel Titre</v-expansion-panel-header>
+          <v-expansion-panel-header>Customisation Titre</v-expansion-panel-header>
           <v-expansion-panel-content>
             <app-customCarrouselTitle
               :borne="borne"
@@ -124,7 +124,7 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
           <v-expansion-panel>
-          <v-expansion-panel-header>Customisation Carrousel Générale</v-expansion-panel-header>
+          <v-expansion-panel-header>Customisation Générale</v-expansion-panel-header>
           <v-expansion-panel-content>
             <app-customCarousel
               :borne="borne"
@@ -133,7 +133,7 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
             <v-expansion-panel>
-          <v-expansion-panel-header>Customisation Carrousel Carte ingrédient</v-expansion-panel-header>
+          <v-expansion-panel-header>Customisation Carte ingrédient</v-expansion-panel-header>
           <v-expansion-panel-content>
             <app-customCardDeatils
               :borne="borne"

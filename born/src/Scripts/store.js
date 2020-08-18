@@ -14,7 +14,8 @@ const store = new Vuex.Store({
     menu: [],
     platByCate: [],
     menuByPlat : [],
-    supplements : []
+    supplements : [],
+    commande : []
   },
   getters: {
     borneSettings(state) {
@@ -28,6 +29,9 @@ const store = new Vuex.Store({
     },
     user(state) {
       return state.user;
+    },
+    commande(state){
+      return state.commande;
     },
     platByCate(state) {
       return state.platByCate;
@@ -59,6 +63,9 @@ const store = new Vuex.Store({
       }
       let cv = Convertor.fromPlatToSelectable(res);
       state.platByCate[res.tab['categorie']].push(cv);
+    },
+    ADD_SELECTABLE(state,com){
+      state.commande.push(com);
     },
     INIT_MENU(state, res) {
       for(let i=0; i< res.plat.length;i++)

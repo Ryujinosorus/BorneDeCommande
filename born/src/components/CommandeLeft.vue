@@ -24,18 +24,20 @@
     </div>
 
     <!-- DETAIL COMMANDE -->
+
       <div style="overflow-y: scroll;" :style="{
         backgroundColor : settings.list.recap.backgroundColorRecap,
         height : '80%'
-        }">
+        }"
+        >
         <div :style="{
           borderBottom : settings.list.recap.borderCommandeSize +'px solid ' + settings.list.recap.borderCommandeColor,
-        }">
+        }" v-for="(data,index) of getCommande" :key="index">
           <h2 class="apply-font-commandeTitle" :style="{
           fontSize : settings.list.recap.commandeTitleSize +'px',
           color : settings.list.recap.commandeTitleColor,
         }">
-        Burger XXL</h2>
+        {{data.nom}}</h2>
           <p class="apply-font-commandeDetail" :style="{
           fontSize : settings.list.recap.commandeDetailSize +'px',
           color : settings.list.recap.commandeDetailColor,
@@ -43,9 +45,11 @@
           <p class="apply-font-commandePrix" :style="{
           fontSize : settings.list.recap.commandePrixlSize +'px',
           color : settings.list.recap.commandePrixColor,
-        }"> Prix : 6.50 </p>
+        }"> {{data}} </p>
         </div>
       </div>
+
+
       <router-link to="/RecapAndBuy">
       <div :style="{
         height : 'auto', 
@@ -61,6 +65,13 @@
 </template>
 <script>
 export default {
-    props:['settings']
+    props:['settings'],
+    computed : {
+      getCommande(){
+        console.log("refresh");
+        let tmp = this.$store.getters.commande;
+        return tmp;
+      }
+    }
 }
 </script>

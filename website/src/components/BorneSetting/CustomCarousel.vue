@@ -74,7 +74,7 @@
               </td>
           </tr>
           <tr>
-              <td>Espacement droite</td>
+              <td>Espacement haut</td>
               <td>
             <v-slider
               v-model="borne.custom.carousel.marginT"
@@ -110,12 +110,6 @@
             ></v-color-picker>
               </td>
           </tr>
-            <tr>
-                <td>Afficher position du slider en bas</td>
-                <td>
-                    <v-checkbox v-model="borne.custom.carousel.hideDelimiters"></v-checkbox>
-                </td>
-            </tr>
       </tbody>
   </table>
 </template>
