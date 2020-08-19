@@ -102,10 +102,6 @@ export default store;
 class Convertor {
   static fromPlatToSelectable(plat) {
     let sele = new Selectable();
-    
-    sele.modifiable.sauce = [plat.tab['sauces libre'],[]];
-    sele.modifiable.legume = [plat.tab['legumes'],[]];
-    sele.maxSauce = plat.tab['max'].sauce;
     return sele.fromPlat(plat);
   }
   static fromPayableToSelectable() {
@@ -115,6 +111,7 @@ class Convertor {
 }
 export class Selectable {
   constructor() {
+    this.plat = null;
     this.picture = '';
     this.nom = '';
     this.maxSauce ='1';
@@ -126,6 +123,12 @@ export class Selectable {
     this.prix = '';
   }
   fromPlat(plat) {
+    this.plat = plat;
+    this.prix = plat.tab['prix'];
+    this.modifiable.sauce = [[...plat.tab['sauces libre']],[]];
+    this.modifiable.legume = [[...plat.tab['legumes']], [...plat.tab['legumes']]];
+    this.modifiable.supplement = [ store.getters.supplements, []];
+    this.maxSauce = plat.tab['max'].sauce;
     this.picture = plat.picture;
     this.nom = plat.tab['nom'];
     return this;

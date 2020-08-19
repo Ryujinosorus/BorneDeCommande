@@ -321,7 +321,7 @@
             <v-row>
                <v-card
                   v-for="(detail,index) in selectable.modifiable['supplement'][0]"
-                  @click="addSupplement(detail[1],index)"
+                  @click="addSupplement(detail,index)"
                   :key="detail[1]"
                   :style="{
                   height : settings.custom.cardDetail.hauteur + 'px',
@@ -412,7 +412,8 @@ export default {
       }
     },
     add(){
-      this.$store.commit('ADD_SELECTABLE',this.selectable);
+      this.$store.commit('ADD_SELECTABLE',JSON.parse(JSON.stringify(this.selectable)));
+      this.selectable.fromPlat(this.selectable.plat);
       this.dialog = false;
       this.$router.replace('/desorganise');
     },
@@ -435,11 +436,17 @@ export default {
       if(pos==-1)
         this.selectable.modifiable.legume[1].push(name);
       else 
-         this.selectable.modifiable.legume[1].splice(pos,1);
+        this.selectable.modifiable.legume[1].splice(pos,1);
+      console.log(this.selectable.modifiable.legume);
       this.legumeArray[index] = !this.legumeArray[index];
     },
     addSupplement(name,index){
-      let pos = this.selectable.modifiable.supplement[1].indexOf(name);
+      let pos = -1;
+      for(let x=0;x<this.selectable.modifiable.supplement[1].length;x++){
+        console.log( this.selectable.modifiable.supplement[1][x][0] + ' == '  + name[0])
+        if(this.selectable.modifiable.supplement[1][x][0] == name[0])
+          pos = index;
+      }
       if(pos==-1)
         this.selectable.modifiable.supplement[1].push(name);
       else 

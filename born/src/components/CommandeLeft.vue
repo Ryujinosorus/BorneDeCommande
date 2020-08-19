@@ -41,11 +41,11 @@
           <p class="apply-font-commandeDetail" :style="{
           fontSize : settings.list.recap.commandeDetailSize +'px',
           color : settings.list.recap.commandeDetailColor,
-        }">Accompagnements : frite</p>
+        }">Sauce : {{data.modifiable.sauce[1]}}</p>
           <p class="apply-font-commandePrix" :style="{
           fontSize : settings.list.recap.commandePrixlSize +'px',
           color : settings.list.recap.commandePrixColor,
-        }"> {{data}} </p>
+        }"> {{(getPrice(data))}} </p>
         </div>
       </div>
 
@@ -66,6 +66,14 @@
 <script>
 export default {
     props:['settings'],
+    methods : {
+      getPrice(obj){
+        let p = parseFloat(obj.prix);
+        for(let i=0;i<obj.modifiable.supplement[1].length;i++)
+          p +=  parseFloat(obj.modifiable.supplement[1][i][1])
+        return p;
+      }
+    },
     computed : {
       getCommande(){
         console.log("refresh");
