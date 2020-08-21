@@ -41,7 +41,13 @@
           <p class="apply-font-commandeDetail" :style="{
           fontSize : settings.list.recap.commandeDetailSize +'px',
           color : settings.list.recap.commandeDetailColor,
-        }">Sauce : {{data.modifiable.sauce[1]}}</p>
+        }">Sauce : {{data.modifiable.sauce[1].length == 0 ? "Pas de sauce" : JSON.stringify(data.modifiable.sauce[1]) }}</p>
+
+        <div>
+          <v-btn @click="data.nb++"><v-icon>mdi-plus</v-icon></v-btn> 
+          <p>{{data.nb}}</p>
+          <v-btn @click="minusNB(data)"><v-icon>mdi-minus</v-icon></v-btn>
+        </div>
           <p class="apply-font-commandePrix" :style="{
           fontSize : settings.list.recap.commandePrixlSize +'px',
           color : settings.list.recap.commandePrixColor,
@@ -61,17 +67,55 @@
       </div>
       </router-link>
     </div>
+     <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+
+      <v-card>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="delCommande"
+          >
+            I accept
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 </div>
 </template>
 <script>
 export default {
     props:['settings'],
+    data(){
+      return{
+        dialog : false,
+        data : null,
+      }
+    },
     methods : {
       getPrice(obj){
         let p = parseFloat(obj.prix);
         for(let i=0;i<obj.modifiable.supplement[1].length;i++)
           p +=  parseFloat(obj.modifiable.supplement[1][i][1])
         return p;
+      },
+      minusNB(data){
+        data.nb--;
+        if(data.nb ==0){
+          this.dialog = true;
+          this.data = data;
+        }
+      },
+      delCommande(){
+        this.$store.commit('DEL_COMMANDE',this.data);
+        this.dialog = false;
       }
     },
     computed : {

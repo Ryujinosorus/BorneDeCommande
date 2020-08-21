@@ -65,7 +65,18 @@ const store = new Vuex.Store({
       state.platByCate[res.tab['categorie']].push(cv);
     },
     ADD_SELECTABLE(state,com){
-      state.commande.push(com);
+      let index = -1;
+      let comString = JSON.stringify(com);
+      for(let x=0;x<state.commande.length;x++)
+        if(JSON.stringify(state.commande[x]) == comString)
+          index = x;
+      if(index !=-1)
+        state.commande[index].nb +=1;
+      else state.commande.push(com);
+    },
+    DEL_COMMANDE(state,com){
+      let index = state.commande.indexOf(com);
+      state.commande.splice(index,1);
     },
     INIT_MENU(state, res) {
       for(let i=0; i< res.plat.length;i++)
@@ -115,6 +126,7 @@ export class Selectable {
     this.picture = '';
     this.nom = '';
     this.maxSauce ='1';
+    this.nb = 1;
     this.modifiable = {
       'sauce': [[], []],
       'legume': [[], []],
