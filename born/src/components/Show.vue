@@ -237,7 +237,8 @@
         </div>
         -->
 
-      <div :style="{
+        <div
+          :style="{
                   width : settings.custom.carousel.largeur +'px',
                   height : settings.custom.carousel.hauteur +'px',
                   marginTop :settings.custom.carousel.marginT + 'px',
@@ -245,15 +246,14 @@
                   marginRight : 'auto',
                   backgroundColor : settings.custom.carousel.backgroundColor,
                   overflowY : 'scroll'
-                  }">
-
-
-        <!-- LISTING -->
-        <div>
-          <h1>Comment le voulez vous ? </h1>
+                  }"
+        >
+          <!-- LISTING -->
           <div>
-            <v-row>
-               <v-card
+            <h1>Comment le voulez vous ?</h1>
+            <div>
+              <v-row>
+                <v-card
                   v-for="(detail,index) in allSelectable"
                   @click="changeSelectable(index)"
                   :key="detail.nom"
@@ -263,31 +263,37 @@
                   marginLeft:settings.custom.cardDetail.marginL + 'px',
                   marginTop:settings.custom.cardDetail.marginT + 'px',
                   backgroundColor : 'blue'
-                }">
-                <v-img
-                  :src="detail.picture"
-                  :height="settings.custom.cardDetail.hauteur - 50"
-                ></v-img>
-                <div>
-                  <p class="apply-font-detailTitreFont" :style="{
+                }"
+                >
+                  <v-img :src="detail.picture" :height="settings.custom.cardDetail.hauteur - 50"></v-img>
+                  <div>
+                    <p
+                      class="apply-font-detailTitreFont"
+                      :style="{
                     fontSize :  settings.custom.cardDetail.fontSize+ 'px',
                     color : settings.custom.cardDetail.imgHeight,
                     float : 'left'
-                  }">{{detail.nom}}</p>
-                    <v-checkbox dark v-model="selectableArray[index]" readonly :style="{float : 'right',marginTop: '0px'}" ></v-checkbox>
+                  }"
+                    >{{detail.nom}}</p>
+                    <v-checkbox
+                      dark
+                      v-model="selectableArray[index]"
+                      readonly
+                      :style="{float : 'right',marginTop: '0px'}"
+                    ></v-checkbox>
                   </div>
                 </v-card>
-            </v-row>
+              </v-row>
+            </div>
           </div>
-        </div>
 
-        <div v-for="(content,indexC) in selectable.content" :key="content.nom">
-          <!-- SAUCE -->
-          <div>
-            <h1>Sauce {{content.modifiable.sauce[1].length + '/' + content.maxSauce}}</h1>
+          <div v-for="(content,indexC) in selectable.content" :key="content.nom">
+            <!-- SAUCE -->
             <div>
-              <v-row>
-                <v-card
+              <h1>Sauce {{content.modifiable.sauce[1].length + '/' + content.maxSauce}}</h1>
+              <div>
+                <v-row>
+                  <v-card
                     v-for="(detail,index) in content.modifiable['sauce'][0]"
                     @click="addSauce(detail,index,content,indexC)"
                     :key="detail"
@@ -297,30 +303,39 @@
                     marginLeft:settings.custom.cardDetail.marginL + 'px',
                     marginTop:settings.custom.cardDetail.marginT + 'px',
                     backgroundColor : 'blue'
-                  }">
-                  <v-img
-                    :src="getURL('sauce',detail)"
-                    :height="settings.custom.cardDetail.hauteur - 50"
-                  ></v-img>
-                  <div>
-                    <p class="apply-font-detailTitreFont" :style="{
+                  }"
+                  >
+                    <v-img
+                      :src="getURL('sauce',detail)"
+                      :height="settings.custom.cardDetail.hauteur - 50"
+                    ></v-img>
+                    <div>
+                      <p
+                        class="apply-font-detailTitreFont"
+                        :style="{
                       fontSize :  settings.custom.cardDetail.fontSize+ 'px',
                       color : settings.custom.cardDetail.imgHeight,
                       float : 'left'
-                    }">{{detail}}</p>
-                      <v-checkbox dark v-model="sauceArray[indexC][index]" readonly :style="{float : 'right',marginTop: '0px'}" ></v-checkbox>
+                    }"
+                      >{{detail}}</p>
+                      <v-checkbox
+                        dark
+                        v-model="sauceArray[indexS][indexC][index]"
+                        readonly
+                        :style="{float : 'right',marginTop: '0px'}"
+                      ></v-checkbox>
                     </div>
                   </v-card>
-              </v-row>
+                </v-row>
+              </div>
             </div>
-          </div>
-          <!-- LEGUME -->
-          
-          <div>
-            <h1>Legume</h1>
+            <!-- LEGUME -->
+
             <div>
-              <v-row>
-                <v-card
+              <h1>Legume</h1>
+              <div>
+                <v-row>
+                  <v-card
                     v-for="(detail,index) in content.modifiable['legume'][0]"
                     @click="addLegume(detail,index,content,indexC)"
                     :key="detail"
@@ -330,32 +345,40 @@
                     marginLeft:settings.custom.cardDetail.marginL + 'px',
                     marginTop:settings.custom.cardDetail.marginT + 'px',
                     backgroundColor : 'blue'
-                  }">
-                  <v-img
-                    :src="getURL('legume',detail)"
-                    :height="settings.custom.cardDetail.hauteur - 50"
-                  ></v-img>
-                  <div>
-                    <p class="apply-font-detailTitreFont" :style="{
+                  }"
+                  >
+                    <v-img
+                      :src="getURL('legume',detail)"
+                      :height="settings.custom.cardDetail.hauteur - 50"
+                    ></v-img>
+                    <div>
+                      <p
+                        class="apply-font-detailTitreFont"
+                        :style="{
                       fontSize :  settings.custom.cardDetail.fontSize+ 'px',
                       color : settings.custom.cardDetail.imgHeight,
                       float : 'left'
-                    }">{{detail}}</p>
-                      <v-checkbox dark v-model="legumeArray[indexC][index]" readonly :style="{float : 'right',marginTop: '0px'}" ></v-checkbox>
+                    }"
+                      >{{detail}}</p>
+                      <v-checkbox
+                        dark
+                        v-model="legumeArray[indexS][indexC][index]"
+                        readonly
+                        :style="{float : 'right',marginTop: '0px'}"
+                      ></v-checkbox>
                     </div>
                   </v-card>
-              </v-row>
+                </v-row>
+              </div>
             </div>
-          </div>
-          <!-- SUPPLEMENTS -->
-          <!--
-          <div>
-            <h1> SUPPLEMENTS</h1>
+            <!-- SUPPLEMENTS -->
             <div>
-              <v-row>
-                <v-card
+              <h1>SUPPLEMENTS</h1>
+              <div>
+                <v-row>
+                  <v-card
                     v-for="(detail,index) in selectable.modifiable['supplement'][0]"
-                    @click="addSupplement(detail,index)"
+                    @click="addSupplement(detail,index,content,indexC)"
                     :key="detail[1]"
                     :style="{
                     height : settings.custom.cardDetail.hauteur + 'px',
@@ -363,29 +386,33 @@
                     marginLeft:settings.custom.cardDetail.marginL + 'px',
                     marginTop:settings.custom.cardDetail.marginT + 'px',
                     backgroundColor : 'blue'
-                  }">
-                  <v-img
-                    :src="detail[2]"
-                    :height="settings.custom.cardDetail.hauteur - 50"
-                  ></v-img>
-                  <div>
-                    <p class="apply-font-detailTitreFont" :style="{
+                  }"
+                  >
+                    <v-img :src="detail[2]" :height="settings.custom.cardDetail.hauteur - 50"></v-img>
+                    <div>
+                      <p
+                        class="apply-font-detailTitreFont"
+                        :style="{
                       fontSize :  settings.custom.cardDetail.fontSize+ 'px',
                       color : settings.custom.cardDetail.imgHeight,
                       float : 'left',
                       maxWidth : settings.custom.cardDetail.largeur - 40 + 'px'
-                    }">{{detail[0] + detail[1]}}</p>
-                      <v-checkbox dark v-model="supplementArray[index]" readonly :style="{float : 'right',marginTop: '0px'}" ></v-checkbox>
+                    }"
+                      >{{detail[0] + detail[1]}}</p>
+                      <v-checkbox
+                        dark
+                        v-model="supplementArray[indexS][indexC][index]"
+                        readonly
+                        :style="{float : 'right',marginTop: '0px'}"
+                      ></v-checkbox>
                     </div>
                   </v-card>
-              </v-row>
+                </v-row>
+              </div>
             </div>
           </div>
-          -->
         </div>
-
-      </div>
-      <v-btn @click="add()">Valider</v-btn>
+        <v-btn @click="add()">Valider</v-btn>
       </v-card>
     </v-dialog>
 
@@ -401,8 +428,8 @@
 <script>
 import FontPicker from "font-picker";
 import { Selectable } from "../Scripts/store";
-import {legumes} from '../Data/legumes';
-import {sauce} from '../Data/sauce'
+import { legumes } from "../Data/legumes";
+import { sauce } from "../Data/sauce";
 export default {
   props: ["settings"],
   data() {
@@ -411,34 +438,46 @@ export default {
       dialog: false,
       selectable: null,
       data: [],
-      localLegumes : legumes,
-      localSauces : sauce,
-      sauceSelected : [],
-      sauceArray : [],
-      legumeArray : [],
-      supplementArray : [],
-      allSelectable : [],
-      selectableArray : [true],
+      localLegumes: legumes,
+      localSauces: sauce,
+      sauceSelected: [],
+      sauceArray: [],
+      legumeArray: [],
+      supplementArray: [],
+      allSelectable: [],
+      selectableArray: [true],
+      indexS: 0,
     };
   },
   methods: {
     clickOnCard(data) {
-      console.log(data.content);
-      for(let x=0;x<3;x++){
-        this.sauceArray[x] = [];
-        this.legumeArray[x] = [];
-        this.supplementArray[x] = [];
+      this.allSelectable = this.$store.getters.menuByPlat[data.nom];
+      this.selectable = this.allSelectable[0];
+      this.indexS = 0;
+
+      this.selectableArray[0] = true;
+      for (let i = 1; i < this.selectableArray.legumes; i++)
+        this.selectableArray.push(false);
+
+      for (let x = 0; x < this.allSelectable.length; x++) {
+        this.legumeArray[x] = Array(this.allSelectable[x].content.length);
+        this.sauceArray[x] = Array(this.allSelectable[x].content.length);
+        this.supplementArray[x] = Array(this.allSelectable[x].content.length);
+
+        for (let y = 0; y < this.allSelectable[x].content.length; y++) {
+          this.legumeArray[x][y] = [];
+          this.sauceArray[x][y] = [];
+          this.supplementArray[x][y] = [];
+
+          for(let legumeIndex = 0;legumeIndex <this.allSelectable[x].content[y].modifiable.legume[0].length;legumeIndex++)
+            this.legumeArray[x][y].push(true);
+          for (let sauceIndex = 0;sauceIndex <this.allSelectable[x].content[y].modifiable.sauce[0].length;sauceIndex++)
+            this.sauceArray[x][y].push(false);
+          for(let suppelementIndex = 0;suppelementIndex <this.allSelectable[x].content[y].modifiable.supplement[0].length;suppelementIndex++)
+            this.supplementArray[x][y].push(false);
+        }
       }
 
-      for(let j=0;j<3;j++){
-        for(let i=0;i<data.modifiable.sauce[0].length;i++) this.sauceArray[j].push(false);
-        for(let i=0;i<data.modifiable.legume[0].length;i++) this.legumeArray[j].push(true);
-        for(let i=0;i<data.modifiable.supplement[0].length;i++) this.supplementArray[j].push(false);
-      }
-      this.allSelectable = (this.$store.getters.menuByPlat[data.nom]);
-      this.selectable = this.allSelectable[0];
-      this.selectableArray[0] = true;
-      for(let i=1;i<this.selectableArray.legumes;i++) this.selectableArray.push(false);
       this.dialog = true;
     },
     getURL(cate, name) {
@@ -447,64 +486,64 @@ export default {
           return "a";
         }
         case "legume": {
-          for(let i=0;i<this.localLegumes.length;i++)
-            if(this.localLegumes[i].name == name)
+          for (let i = 0; i < this.localLegumes.length; i++)
+            if (this.localLegumes[i].name == name)
               return this.localLegumes[i].url;
           break;
         }
         case "sauce": {
-          for(let i=0;i<this.localSauces.length;i++)
-            if(this.localSauces[i].name == name)
+          for (let i = 0; i < this.localSauces.length; i++)
+            if (this.localSauces[i].name == name)
               return this.localSauces[i].url;
           break;
         }
       }
     },
-    add(){
-      this.$store.commit('ADD_SELECTABLE',JSON.parse(JSON.stringify(this.selectable)));
+    add() {
+      this.$store.commit(
+        "ADD_SELECTABLE",
+        JSON.parse(JSON.stringify(this.selectable))
+      );
       this.selectable.fromPlat(this.selectable.plat);
       this.dialog = false;
-      this.$router.replace('/desorganise');
+      this.$router.replace("/desorganise");
     },
-    addSauce(name,index,content,indexC){
+    addSauce(name, index, content, indexC) {
       let pos = content.modifiable.sauce[1].indexOf(name);
-      if(pos==-1)
-        content.modifiable.sauce[1].push(name);
-      else 
-         content.modifiable.sauce[1].splice(pos,1);
-      this.sauceArray[indexC][index] = !this.sauceArray[indexC][index];
+      if (pos == -1) content.modifiable.sauce[1].push(name);
+      else content.modifiable.sauce[1].splice(pos, 1);
+      this.sauceArray[this.indexS][indexC][index] = !this.sauceArray[
+        this.indexS
+      ][indexC][index];
 
-      if(content.modifiable.sauce[1].length > content.maxSauce){
+      if (content.modifiable.sauce[1].length > content.maxSauce) {
         let a = content.modifiable.sauce[1].shift();
         let posDel = content.modifiable.sauce[0].indexOf(a);
-        this.sauceArray[indexC][posDel] = false;
+        this.sauceArray[this.indexS][indexC][posDel] = false;
       }
     },
-    addLegume(name,index,content,indexC){
+    addLegume(name, index, content, indexC) {
       let pos = content.modifiable.legume[1].indexOf(name);
-      if(pos==-1)
-        content.modifiable.legume[1].push(name);
-      else 
-        content.modifiable.legume[1].splice(pos,1);
-      this.legumeArray[indexC][index] = !this.legumeArray[indexC][index];
+      if (pos == -1) content.modifiable.legume[1].push(name);
+      else content.modifiable.legume[1].splice(pos, 1);
+      this.legumeArray[this.indexS][indexC][index] = !this.legumeArray[this.indexS][indexC][index];
     },
-    addSupplement(name,index){
+    addSupplement(name, index, content, indexC) {
       let pos = -1;
-      for(let x=0;x<this.selectable.modifiable.supplement[1].length;x++){
-        if(this.selectable.modifiable.supplement[1][x][0] == name[0])
-          pos = index;
+      for (let x = 0; x < content.modifiable.supplement[1].length; x++) {
+        if (content.modifiable.supplement[1][x][0] == name[0]) pos = x;
       }
-      if(pos==-1)
-        this.selectable.modifiable.supplement[1].push(name);
-      else 
-         this.selectable.modifiable.supplement[1].splice(pos,1);
-      this.supplementArray[index] = !this.supplementArray[index];     
+      if (pos == -1) content.modifiable.supplement[1].push(name);
+      else content.modifiable.supplement[1].splice(pos, 1);
+      console.log(this.indexS + " " + indexC + " " + index);
+      this.supplementArray[this.indexS][indexC][index] = !this.supplementArray[this.indexS][indexC][index];
     },
-    changeSelectable(index){
+    changeSelectable(index) {
       this.selectable = this.allSelectable[index];
-      for(let i=0;i<this.allSelectable.length;i++)
-        this.selectableArray[i] = (i==index)
-    }
+      for (let i = 0; i < this.allSelectable.length; i++)
+        this.selectableArray[i] = i == index;
+      this.indexS = index;
+    },
   },
   created() {
     this.selectable = new Selectable();
@@ -540,7 +579,7 @@ export default {
       }
     );
 
-      new FontPicker(
+    new FontPicker(
       "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
       this.settings.custom.cardDetail.font,
       {
