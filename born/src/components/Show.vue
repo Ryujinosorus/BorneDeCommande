@@ -403,6 +403,7 @@
                         dark
                         v-model="supplementArray[indexS][indexC][index]"
                         readonly
+                        v-if="fixSuppRender"
                         :style="{float : 'right',marginTop: '0px'}"
                       ></v-checkbox>
                     </div>
@@ -447,6 +448,7 @@ export default {
       allSelectable: [],
       selectableArray: [true],
       indexS: 0,
+      fixSuppRender : true
     };
   },
   methods: {
@@ -535,8 +537,9 @@ export default {
       }
       if (pos == -1) content.modifiable.supplement[1].push(name);
       else content.modifiable.supplement[1].splice(pos, 1);
-      console.log(this.indexS + " " + indexC + " " + index);
       this.supplementArray[this.indexS][indexC][index] = !this.supplementArray[this.indexS][indexC][index];
+      this.fixSuppRender = false;
+      this.fixSuppRender = true;
     },
     changeSelectable(index) {
       this.selectable = this.allSelectable[index];
