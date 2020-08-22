@@ -38,6 +38,9 @@ const store = new Vuex.Store({
     },
     plat(state) {
       return state.plat;
+    },
+    menuByPlat(state){
+      return state.menuByPlat;
     }
   },
   mutations: {
@@ -62,7 +65,16 @@ const store = new Vuex.Store({
         state.platByCate[res.tab['categorie']] = [];
       }
       let cv = Convertor.fromPlatToSelectable(res);
+
+      if (state.platByCate[res.tab['categorie']] == null)
+        state.platByCate[res.tab['categorie']] = [];
+      
+      if(state.menuByPlat[res.tab['nom']] == undefined)
+        state.menuByPlat[res.tab['nom']] = [];
+
       state.platByCate[res.tab['categorie']].push(cv);
+      state.menuByPlat[res.tab['nom']].push(cv);
+
     },
     ADD_SELECTABLE(state,com){
       let index = -1;
@@ -80,9 +92,8 @@ const store = new Vuex.Store({
     },
     INIT_MENU(state, res) {
       for(let i=0; i< res.plat.length;i++)
-        state.menuByPlat[res.plat[i]] = res;
+        state.menuByPlat[res.plat[i]].push(Convertor.fromMenuToSelectable(res,state.plat));
       state.menu.push(res);
-      console.log(state.menuByPlat);
     },
     INIT_SUPPLEMENT(state,res){
       state.supplements = res;
@@ -119,6 +130,10 @@ class Convertor {
     let sele = new Selectable();
     return sele;
   }
+  static fromMenuToSelectable(menu,allPlat){
+    let sele = new Selectable();
+    return sele.fromMenu(menu,allPlat);
+  }
 }
 export class Selectable {
   constructor() {
@@ -135,14 +150,46 @@ export class Selectable {
     this.prix = '';
   }
   fromPlat(plat) {
+    this.type ="PLAT";
     this.plat = plat;
     this.prix = plat.tab['prix'];
-    this.modifiable.sauce = [[...plat.tab['sauces libre']],[]];
-    this.modifiable.legume = [[...plat.tab['legumes']], [...plat.tab['legumes']]];
-    this.modifiable.supplement = [ store.getters.supplements, []];
-    this.maxSauce = plat.tab['max'].sauce;
+    
+    let obj = {
+      'modifiable' : {
+        'sauce': [[...plat.tab['sauces libre']],[]],
+        'legume': [[...plat.tab['legumes']], [...plat.tab['legumes']]],
+        'supplement': [ store.getters.supplements, []]
+      },
+      'maxSauce' : plat.tab['max'].sauce,
+      'maxSupplement' : plat.tab['max'].supplement
+    }
+    this.content = [obj];
     this.picture = plat.picture;
     this.nom = plat.tab['nom'];
+    return this;
+  }
+  fromMenu(menu,allPlat){
+    this.type = "MENU";
+    this.menu = menu;
+    this.prix = menu.prix;
+    this.picture = menu.picture;
+    this.content = [];
+    this.nom = menu.nom;
+    for(let x=0;x<menu.plat.length;x++)
+      for(let y=0;y<allPlat.length;y++)
+        if(menu.plat[x]==allPlat[y].tab['nom']){
+          let plat = allPlat[y];
+          let obj = {
+            'modifiable' : {
+              'sauce': [[...plat.tab['sauces libre']],[]],
+              'legume': [[...plat.tab['legumes']], [...plat.tab['legumes']]],
+              'supplement': [ store.getters.supplements, []]
+            },
+            'maxSauce' : plat.tab['max'].sauce,
+            'maxSupplement' : plat.tab['max'].supplement
+          }
+          this.content.push(obj);
+        }
     return this;
   }
 }

@@ -117,9 +117,12 @@ function ADD_PLAT_START(data){
           xhr.responseType = '';
           xhr.onload = function() {
               store.commit('ADD_PLAT',new Plat().init(xhr.response));
+              if(x == file.length-1)
+                load('Menu.txt');
           }
           xhr.open('GET', url);
           xhr.send();
+          
       }).catch(function(error) {
           console.log(error);
       });
@@ -179,6 +182,5 @@ load('plat.txt');
 load('Accompagnement Menu.txt');
 load('desserts.txt');
 load('boissons.txt');
-load('Menu.txt');
 load('supplements.txt');
 load('BorneSettings.txt');
