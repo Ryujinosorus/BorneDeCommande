@@ -288,8 +288,9 @@
           </div>
 
           <div v-for="(content,indexC) in selectable.content" :key="content.nom">
+            <h1 v-if="selectable.content.length!=1">{{content.nom}}</h1>
             <!-- SAUCE -->
-            <div>
+            <div v-if="content.modifiable['sauce'][0].length !=0">
               <h1>Sauce {{content.modifiable.sauce[1].length + '/' + content.maxSauce}}</h1>
               <div>
                 <v-row>
@@ -331,7 +332,7 @@
             </div>
             <!-- LEGUME -->
 
-            <div>
+            <div v-if="content.modifiable['legume'][0].length !=0">
               <h1>Legume</h1>
               <div>
                 <v-row>
@@ -372,7 +373,7 @@
               </div>
             </div>
             <!-- SUPPLEMENTS -->
-            <div>
+            <div v-if="content.modifiable['supplement'][0].length !=0">
               <h1>SUPPLEMENTS</h1>
               <div>
                 <v-row>
@@ -506,7 +507,8 @@ export default {
         "ADD_SELECTABLE",
         JSON.parse(JSON.stringify(this.selectable))
       );
-      this.selectable.fromPlat(this.selectable.plat);
+
+      this.resetAllSelectable();
       this.dialog = false;
       this.$router.replace("/desorganise");
     },
@@ -547,6 +549,10 @@ export default {
         this.selectableArray[i] = i == index;
       this.indexS = index;
     },
+    resetAllSelectable(){
+      for(let x=0;x<this.allSelectable.length;x++)
+        this.allSelectable[x].reset();
+    }
   },
   created() {
     this.selectable = new Selectable();

@@ -30,24 +30,69 @@
         height : '80%'
         }"
         >
+        <!-- PARTIE D'UNE COMMANDE -->
         <div :style="{
           borderBottom : settings.list.recap.borderCommandeSize +'px solid ' + settings.list.recap.borderCommandeColor,
         }" v-for="(data,index) of getCommande" :key="index">
+          <!-- TITRE DE LA COMMANDE-->
           <h2 class="apply-font-commandeTitle" :style="{
           fontSize : settings.list.recap.commandeTitleSize +'px',
           color : settings.list.recap.commandeTitleColor,
         }">
         {{data.nom}}</h2>
+        <!-- SI UN SEUL PLAT-->
+        <div v-if="data.content.length ==1">
           <p class="apply-font-commandeDetail" :style="{
           fontSize : settings.list.recap.commandeDetailSize +'px',
           color : settings.list.recap.commandeDetailColor,
-        }">Sauce : {{data.modifiable.sauce[1].length == 0 ? "Pas de sauce" : JSON.stringify(data.modifiable.sauce[1]) }}</p>
+        }">Sauce : {{data.content[0].modifiable.sauce[1].length == 0 ? "Pas de sauce" : fromArrayToString(data.content[0].modifiable.sauce[1]) }}</p>
+          
+          <p class="apply-font-commandeDetail" :style="{
+          fontSize : settings.list.recap.commandeDetailSize +'px',
+          color : settings.list.recap.commandeDetailColor,
+        }">Légumes : {{data.content[0].modifiable.legume[1].length == 0 ? "Pas de légume" : fromArrayToString(data.content[0].modifiable.legume[1]) }}</p>
 
+          <p class="apply-font-commandeDetail" :style="{
+          fontSize : settings.list.recap.commandeDetailSize +'px',
+          color : settings.list.recap.commandeDetailColor,
+        }">Suppléments : {{data.content[0].modifiable.supplement[1].length == 0 ? "Pas de suppléments" : fromArray3ToString(data.content[0].modifiable.supplement[1]) }}</p>
+
+        </div>
+        <!-- SI PLUSIEURS PLATS -->
+        
+        <div v-else>
+          <div v-for="(content,index) in data.content" :key="index">
+            <div>
+              <h1>{{content.nom}}</h1>
+              <p class="apply-font-commandeDetail" :style="{
+              fontSize : settings.list.recap.commandeDetailSize +'px',
+              color : settings.list.recap.commandeDetailColor,
+            }">Sauce : {{content.modifiable.sauce[1].length == 0 ? "Pas de sauce" : fromArrayToString(content.modifiable.sauce[1]) }}</p>
+              
+              <p class="apply-font-commandeDetail" :style="{
+              fontSize : settings.list.recap.commandeDetailSize +'px',
+              color : settings.list.recap.commandeDetailColor,
+            }">Légumes : {{content.modifiable.legume[1].length == 0 ? "Pas de légume" : fromArrayToString(content.modifiable.legume[1]) }}</p>
+
+              <p class="apply-font-commandeDetail" :style="{
+              fontSize : settings.list.recap.commandeDetailSize +'px',
+              color : settings.list.recap.commandeDetailColor,
+            }">Suppléments : {{content.modifiable.supplement[1].length == 0 ? "Pas de suppléments" : fromArray3ToString(content.modifiable.supplement[1]) }}</p>
+          </div>
+        </div>
+        </div>
+
+
+        <!-- + ET - -->
         <div>
+          <v-row>
           <v-btn @click="data.nb++"><v-icon>mdi-plus</v-icon></v-btn> 
           <p>{{data.nb}}</p>
           <v-btn @click="minusNB(data)"><v-icon>mdi-minus</v-icon></v-btn>
+          </v-row>
         </div>
+
+        <!-- PRIX -->
           <p class="apply-font-commandePrix" :style="{
           fontSize : settings.list.recap.commandePrixlSize +'px',
           color : settings.list.recap.commandePrixColor,
@@ -102,8 +147,9 @@ export default {
     methods : {
       getPrice(obj){
         let p = parseFloat(obj.prix);
-        for(let i=0;i<obj.modifiable.supplement[1].length;i++)
-          p +=  parseFloat(obj.modifiable.supplement[1][i][1])
+        for(let x=0;x<obj.content.length;x++)
+          for(let y=0;y<obj.content[x].modifiable.supplement[1].length;y++)
+            p +=  parseFloat(obj.content[x].modifiable.supplement[1][y][1])
         return p;
       },
       minusNB(data){
@@ -116,6 +162,18 @@ export default {
       delCommande(){
         this.$store.commit('DEL_COMMANDE',this.data);
         this.dialog = false;
+      },
+      fromArrayToString(data){
+        let res='';
+        for(let i=0;i<data.length;i++)
+          res+= (data[i].toString() + (i==data.length-1? '' : ', '));
+        return res;
+      },
+      fromArray3ToString(data){
+        let res='';
+        for(let i=0;i<data.length;i++)
+          res+= (data[i][0].toString() + (i==data.length-1? '' : ', '));
+        return res;
       }
     },
     computed : {

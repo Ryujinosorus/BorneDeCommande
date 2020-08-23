@@ -171,6 +171,7 @@ export class Selectable {
   fromMenu(menu,allPlat){
     this.type = "MENU";
     this.menu = menu;
+    this.allPlat = allPlat;
     this.prix = menu.prix;
     this.picture = menu.picture;
     this.content = [];
@@ -186,10 +187,16 @@ export class Selectable {
               'supplement': [ store.getters.supplements, []]
             },
             'maxSauce' : plat.tab['max'].sauce,
-            'maxSupplement' : plat.tab['max'].supplement
+            'maxSupplement' : plat.tab['max'].supplement,
+            'nom' : plat.tab['nom']
           }
           this.content.push(obj);
         }
     return this;
+  }
+  reset(){
+    if(this.type =="MENU")
+      this.fromMenu(this.menu,this.allPlat)
+    else this.fromPlat(this.plat);
   }
 }
