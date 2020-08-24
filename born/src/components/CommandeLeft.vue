@@ -103,7 +103,7 @@
 
       <router-link to="/RecapAndBuy">
       <div :style="{
-        height : 'auto', 
+        height : '20%', 
         backgroundColor : settings.list.recap.backgroundColorBouttonCommander,
         color : settings.list.recap.fontColorBouttonCommander,
         fontSize : settings.list.recap.fontSizeBouttonCommander + 'px'

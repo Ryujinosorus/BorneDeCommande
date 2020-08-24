@@ -55,7 +55,7 @@ import BackCard from './components/BorneSetting/BackCardMenu';
 import CustomToolbar from './components/BorneSetting/CustomToolbar'
 import Custom from './components/BorneSetting/Custom'
 import CustomCarrouselTitle from './components/BorneSetting/CustomCarrouselTitle';
-import CustomCarousel from './components/BorneSetting/CustomCarousel'
+import CustomSelect from './components/BorneSetting/CustomSelect'
 import CustomCardDeatils from './components/BorneSetting/CustomCardDetail'
 import ValidCommandeGeneral from './components/BorneSetting/ValidCommandeGeneral';
 import ValidCommandeRecap from './components/BorneSetting/ValidCommandeRecap';
@@ -63,6 +63,8 @@ import ValidCommandeRecapTitre from './components/BorneSetting/ValidCommandeReca
 import ValidCommandeRecapDetails from './components/BorneSetting/ValidCommandeRecapDetails';
 import ValidCommandeBack from './components/BorneSetting/ValidCommandeBack';
 import ValidCommandeNext from './components/BorneSetting/ValidCommandeNext';
+import CustomTitleCate from './components/BorneSetting/CustomTitleCate'
+import CustomTitlePlat from './components/BorneSetting/CustomTitlePlat'
 
 Vue.config.productionTip = false;
 var firebaseConfig = {
@@ -114,7 +116,7 @@ Vue.component('app-backCardMenu',BackCard);
 Vue.component('app-customToolbar',CustomToolbar);
 Vue.component('app-custom',Custom);
 Vue.component('app-customCarrouselTitle',CustomCarrouselTitle);
-Vue.component('app-customCarousel',CustomCarousel);
+Vue.component('app-customSelect',CustomSelect);
 Vue.component('app-customCardDeatils',CustomCardDeatils);
 Vue.component('app-validCommandeGeneral',ValidCommandeGeneral);
 Vue.component('app-validCommandeRecap',ValidCommandeRecap);
@@ -122,6 +124,8 @@ Vue.component('app-validCommandeRecapTitre',ValidCommandeRecapTitre);
 Vue.component('app-validCommandeRecapDetails',ValidCommandeRecapDetails);
 Vue.component('app-validCommandeBack',ValidCommandeBack);
 Vue.component('app-validCommandeNext',ValidCommandeNext);
+Vue.component('app-customTitleCate',CustomTitleCate);
+Vue.component('app-customTitlePlat',CustomTitlePlat);
 //Vue.component('app-bornefirstpage',BorneFirstPage);
 
 

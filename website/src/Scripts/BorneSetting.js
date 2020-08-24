@@ -203,6 +203,7 @@ export default class BorneSetting{
             }
             },
             this.custom = {
+                /*
                 'toolbar' :{
                     'height' : 150,
                     'backgroundColor' : '#eee',
@@ -214,22 +215,44 @@ export default class BorneSetting{
                     'btnSize' : 15,
                     'marginL' : 25
                 },
+                */
                 'backgroundColor' : '#eee',
-                'transition' : 'scroll-y-transition',
+                'transition' : 'scroll-y',
 
-                'carousel' : {
-                    'textHeight' : 100,
-                    'fontSize' : 200,
-                    'backgroundColor' : '#eee',
-                    'textColor' : "#eee",
-                    'textBackgroundColor' :'#eee',
-                    'font' : 'Open Sans',
-                    'marginL' : 10,
+                'selectDiv' : {
                     'marginT' : 55,
                     'hauteur' : 750,
                     'largeur' : 750,
-                    'hideDelimiters' : false
+                    'backgroundColor' : '#eee',
+                    'borderSize' : 5,
+                    'borderColor' : '#eee',
+                    'borderR' : true,
+                    'borderL' : true,
+                    'borderT' : true,
+                    'borderB' : true,
                 },
+                'title' : {
+                    'font' : 'Open sans',
+                    'fontSize' : '50',
+                    'fontColor' : '#eee',
+                    'marginT' : 10,
+                    'text' : 'Customiser votre plat'
+                },
+                'nomPlat' : {
+                    'fontSize' : '50',
+                    'fontColor' : '#eee',
+                    'font': 'Open Sans',
+                    'marginT' : 25,
+                    'marginL' : 10
+                },
+                'nomDetail' : {
+                    'font' : 'Open sans',
+                    'fontSize' : '50',
+                    'fontColor' : '#eee',
+                    'marginT' : 10,
+                    'marginL' : 10
+                },
+
                 'cardDetail' : {
                     'hauteur' : 250,
                     'largeur' : 250,

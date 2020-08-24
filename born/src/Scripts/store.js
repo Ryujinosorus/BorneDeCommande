@@ -161,7 +161,8 @@ export class Selectable {
         'supplement': [ store.getters.supplements, []]
       },
       'maxSauce' : plat.tab['max'].sauce,
-      'maxSupplement' : plat.tab['max'].supplement
+      'maxSupplement' : plat.tab['max'].supplement,
+      'nom' : plat.tab['nom']
     }
     this.content = [obj];
     this.picture = plat.picture;

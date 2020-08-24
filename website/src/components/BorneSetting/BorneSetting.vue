@@ -26,7 +26,8 @@
     </section>
     <v-container fluid class="grey lighten-3">
       <app-safebornesettings @save="upload()"></app-safebornesettings>
-      <v-expansion-panels focusable v-model="panel">
+      <h1> Diaporama</h1>
+      <v-expansion-panels focusable>
         <v-expansion-panel>
           <v-expansion-panel-header>Diaporama</v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -38,18 +39,46 @@
             ></app-carrouselSettings>
           </v-expansion-panel-content>
         </v-expansion-panel>
+      </v-expansion-panels>
+      <h1>Sur place ou a emporter ?</h1>
+      <v-expansion-panels focusable>
         <v-expansion-panel>
           <v-expansion-panel-header>Where</v-expansion-panel-header>
           <v-expansion-panel-content>
             <app-whereSettings :borne="borne" :globalSettings="globalSettings"></app-whereSettings>
           </v-expansion-panel-content>
         </v-expansion-panel>
+      </v-expansion-panels>
+      <h1>Liste des categories</h1>
+      <v-expansion-panels focusable>
         <v-expansion-panel>
           <v-expansion-panel-header>Liste des categories</v-expansion-panel-header>
           <v-expansion-panel-content>
             <app-listSettings :borne="borne" :globalSettings="globalSettings"></app-listSettings>
           </v-expansion-panel-content>
         </v-expansion-panel>
+      </v-expansion-panels>
+      <h1>List des plats</h1>
+      <v-expansion-panels focusable>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Liste des plats</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-listPlat :borne="borne" :globalSettings="globalSettings"></app-listPlat>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Boutton retour</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-backCardMenu
+              @newPicture="changeBackPicture($event)"
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-backCardMenu>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+      <h1>Recapitulatif</h1>
+      <v-expansion-panels focusable>
         <v-expansion-panel>
           <v-expansion-panel-header>Récapitulatif</v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -80,22 +109,9 @@
             <app-recapBTNCommander :borne="borne" :globalSettings="globalSettings"></app-recapBTNCommander>
           </v-expansion-panel-content>
         </v-expansion-panel>
-        <v-expansion-panel>
-          <v-expansion-panel-header>Liste des plats</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <app-listPlat :borne="borne" :globalSettings="globalSettings"></app-listPlat>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-        <v-expansion-panel>
-          <v-expansion-panel-header>Boutton retour</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <app-backCardMenu
-              @newPicture="changeBackPicture($event)"
-              :borne="borne"
-              :globalSettings="globalSettings"
-            ></app-backCardMenu>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
+      </v-expansion-panels>
+      <h1>Customisation d'un plat/menu</h1>
+      <v-expansion-panels focusable>
           <v-expansion-panel>
           <v-expansion-panel-header>Customisation génerale</v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -105,6 +121,7 @@
             ></app-custom>
           </v-expansion-panel-content>
         </v-expansion-panel>
+        <!--
           <v-expansion-panel>
           <v-expansion-panel-header>Customisation toolbar</v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -114,6 +131,7 @@
             ></app-customToolbar>
           </v-expansion-panel-content>
         </v-expansion-panel>
+        -->
           <v-expansion-panel>
           <v-expansion-panel-header>Customisation Titre</v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -124,16 +142,16 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
           <v-expansion-panel>
-          <v-expansion-panel-header>Customisation Générale</v-expansion-panel-header>
+          <v-expansion-panel-header>Customisation sélection Générale</v-expansion-panel-header>
           <v-expansion-panel-content>
-            <app-customCarousel
+            <app-customSelect
               :borne="borne"
               :globalSettings="globalSettings"
-            ></app-customCarousel>
+            ></app-customSelect>
           </v-expansion-panel-content>
         </v-expansion-panel>
-            <v-expansion-panel>
-          <v-expansion-panel-header>Customisation Carte ingrédient</v-expansion-panel-header>
+          <v-expansion-panel>
+          <v-expansion-panel-header>Customisation sélection Carte ingrédient</v-expansion-panel-header>
           <v-expansion-panel-content>
             <app-customCardDeatils
               :borne="borne"
@@ -141,6 +159,27 @@
             ></app-customCardDeatils>
           </v-expansion-panel-content>
         </v-expansion-panel>
+          <v-expansion-panel>
+          <v-expansion-panel-header>Customisation sélection titre catégorie</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-customTitleCate
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-customTitleCate>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+          <v-expansion-panel>
+          <v-expansion-panel-header>Customisation sélection titre plat</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-customTitlePlat
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-customTitlePlat>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+      <h1>Validation</h1>
+      <v-expansion-panels focusable>
         <v-expansion-panel>
           <v-expansion-panel-header>Validation Commande Génerale</v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -209,7 +248,6 @@ export default {
     return {
       borne: null,
       globalSettings: null,
-      panel: [0],
       backPicture: null,
       tmpDiapoPicture: null, 
     };

@@ -99,27 +99,7 @@
       hide-overlay
       :transition="settings.custom.transition + '-transition'"
     >
-      <v-card :color="settings.custom.backgroundColor">
-        <v-toolbar
-          :height="settings.custom.toolbar.height"
-          dark
-          :color="settings.custom.toolbar.backgroundColor"
-        >
-          <v-icon
-            @click="dialog = false"
-            :size="settings.custom.toolbar.btnSize"
-            color="red"
-          >mdi-close</v-icon>
-          <v-toolbar-title
-            class="apply-font-fontToolbar"
-            :style="{
-                                                                    marginLeft : settings.custom.toolbar.marginL +'px',
-                                                                    fontSize : settings.custom.toolbar.textSize +'px',
-                                                                    color : settings.custom.toolbar.textColor 
-          
-          }"
-          >{{settings.custom.toolbar.text}}</v-toolbar-title>
-        </v-toolbar>
+      <v-card :color="settings.custom.backgroundColor" style="min-height : 100vh;width : 100%">
         <!--
         <div
           :style="{width : settings.custom.carousel.largeur +'px',
@@ -236,15 +216,23 @@
           </v-carousel>
         </div>
         -->
-
+        <h1 class="apply-font-titleFont" :style="{
+          fontSize : settings.custom.title.fontSize + 'px',
+          color : settings.custom.title.fontColor,
+          marginTop : settings.custom.title.marginT + 'px'
+          }">{{settings.custom.title.text}}</h1>
         <div
           :style="{
-                  width : settings.custom.carousel.largeur +'px',
-                  height : settings.custom.carousel.hauteur +'px',
-                  marginTop :settings.custom.carousel.marginT + 'px',
+                  width : settings.custom.selectDiv.largeur +'px',
+                  height : settings.custom.selectDiv.hauteur +'px',
+                  marginTop :settings.custom.selectDiv.marginT + 'px',
                   marginLeft: 'auto',
                   marginRight : 'auto',
-                  backgroundColor : settings.custom.carousel.backgroundColor,
+                  backgroundColor : settings.custom.selectDiv.backgroundColor,
+                  borderTop : settings.custom.selectDiv.borderT ? settings.custom.selectDiv.borderSize+'px solid' + settings.custom.selectDiv.borderColor : '0px',
+                  borderBottom : settings.custom.selectDiv.borderB ? settings.custom.selectDiv.borderSize+'px solid' + settings.custom.selectDiv.borderColor : '0px',
+                  borderLeft : settings.custom.selectDiv.borderL ? settings.custom.selectDiv.borderSize+'px solid' + settings.custom.selectDiv.borderColor : '0px',
+                  borderRight : settings.custom.selectDiv.borderR ? settings.custom.selectDiv.borderSize+'px solid' + settings.custom.selectDiv.borderColor : '0px',
                   overflowY : 'scroll'
                   }"
         >
@@ -288,10 +276,20 @@
           </div>
 
           <div v-for="(content,indexC) in selectable.content" :key="content.nom">
-            <h1 v-if="selectable.content.length!=1">{{content.nom}}</h1>
+            <h1 class="apply-font-nomPlatFont" :style="{
+                color : settings.custom.nomPlat.fontColor,
+                marginTop : settings.custom.nomPlat.marginT + 'px',
+                marginLeft : settings.custom.nomPlat.marginL + 'px',
+                fontSize : settings.custom.nomPlat.fontSize + 'px'
+              }">{{content.nom}}</h1>
             <!-- SAUCE -->
             <div v-if="content.modifiable['sauce'][0].length !=0">
-              <h1>Sauce {{content.modifiable.sauce[1].length + '/' + content.maxSauce}}</h1>
+              <h3 class="apply-font-nomDetailFont" :style="{
+                color : settings.custom.nomDetail.fontColor,
+                marginTop : settings.custom.nomDetail.marginT + 'px',
+                marginLeft : settings.custom.nomDetail.marginL + 'px',
+                fontSize : settings.custom.nomDetail.fontSize + 'px'
+              }">Sauce {{content.modifiable.sauce[1].length + '/' + content.maxSauce}}</h3>
               <div>
                 <v-row>
                   <v-card
@@ -333,7 +331,12 @@
             <!-- LEGUME -->
 
             <div v-if="content.modifiable['legume'][0].length !=0">
-              <h1>Legume</h1>
+              <h3 class="apply-font-nomDetailFont" :style="{
+                color : settings.custom.nomDetail.fontColor,
+                marginTop : settings.custom.nomDetail.marginT + 'px',
+                marginLeft : settings.custom.nomDetail.marginL + 'px',
+                fontSize : settings.custom.nomDetail.fontSize + 'px'
+              }">Légumes</h3>
               <div>
                 <v-row>
                   <v-card
@@ -374,7 +377,12 @@
             </div>
             <!-- SUPPLEMENTS -->
             <div v-if="content.modifiable['supplement'][0].length !=0">
-              <h1>SUPPLEMENTS</h1>
+              <h3 class="apply-font-nomDetailFont" :style="{
+                color : settings.custom.nomDetail.fontColor,
+                marginTop : settings.custom.nomDetail.marginT + 'px',
+                marginLeft : settings.custom.nomDetail.marginL + 'px',
+                fontSize : settings.custom.nomDetail.fontSize + 'px'
+              }">Suppléments</h3>
               <div>
                 <v-row>
                   <v-card
@@ -420,9 +428,11 @@
 
     <div class="hidden">
       <div id="font-picker-menuTextFont"></div>
-      <div id="font-picker-carouselTitleFont"></div>
+      <div id="font-picker-titleFont"></div>
       <div id="font-picker-fontToolbar"></div>
       <div id="font-picker-detailTitreFont"></div>
+      <div id="font-picker-nomDetailFont"></div>
+      <div id="font-picker-nomPlatFont"></div>
     </div>
   </v-container>
 </template>
@@ -572,18 +582,9 @@ export default {
 
     new FontPicker(
       "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
-      this.settings.custom.toolbar.font,
+      this.settings.custom.title.font,
       {
-        pickerId: "fontToolbar",
-        limit: 150,
-      }
-    );
-
-    new FontPicker(
-      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
-      this.settings.custom.carousel.font,
-      {
-        pickerId: "carouselTitleFont",
+        pickerId: "titleFont",
         limit: 150,
       }
     );
@@ -593,6 +594,23 @@ export default {
       this.settings.custom.cardDetail.font,
       {
         pickerId: "detailTitreFont",
+        limit: 150,
+      }
+    );
+    new FontPicker(
+      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
+      this.settings.custom.nomDetail.font,
+      {
+        pickerId: "nomDetailFont",
+        limit: 150,
+      }
+    );
+
+    new FontPicker(
+      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
+      this.settings.custom.nomPlat.font,
+      {
+        pickerId: "nomPlatFont",
         limit: 150,
       }
     );
