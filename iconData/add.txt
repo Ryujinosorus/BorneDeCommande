@@ -1,0 +1,3 @@
+cadit Orange : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2Fadd%2Fcadit.png?alt=media&token=115ec7fb-be07-4fd0-a2c8-61568645f246
+cadit Rouge : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2Fadd%2Fe-commerce.png?alt=media&token=d662a2c6-715c-4a4a-b073-f3b9ef250847
+Plus : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2Fadd%2FplusAndCircle.png?alt=media&token=d28aa98a-74fe-4514-b591-f8ccb09580a7

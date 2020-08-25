@@ -1,0 +1,4 @@
+croix Noir rond : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2Fcancel%2FcroixNoirRond.png?alt=media&token=af970bf7-fcb7-4576-bb75-fa3efb713087
+Anuller ornage : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2Fcancel%2FAnullerOrange.jpg?alt=media&token=46f39515-0812-4056-abe3-71f53deaab61
+Cancel Rose : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2Fcancel%2FcancelRose.jpg?alt=media&token=7eb30785-fa1c-4658-8a08-f6e7b7ae4cfb
+Croix noir carré : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2Fcancel%2FcroixNoir.png?alt=media&token=c900ba53-2a9a-457b-8a24-5264c7225df5

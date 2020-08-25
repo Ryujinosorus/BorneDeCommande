@@ -63,9 +63,10 @@ import ValidCommandeRecapTitre from './components/BorneSetting/ValidCommandeReca
 import ValidCommandeRecapDetails from './components/BorneSetting/ValidCommandeRecapDetails';
 import ValidCommandeBack from './components/BorneSetting/ValidCommandeBack';
 import ValidCommandeNext from './components/BorneSetting/ValidCommandeNext';
-import CustomTitleCate from './components/BorneSetting/CustomTitleCate'
-import CustomTitlePlat from './components/BorneSetting/CustomTitlePlat'
-
+import CustomTitleCate from './components/BorneSetting/CustomTitleCate';
+import CustomTitlePlat from './components/BorneSetting/CustomTitlePlat';
+import CustomAddBtn from './components/BorneSetting/CustomAddBtn';
+import CustomCancelBtn from './components/BorneSetting/CustomCancelBtn';
 Vue.config.productionTip = false;
 var firebaseConfig = {
     apiKey: "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
@@ -126,6 +127,8 @@ Vue.component('app-validCommandeBack',ValidCommandeBack);
 Vue.component('app-validCommandeNext',ValidCommandeNext);
 Vue.component('app-customTitleCate',CustomTitleCate);
 Vue.component('app-customTitlePlat',CustomTitlePlat);
+Vue.component('app-customAddBtn',CustomAddBtn);
+Vue.component('app-customCancelBtn',CustomCancelBtn);
 //Vue.component('app-bornefirstpage',BorneFirstPage);
 
 
@@ -146,7 +149,9 @@ load('BorneSettings.txt');
 loadIcon('back');
 loadIcon('iconIN');
 loadIcon('iconOUT');
-loadIcon('next')
+loadIcon('next');
+loadIcon('add');
+loadIcon('cancel');
 
 store.commit("START");
 const router = new VueRouter({

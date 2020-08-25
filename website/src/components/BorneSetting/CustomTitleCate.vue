@@ -3,7 +3,7 @@
       <thead>
           <tr>
               <td>Instruction</td>
-              <td>Valeur</td>
+              <td>ValeucardDetailr</td>
         </tr>
       </thead>
       <tbody>

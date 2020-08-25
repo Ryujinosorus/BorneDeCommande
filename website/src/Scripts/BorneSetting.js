@@ -264,6 +264,40 @@ export default class BorneSetting{
                     'fontColor' : '#eee',
                     'font' : 'Open Sans'
                 },
+                'addBTN' : {
+                    'largeur' : 250,
+                    'hauteur' : 250,
+                    'backgroundColor' : '#eee',
+                    'backgroundTextColor' : '#eee',
+                    'url' : 'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2Fadd%2Fcadit.png?alt=media&token=115ec7fb-be07-4fd0-a2c8-61568645f246',
+                    'withText' : false,
+                    'text' :'Ajouter',
+                    'textHeight' : 100,
+                    'fontSize' : 30,
+                    'font' : 'Open Sans',
+                    'fontColor' : '#eee',
+                    'marginT' : 50,
+                    'marginG' : 150,
+                    'borderSize' : 10,
+                    'borderColor' : '#eee' 
+                },
+                'cancelBTN' : {
+                    'largeur' : 250,
+                    'hauteur' : 250,
+                    'backgroundColor' : '#eee',
+                    'backgroundTextColor' : '#eee',
+                    'url' : 'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2Fcancel%2FcroixNoirRond.png?alt=media&token=af970bf7-fcb7-4576-bb75-fa3efb713087',
+                    'withText' : false,
+                    'text' :'Retour',
+                    'textHeight' : 100,
+                    'fontSize' : 30,
+                    'font' : 'Open Sans',
+                    'fontColor' : '#eee',
+                    'marginT' : 50,
+                    'marginG' : 150,
+                    'borderSize' : 10,
+                    'borderColor' : '#eee' 
+                }
             }
             this.valid = {
                 'backgroundColor' : '#B82626FF',

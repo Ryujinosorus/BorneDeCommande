@@ -177,6 +177,24 @@
             ></app-customTitlePlat>
           </v-expansion-panel-content>
         </v-expansion-panel>
+          <v-expansion-panel>
+          <v-expansion-panel-header>Customisation bouton ajouter</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-customAddBtn
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-customAddBtn>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+          <v-expansion-panel>
+          <v-expansion-panel-header>Customisation bouton annuler</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-customCancelBtn
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-customCancelBtn>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
       </v-expansion-panels>
       <h1>Validation</h1>
       <v-expansion-panels focusable>

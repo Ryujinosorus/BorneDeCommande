@@ -50,7 +50,9 @@ export default new Vuex.Store({
             'back' : null,
             'next' : null,
             'iconIN' : null,
-            'iconOUT' : null
+            'iconOUT' : null,
+            'add' : null,
+            'cancel' : null
         }
     },
     getters: {
