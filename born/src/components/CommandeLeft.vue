@@ -25,7 +25,7 @@
 
     <!-- DETAIL COMMANDE -->
 
-      <div style="overflow-y: scroll;" :style="{
+      <div style="overflow-y: scroll;overflow-x:hidden" :style="{
         backgroundColor : settings.list.recap.backgroundColorRecap,
         height : '80%'
         }"

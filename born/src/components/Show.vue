@@ -234,7 +234,8 @@
                   borderBottom : settings.custom.selectDiv.borderB ? settings.custom.selectDiv.borderSize+'px solid' + settings.custom.selectDiv.borderColor : '0px',
                   borderLeft : settings.custom.selectDiv.borderL ? settings.custom.selectDiv.borderSize+'px solid' + settings.custom.selectDiv.borderColor : '0px',
                   borderRight : settings.custom.selectDiv.borderR ? settings.custom.selectDiv.borderSize+'px solid' + settings.custom.selectDiv.borderColor : '0px',
-                  overflowY : 'scroll'
+                  overflowY : 'scroll',
+                  overflowX : 'hidden'
                   }"
         >
           <!-- LISTING -->
@@ -260,7 +261,7 @@
                       class="apply-font-detailTitreFont"
                       :style="{
                     fontSize :  settings.custom.cardDetail.fontSize+ 'px',
-                    color : settings.custom.cardDetail.imgHeight,
+                    color : settings.custom.cardDetail.fontColor,
                     float : 'left'
                   }"
                     >{{detail.nom}}</p>
@@ -314,7 +315,7 @@
                         class="apply-font-detailTitreFont"
                         :style="{
                       fontSize :  settings.custom.cardDetail.fontSize+ 'px',
-                      color : settings.custom.cardDetail.imgHeight,
+                      color : settings.custom.cardDetail.fontColor,
                       float : 'left'
                     }"
                       >{{detail}}</p>
@@ -361,7 +362,7 @@
                         class="apply-font-detailTitreFont"
                         :style="{
                       fontSize :  settings.custom.cardDetail.fontSize+ 'px',
-                      color : settings.custom.cardDetail.imgHeight,
+                      color : settings.custom.cardDetail.fontColor,
                       float : 'left'
                     }"
                       >{{detail}}</p>
@@ -404,7 +405,7 @@
                         class="apply-font-detailTitreFont"
                         :style="{
                       fontSize :  settings.custom.cardDetail.fontSize+ 'px',
-                      color : settings.custom.cardDetail.imgHeight,
+                      color : settings.custom.cardDetail.fontColor,
                       float : 'left',
                       maxWidth : settings.custom.cardDetail.largeur - 40 + 'px'
                     }"
