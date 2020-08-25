@@ -216,10 +216,11 @@
           </v-carousel>
         </div>
         -->
+        <div :style="{height : settings.custom.title.marginT + 'px'}"></div>
         <h1 class="apply-font-titleFont" :style="{
           fontSize : settings.custom.title.fontSize + 'px',
           color : settings.custom.title.fontColor,
-          marginTop : settings.custom.title.marginT + 'px'
+          textAlign : 'center'
           }">{{settings.custom.title.text}}</h1>
         <div
           :style="{
@@ -422,7 +423,62 @@
             </div>
           </div>
         </div>
-        <v-btn @click="add()">Valider</v-btn>
+        <div>
+                  <!-- CANCEL BTN -->
+        <router-link to="/desorganise">
+        <div :style="{
+            height : settings.custom.cancelBTN.hauteur + 'px',
+            width : settings.custom.cancelBTN.largeur + 'px',
+            marginTop : settings.custom.cancelBTN.marginT + 'px',
+            marginLeft : settings.custom.cancelBTN.marginG + 'px',
+            backgroundColor : settings.custom.cancelBTN.backgroundColor,
+            backgroundImage :'url(' +  settings.custom.cancelBTN.url + ')',
+            float :'left',
+            backgroundSize : 'cover',
+            border : settings.custom.cancelBTN.borderSize + 'px solid' + settings.custom.cancelBTN.borderColor
+        }">
+            <div v-if="settings.custom.cancelBTN.withText"  :style="{
+                height : settings.custom.cancelBTN.textHeight + 'px',
+                backgroundColor : settings.custom.cancelBTN.backgroundTextColor,
+                marginTop : settings.custom.cancelBTN.hauteur - settings.custom.cancelBTN.textHeight - 2*settings.custom.cancelBTN.borderSize + 'px'
+            }">
+                <h2 :style="{
+                    textAlign :'center',
+                    fontSize : settings.custom.cancelBTN.fontSize +'px',
+                    color : settings.custom.cancelBTN.fontColor
+                    }" class="apply-font-backFont">{{settings.custom.cancelBTN.text}}</h2>
+            </div>
+        </div>
+        </router-link>
+        <!-- ADD BTN -->
+        <div @click="add()" :style="{
+            height : settings.custom.addBTN.hauteur + 'px',
+            width : settings.custom.addBTN.largeur + 'px',
+            marginTop : settings.custom.addBTN.marginT + 'px',
+            marginRight : settings.custom.addBTN.marginR + 'px',
+            backgroundColor : settings.custom.addBTN.backgroundColor,
+            float : 'right',
+            backgroundImage :'url(' +  settings.custom.addBTN.url + ')',
+            backgroundSize : 'cover',
+            border : settings.custom.addBTN.borderSize + 'px solid' + settings.custom.addBTN.borderColor
+        }">
+            <div v-if="settings.custom.addBTN.withText"  :style="{
+                height : settings.custom.addBTN.textHeight + 'px',
+                backgroundColor : settings.custom.addBTN.backgroundTextColor,
+                marginTop : settings.custom.addBTN.hauteur - settings.custom.addBTN.textHeight - 2*settings.custom.addBTN.borderSize + 'px'
+            }">
+                <h2 :style="{
+                    textAlign :'center',
+                    fontSize : settings.vcustom.addBTN.fontSize +'px',
+                    color : settings.custom.addBTN.fontColor
+                    }" class="apply-font-nextFont">{{settings.custom.addBTN.text}}</h2>
+            </div>
+        </div>
+        </div>
+          <div :style="{
+            height :  settings.custom.cancelBTN.hauteur + settings.custom.cancelBTN.borderSize > settings.custom.addBTN.hauteur + settings.custom.addBTN.borderSize ? settings.custom.cancelBTN.hauteur + settings.custom.cancelBTN.borderSize : settings.custom.addBTN.hauteur + settings.custom.addBTN.borderSize + 'px',
+            marginTop : settings.custom.cancelBTN.marginT + 'px',
+            }"></div>
       </v-card>
     </v-dialog>
 
