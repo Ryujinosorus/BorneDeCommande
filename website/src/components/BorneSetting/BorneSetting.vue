@@ -104,6 +104,18 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
+          <v-expansion-panel-header>Récapitulatif Boutton + </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-recapBTNPlus :borne="borne" :globalSettings="globalSettings"></app-recapBTNPlus>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Récapitulatif Boutton - </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-recapBTNMinus :borne="borne" :globalSettings="globalSettings"></app-recapBTNMinus>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
           <v-expansion-panel-header>Récapitulatif : Boutton Commander</v-expansion-panel-header>
           <v-expansion-panel-content>
             <app-recapBTNCommander :borne="borne" :globalSettings="globalSettings"></app-recapBTNCommander>

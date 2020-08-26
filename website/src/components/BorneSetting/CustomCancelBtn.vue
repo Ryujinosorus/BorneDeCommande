@@ -80,11 +80,11 @@
       </tr>
       <tr>
           <td>
-              Espacement Gauche
+              Espacement droit
           </td>
           <td>
             <v-slider
-              v-model="borne.custom.cancelBTN.marginG"
+              v-model="borne.custom.cancelBTN.marginD"
               class="align-center"
               max="750"
               min="50"
@@ -92,7 +92,7 @@
             >
               <template v-slot:append>
                 <v-text-field
-                  v-model="borne.custom.cancelBTN.marginG"
+                  v-model="borne.custom.cancelBTN.marginD"
                   class="mt-0 pt-0"
                   hide-details
                   step="0.1"

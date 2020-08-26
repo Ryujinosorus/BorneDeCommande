@@ -67,6 +67,9 @@ import CustomTitleCate from './components/BorneSetting/CustomTitleCate';
 import CustomTitlePlat from './components/BorneSetting/CustomTitlePlat';
 import CustomAddBtn from './components/BorneSetting/CustomAddBtn';
 import CustomCancelBtn from './components/BorneSetting/CustomCancelBtn';
+import RecapBTNMinus from './components/BorneSetting/RecapBTNMinus';
+import RecapBTNPlus from './components/BorneSetting/RecapBTNPlus';
+
 Vue.config.productionTip = false;
 var firebaseConfig = {
     apiKey: "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
@@ -129,6 +132,8 @@ Vue.component('app-customTitleCate',CustomTitleCate);
 Vue.component('app-customTitlePlat',CustomTitlePlat);
 Vue.component('app-customAddBtn',CustomAddBtn);
 Vue.component('app-customCancelBtn',CustomCancelBtn);
+Vue.component('app-recapBTNMinus',RecapBTNMinus);
+Vue.component('app-recapBTNPlus',RecapBTNPlus);
 //Vue.component('app-bornefirstpage',BorneFirstPage);
 
 

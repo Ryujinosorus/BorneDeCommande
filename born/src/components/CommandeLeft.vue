@@ -86,9 +86,17 @@
         <!-- + ET - -->
         <div>
           <v-row>
-          <v-btn @click="data.nb++"><v-icon>mdi-plus</v-icon></v-btn> 
+              <p class="apply-font-commandeDetail" :style="{
+              fontSize : settings.list.recap.commandeDetailSize +'px',
+              color : settings.list.recap.commandeDetailColor,
+            }">Quantité :  </p>
+          <v-btn @click="data.nb++" :height="settings.list.recap.btnPlus.hauteur" :style="{minWidth : '0px',width : settings.list.recap.btnPlus.largeur + 'px',marginTop : settings.list.recap.btnPlus.marginT + 'px',marginLeft : settings.list.recap.btnPlus.marginL + 'px'}" :color="settings.list.recap.btnPlus.backgroundColor">
+            <v-icon :color="settings.list.recap.btnPlus.logoColor" :size="settings.list.recap.btnPlus.logoSize">mdi-plus</v-icon>
+          </v-btn> 
           <p>{{data.nb}}</p>
-          <v-btn @click="minusNB(data)"><v-icon>mdi-minus</v-icon></v-btn>
+          <v-btn @click="minusNB(data)" :height="settings.list.recap.btnMinus.hauteur" :style="{minWidth : '0px',width : settings.list.recap.btnMinus.largeur + 'px',marginTop : settings.list.recap.btnMinus.marginT + 'px',marginLeft : settings.list.recap.btnMinus.marginL + 'px'}" :color="settings.list.recap.btnMinus.backgroundColor">
+            <v-icon :color="settings.list.recap.btnMinus.logoColor" :size="settings.list.recap.btnMinus.logoSize">mdi-minus</v-icon>
+          </v-btn> 
           </v-row>
         </div>
 

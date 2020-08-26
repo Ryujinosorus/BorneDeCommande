@@ -79,6 +79,7 @@ const store = new Vuex.Store({
     ADD_SELECTABLE(state,com){
       let index = -1;
       let comString = JSON.stringify(com);
+      console.log(comString);
       for(let x=0;x<state.commande.length;x++)
         if(JSON.stringify(state.commande[x]) == comString)
           index = x;
