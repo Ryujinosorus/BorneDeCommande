@@ -155,6 +155,72 @@
                 ></v-color-picker>
               </td>
           </tr>
+          <tr>
+              <td>
+                  Taille des bordures
+              </td>
+              <td>
+                <v-slider
+                v-model="borne.list.recap.btnPlus.borderSize"
+                class="align-center"
+                max="10"
+                min="0"
+                hide-details
+                >
+                <template v-slot:append>
+                    <v-text-field
+                    v-model="borne.list.recap.btnPlus.borderSize"
+                    class="mt-0 pt-0"
+                    hide-details
+                    step="0.1"
+                    single-line
+                    type="number"
+                    style="width: 60px"
+                    ></v-text-field>
+                </template>
+                </v-slider>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  Couleur des bordures
+              </td>
+              <td>
+                <v-color-picker
+                    mode="hexa"
+                    hide-mode-switch
+                    @update:color="changeBorderColor"
+                    :value="borne.list.recap.btnPlus.borderColor"
+                    class="ma-2"
+                ></v-color-picker>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                Arroundi
+              </td>
+              <td>
+                <v-slider
+                v-model="borne.list.recap.btnPlus.borderRadius"
+                class="align-center"
+                max="100"
+                min="0"
+                hide-details
+                >
+                <template v-slot:append>
+                    <v-text-field
+                    v-model="borne.list.recap.btnPlus.borderRadius"
+                    class="mt-0 pt-0"
+                    hide-details
+                    step="0.1"
+                    single-line
+                    type="number"
+                    style="width: 60px"
+                    ></v-text-field>
+                </template>
+                </v-slider>
+              </td>
+          </tr>
       </tbody>
   </table>
 </template>
@@ -168,6 +234,9 @@ methods : {
     },
     changeLogoColor(e){
         this.borne.list.recap.btnPlus.logoColor = e.hexa;
+    },
+    changeBorderColor(e){
+        this.borne.list.recap.btnPlus.borderColor = e.hexa;
     }
 }
 }

@@ -90,11 +90,22 @@
               fontSize : settings.list.recap.commandeDetailSize +'px',
               color : settings.list.recap.commandeDetailColor,
             }">Quantité :  </p>
-          <v-btn @click="data.nb++" :height="settings.list.recap.btnPlus.hauteur" :style="{minWidth : '0px',width : settings.list.recap.btnPlus.largeur + 'px',marginTop : settings.list.recap.btnPlus.marginT + 'px',marginLeft : settings.list.recap.btnPlus.marginL + 'px'}" :color="settings.list.recap.btnPlus.backgroundColor">
+          <v-btn elevation="0" @click="data.nb++" :height="settings.list.recap.btnPlus.hauteur" :style="{minWidth : '0px',width : settings.list.recap.btnPlus.largeur + 'px',
+                                                                                                          marginTop : settings.list.recap.btnPlus.marginT + 'px',
+                                                                                                          marginLeft : settings.list.recap.btnPlus.marginL + 'px',
+                                                                                                          border : settings.list.recap.btnPlus.borderSize + 'px solid ' + settings.list.recap.btnPlus.borderColor,
+                                                                                                          borderRadius :settings.list.recap.btnPlus.borderRadius + 'px'
+            }" :color="settings.list.recap.btnPlus.backgroundColor">
             <v-icon :color="settings.list.recap.btnPlus.logoColor" :size="settings.list.recap.btnPlus.logoSize">mdi-plus</v-icon>
           </v-btn> 
           <p>{{data.nb}}</p>
-          <v-btn @click="minusNB(data)" :height="settings.list.recap.btnMinus.hauteur" :style="{minWidth : '0px',width : settings.list.recap.btnMinus.largeur + 'px',marginTop : settings.list.recap.btnMinus.marginT + 'px',marginLeft : settings.list.recap.btnMinus.marginL + 'px'}" :color="settings.list.recap.btnMinus.backgroundColor">
+          <v-btn elevation="0" @click="minusNB(data)" :height="settings.list.recap.btnMinus.hauteur" :style="{minWidth : '0px',
+                                                                                                              width : settings.list.recap.btnMinus.largeur + 'px',
+                                                                                                              marginTop : settings.list.recap.btnMinus.marginT + 'px',
+                                                                                                              marginLeft : settings.list.recap.btnMinus.marginL + 'px',
+                                                                                                              border : settings.list.recap.btnMinus.borderSize + 'px solid '+settings.list.recap.btnMinus.borderColor,
+                                                                                                              borderRadius : settings.list.recap.btnMinus.borderRadius + 'px'
+          }" :color="settings.list.recap.btnMinus.backgroundColor">
             <v-icon :color="settings.list.recap.btnMinus.logoColor" :size="settings.list.recap.btnMinus.logoSize">mdi-minus</v-icon>
           </v-btn> 
           </v-row>

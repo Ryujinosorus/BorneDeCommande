@@ -173,7 +173,10 @@ export default class BorneSetting{
                     'marginT' : 10,
                     'marginL' : 10,
                     'logoSize' : 30,
-                    'logoColor' : '#fff'
+                    'logoColor' : '#fff',
+                    'borderSize' : 2,
+                    'borderColor' : "#fff",
+                    'borederRadius' : 5
                 },
                 'btnMinus' : {
                     'largeur' : 25,
@@ -182,7 +185,10 @@ export default class BorneSetting{
                     'marginT' : 10,
                     'marginL' : 10,
                     'logoSize' : 30,
-                    'logoColor' : '#fff'
+                    'logoColor' : '#fff',
+                    'borderSize' : 2,
+                    'borderColor' : "#fff",
+                    'borederRadius' : 5
                 }
             },
             "showFood":{
