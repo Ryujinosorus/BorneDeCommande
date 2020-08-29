@@ -16,6 +16,8 @@
       height : settings.list.recap.heightTitle +'px',
       borderBottom :settings.list.recap.borderTC ? settings.list.recap.borderTCSize+'px solid' +settings.list.recap.borderTCColor : '' 
     }">
+    <div :style="{height : settings.list.recap.heightTitle/2- settings.list.recap.fontSizeTitle + 'px',}"
+    ></div>
       <h1 class="apply-font-title" :style="{
         textAlign :'center',
         fontSize : settings.list.recap.fontSizeTitle +'px',
@@ -27,7 +29,7 @@
 
       <div style="overflow-y: scroll;overflow-x:hidden" :style="{
         backgroundColor : settings.list.recap.backgroundColorRecap,
-        height : '80%'
+        height : '500px'
         }"
         >
         <!-- PARTIE D'UNE COMMANDE -->
@@ -122,12 +124,12 @@
 
       <router-link to="/RecapAndBuy">
       <div :style="{
-        height : '20%', 
         backgroundColor : settings.list.recap.backgroundColorBouttonCommander,
         color : settings.list.recap.fontColorBouttonCommander,
-        fontSize : settings.list.recap.fontSizeBouttonCommander + 'px'
+        fontSize : settings.list.recap.fontSizeBouttonCommander + 'px',
+        height : '50%',
         }">
-        <p class="apply-font-commandeBoutton center">{{settings.list.recap.textBouttonCommander}} </p>
+        <p class="apply-font-commandeBoutton">{{settings.list.recap.textBouttonCommander}} </p>
       </div>
       </router-link>
     </div>
