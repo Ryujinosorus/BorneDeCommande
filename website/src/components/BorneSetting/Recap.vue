@@ -75,13 +75,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Height title </td>
+                    <td>Taille dédié au titre en px</td>
                     <td>
                          <v-slider
                             v-model="borne.list['recap']['heightTitle']"
                             class="align-center"
-                            :max="120"
-                            :min="10"
+                            max="1000"
+                            min="100"
                             hide-details
                         >
                             <template v-slot:append>
@@ -92,8 +92,34 @@
                                 single-line
                                 type="number"
                                 step='0.1'
-                                max="120"
-                                min="10"
+                                max="1000"
+                                min="100"
+                                style="width: 60px"
+                            ></v-text-field>
+                            </template>
+                        </v-slider>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Taille dédié au details en px</td>
+                    <td>
+                         <v-slider
+                            v-model="borne.list['recap']['detailTitle']"
+                            class="align-center"
+                            max="1500"
+                            min="250"
+                            hide-details
+                        >
+                            <template v-slot:append>
+                            <v-text-field
+                                v-model="borne.list['recap']['detailTitle']"
+                                class="mt-0 pt-0"
+                                hide-details
+                                single-line
+                                type="number"
+                                step='0.1'
+                                max="1500"
+                                min="250"
                                 style="width: 60px"
                             ></v-text-field>
                             </template>

@@ -176,7 +176,7 @@ export default class BorneSetting{
                     'logoColor' : '#fff',
                     'borderSize' : 2,
                     'borderColor' : "#fff",
-                    'borederRadius' : 5
+                    'borderRadius' : 5
                 },
                 'btnMinus' : {
                     'largeur' : 25,
@@ -188,7 +188,7 @@ export default class BorneSetting{
                     'logoColor' : '#fff',
                     'borderSize' : 2,
                     'borderColor' : "#fff",
-                    'borederRadius' : 5
+                    'borderRadius' : 5
                 }
             },
             "showFood":{

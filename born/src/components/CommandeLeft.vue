@@ -29,7 +29,7 @@
 
       <div style="overflow-y: scroll;overflow-x:hidden" :style="{
         backgroundColor : settings.list.recap.backgroundColorRecap,
-        height : '500px'
+        height : settings.list.recap.detailTitle+ 'px'
         }"
         >
         <!-- PARTIE D'UNE COMMANDE -->
@@ -122,14 +122,14 @@
       </div>
 
 
-      <router-link to="/RecapAndBuy">
+      <router-link to="/RecapAndBuy" style="min-height : 0px">
       <div :style="{
         backgroundColor : settings.list.recap.backgroundColorBouttonCommander,
         color : settings.list.recap.fontColorBouttonCommander,
         fontSize : settings.list.recap.fontSizeBouttonCommander + 'px',
-        height : '50%',
+        height : '100%'
         }">
-        <p class="apply-font-commandeBoutton">{{settings.list.recap.textBouttonCommander}} </p>
+        <p class="apply-font-commandeBoutton centreMoiSaY">{{settings.list.recap.textBouttonCommander}} </p>
       </div>
       </router-link>
     </div>
@@ -206,3 +206,12 @@ export default {
     }
 }
 </script>
+<style>
+.centreMoiSaY{
+   height : 100%;
+   width: 100%;
+   position: absolute;
+   margin-top: 25%;
+   text-align: center;
+}
+</style>
