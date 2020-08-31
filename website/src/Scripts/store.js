@@ -10,7 +10,9 @@ export default new Vuex.Store({
         },
         food:{
             'legumes' : [],
-            'pains' : [],
+            'pains' : [
+                {'name' : 'aa','url' : 'jajaja'}
+            ],
             'viandes et poissons' : [],
             'sauces' : [],
             'boissons' : [],
@@ -22,6 +24,7 @@ export default new Vuex.Store({
         },
         plat:[],
         menu:[],
+        custom : [],
         font : null,
         bornesettings:null,
         fontPicker : {
@@ -58,6 +61,9 @@ export default new Vuex.Store({
     getters: {
         user(state){
     return state.user;
+},
+getAllCustom(state) {
+    return state.custom;
 },
 categories(state){
     return state.bornesettings.categorie;

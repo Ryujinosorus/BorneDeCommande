@@ -19,6 +19,7 @@ import register from './components/Auth/Register.vue'
 import EspaceClient from './components/Auth/EspaceClient.vue';
 import bornesetting from './components/BorneSetting/BorneSetting.vue';
 import supplements from './components/Ingredients/SubIngredients/supplements.vue'
+import Custom from './components/Carte/Custom.vue'
 export default [
   {
     name:'home',
@@ -102,5 +103,9 @@ export default [
     {
         path: '/add/Menu',
         component: ListMenu
-    }
+    },
+    {
+      path: '/add/custom',
+      component: Custom
+  }
 ];

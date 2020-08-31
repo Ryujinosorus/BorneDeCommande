@@ -58,7 +58,7 @@
 
 
 
-
+            <!--
                     <section
                 id="features"
                 class="grey lighten-3"
@@ -151,8 +151,8 @@
                     </v-col>
                 </v-row>
                 </v-container>
-
-                                <section
+            -->
+            <section
                 id="features"
                 class="grey lighten-3"
             >
@@ -171,6 +171,7 @@
                 </v-responsive>
 
                 <v-row justify="center">
+                    <!--
                     <v-col
                     cols="12"
                     md="4"
@@ -193,6 +194,28 @@
                         <v-card-actions class="justify-center"><v-btn x-large class="center white--text" color="#1976D2" @click="goTo(data.name)">Acceder</v-btn></v-card-actions>
                     </v-card>
                     </v-col>
+                    -->
+                     <v-col
+                    cols="12"
+                    md="4"
+                    >
+                    <v-card
+                        class="py-12 px-4"
+                        color="grey lighten-5"
+                        flat
+                    >
+                        <v-theme-provider dark>
+                        <v-img src="https://image.freepik.com/photos-gratuite/burger-gros-plan-fond-noir_23-2148234990.jpg" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"></v-img>
+                        </v-theme-provider>
+
+                        <v-card-title
+                        class="justify-center font-weight-black text-uppercase"> Recette </v-card-title>
+                        <v-card-text
+                        class="subtitle-1"
+                        > Les plats et menu qui seront affiché</v-card-text>
+                        <v-card-actions class="justify-center"><v-btn x-large class="center white--text" color="#1976D2" @click="goTo('custom')">Acceder</v-btn></v-card-actions>
+                    </v-card>
+                    </v-col>
                 </v-row>
                 
                 </v-container>
@@ -201,7 +224,6 @@
             </section>
 
                 <div class="py-12"></div>
-            </section>
 
                                     <section id="about-me">
                 <div class="py-12"></div>

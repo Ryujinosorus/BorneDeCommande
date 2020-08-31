@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import {fb} from "../../../main";
 export default {
     data(){
         return{

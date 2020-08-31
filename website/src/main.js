@@ -26,7 +26,11 @@ import ModifierPlat from './components/Carte/Plat/ModifierPlat.vue'
 import AjouteMenu from './components/Carte/Menu/AjouteMenu.vue'
 import ListForMenu from './components/Carte/Menu/ListForMenu.vue'
 import ModifieMenu from './components/Carte/Menu/ModifieMenu.vue'
+import SelectTypeForCustom from './components/Carte/Custom/SelectTypeForCustom.vue'
+import DisplayTypeForCustom from './components/Carte/Custom/DisplayTypeForCustom.vue'
 import BorneSetting from './Scripts/BorneSetting.js'
+
+import AjouteCustom from './components/Carte/Custom/AjouteCustom';
 //import BorneFirstPage from './components/BorneSetting/firstPage.vue';
 import BorneSettingVue from './components/BorneSetting/BorneSetting.vue';
 import SaveCategorie from './components/BorneSetting/SaveCategorie.vue';
@@ -103,6 +107,8 @@ Vue.component('app-savecategorie',SaveCategorie);
 Vue.component('app-ajoutemenu', AjouteMenu);
 Vue.component('app-listformenu', ListForMenu);
 Vue.component('app-modifieplat', ModifieMenu);
+Vue.component('app-ajouteCustom',AjouteCustom)
+Vue.component('app-selectTypeForCustom',SelectTypeForCustom);
 Vue.component('fontPicker',FontPicker);
 Vue.component('app-listSettings',ListSettings);
 Vue.component('app-listcategories',ListCategories);
@@ -127,6 +133,8 @@ Vue.component('app-validCommandeRecap',ValidCommandeRecap);
 Vue.component('app-validCommandeRecapTitre',ValidCommandeRecapTitre);
 Vue.component('app-validCommandeRecapDetails',ValidCommandeRecapDetails);
 Vue.component('app-validCommandeBack',ValidCommandeBack);
+
+Vue.component('app-displayTypeForCustom',DisplayTypeForCustom);
 Vue.component('app-validCommandeNext',ValidCommandeNext);
 Vue.component('app-customTitleCate',CustomTitleCate);
 Vue.component('app-customTitlePlat',CustomTitlePlat);
@@ -143,12 +151,6 @@ Vue.use(Vuetify);
 firebase.auth().onAuthStateChanged(user => {
     store.dispatch("fetchUser", user);
 });
-load('plat.txt');
-load('Accompagnement Menu.txt');
-load('desserts.txt');
-load('boissons.txt');
-load('supplements.txt')
-load('Menu.txt');
 load('BorneSettings.txt');
 
 loadIcon('back');

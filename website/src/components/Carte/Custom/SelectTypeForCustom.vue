@@ -1,0 +1,72 @@
+<template>
+    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition" style="z-index:1000000000000000000">
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn color="primary"
+                       dark
+                       v-bind="attrs"
+                       v-on="on">
+                    Modifier
+                </v-btn>
+            </template>
+            <v-card>
+                <v-toolbar dark color="#4080FF">
+                    <v-btn icon dark @click="dialog = false">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                    <v-toolbar-title> Choisissez la catégorie de ce que vous voulez ajouter dans votre sélection </v-toolbar-title>
+                </v-toolbar>
+                <v-container class="grey lighten-5">
+                    <v-row>
+                        <v-col cols="3">
+                            <v-card>
+                                <v-img src="https://image.freepik.com/free-photo/professional-male-cook-sprinkles-dough-with-flour-preapares-bakes-bread-kitchen-table_155003-10124.jpg" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px">
+                                    <v-card-title>Pain</v-card-title>
+                                </v-img>
+                                <v-card-actions>
+                                    <app-displayTypeForCustom :allData="food['pains']" :content='content'></app-displayTypeForCustom>
+                                </v-card-actions>
+                            </v-card>
+                            <v-col cols="1">
+                            </v-col>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-textarea :value="getText()">
+                        </v-textarea>
+                    </v-row>
+                </v-container>
+            </v-card>
+        </v-dialog>
+</template>
+
+<script>
+export default {
+    props : ['content'],
+    data(){
+        return{
+            dialog : false,
+            food : []
+        }
+    },
+    methods : {
+        getText(){
+            if(this.content.data.length == 0)
+                return "Vide pour l'instant ";
+            let res =  this.content.data.length + " nombre de choix \n"
+            for(let i=0;i<this.content.data.length;i++){
+                res+= this.content.data[i].nom ;
+                res += i==this.content.length-1 ? ', ': ''; 
+            }
+            return res;
+        }
+    },
+    created(){
+        this.food = this.$store.getters.getAllFood;
+        console.log(this.food);
+    }
+}
+</script>
+
+<style>
+
+</style>
