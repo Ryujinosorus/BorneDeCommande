@@ -69,7 +69,7 @@
                             <v-card-actions heigth="10px">
                                 <v-card-title class="mx-auto title subtitle-1">{{data.name}} </v-card-title>
                                 <v-spacer></v-spacer>
-                                <v-switch inset  flat color="rgb(3, 120, 166)" @change="add(data.name,data.url)" :input-value="checkOnOffSwitchStart(data.name)"></v-switch>
+                                <v-switch inset  flat color="rgb(3, 120, 166)" @change="add(data.name,data.url)" :input-value="checkOnOffSwitchStart(data.name,data.url)"></v-switch>
                             </v-card-actions>
                         </v-card>
                         <v-col cols="1">
@@ -119,7 +119,10 @@
                     this.$store.commit('ADD_FOOD',[this.parentName,this.allData[x].name,this.allData[x].url,true]);
                 this.dialog = false;
             },
-            checkOnOffSwitchStart(){
+            checkOnOffSwitchStart(name,url){
+                for(let i=0 ; i< this.content.data.length;i++)
+                    if(this.content.data[i].nom == name && this.content.data[i].url == url)
+                        return true;
                 return false;
             }
         },
