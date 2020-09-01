@@ -5,7 +5,9 @@
                 <v-btn color="primary"
                        dark
                        v-bind="attrs"
-                       v-on="on">
+                       v-on="on"
+                       @click="custom.pushHimToFb = true"
+                       >
                     Nouveau
                 </v-btn>
             </template>
@@ -17,7 +19,7 @@
                     <v-toolbar-title>Ajouter un nouveau plat !</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
-                        <!--<app-safeplat :canBeSafe="custom.canBeSafe()" :custom="custom" @save="save" action="ajouter"></app-safeplat>-->
+                        <app-safeCustom :canBeSafe="custom.canBeSafe()" :custom="custom" :action="action" @CLOSE="reset()"></app-safeCustom>
                     </v-toolbar-items>
                 </v-toolbar>
                 <v-container class="grey lighten-5">
@@ -63,9 +65,11 @@
                                     v-model="picture"
                                     @change="uploadImage"
                                     ></v-file-input>
+                                <v-img :src="custom.picture">
+                                </v-img>
                         </v-col>
                         <v-col cols="12" sm="12">
-                            <v-textarea label="Recap" auto-grow outlined rows="1" row-height="10" v-model="solo" readonly></v-textarea>
+                            <v-textarea label="Recap" auto-grow outlined rows="1" row-height="10" :value="custom.toString()" readonly></v-textarea>
                         </v-col>
 
                     </v-row>
@@ -81,7 +85,7 @@
     import {Custom} from'../../../Scripts/Custom.js';
     export default {
         name: 'app-ajouteCustom',
-        props : ['custom'],
+        props : ['custom','action'],
         data() {
         return {
             rules: [
@@ -118,14 +122,18 @@
         updatePlatRecap:function(){
             //this.solo = this.custom.toString();
         },
-        save : function(){
-            this.$store.commit("ADD_PLAT",this.plat);
-            this.reset();
+        reset : function(){
+            this.$emit('CLOSE');
+            if(this.action == 'ADD_CUSTOM'){
+                this.newCateName = '';
+                this.platName = '';
+                this.platCategorie = '';
+                this.platPrix = '';
+            }
             this.dialog = false;
         },
         uploadImage:function(e){
-            this.custom.tmpFile =e;
-            this.updatePlatRecap();
+            this.custom.picture = URL.createObjectURL(new Blob([e], {type: 'image/bmp'}));
         }
     },
     created: function(){
@@ -133,9 +141,9 @@
         let tmp =  this.$store.getters.categories;
         for(let x=0;x<tmp.length;x++)
             this.items.push(tmp[x][0]);
-        this.platName ='';
-        this.platCategorie ='';
-        this.platPrix = '';
+        this.platName = this.custom.nom;
+        this.platCategorie = this.custom.categorie;
+        this.platPrix = this.custom.prix;
     }
     }
 </script>

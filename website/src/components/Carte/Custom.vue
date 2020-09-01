@@ -19,34 +19,18 @@
                     </v-btn>
                 </v-col>
                 <v-col>
-                    <app-saveallplat></app-saveallplat>
+                    <app-saveAllCustom></app-saveAllCustom>
                 </v-col>
             </v-row>
 
             <v-row>
-                <v-col cols="3" v-for="custom of updateCustom" v-bind:key="custom['.key']">
-                    <v-card>
-                        <v-img :src="custom.picture" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px">
-                            <v-card-title>{{custom.nom}} </v-card-title>
-                        </v-img>
-                        <v-card-actions>
-                            <app-ajouteCustom :custom="custom" @update="reset"></app-ajouteCustom>
-                        </v-card-actions>
-                    </v-card>
-                    <v-col cols="1">
-                    </v-col>
-                </v-col>
-
-
-
-
                 <v-col cols="3">
                     <v-card>
                         <v-img src="https://image.freepik.com/free-photo/junk-food-black-slate-with-copy-space_23-2148273109.jpg" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px">
                             <v-card-title>Nouveau plat </v-card-title>
                         </v-img>
                         <v-card-actions>
-                          <app-ajouteCustom :custom="initCustom" ></app-ajouteCustom>
+                          <app-ajouteCustom :custom="initCustom" action="ADD_CUSTOM" @CLOSE="reset()" ></app-ajouteCustom>
                         </v-card-actions>
                     </v-card>
                     <v-col cols="1">
@@ -54,6 +38,19 @@
                 </v-col>
 
 
+
+                <v-col cols="3" v-for="(custom,index) of updateCustom" v-bind:key="custom['.key']">
+                    <v-card>
+                        <v-img :src="custom.picture" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px">
+                            <v-card-title>{{custom.nom}} </v-card-title>
+                        </v-img>
+                        <v-card-actions>
+                            <app-ajouteCustom :custom="custom" action="UPDATE_CUSTOM" :index="index" ></app-ajouteCustom>
+                        </v-card-actions>
+                    </v-card>
+                    <v-col cols="1">
+                    </v-col>
+                </v-col>
             </v-row>
         </v-container>
     </div>
@@ -74,9 +71,7 @@ import {Custom} from '../../Scripts/Custom'
         },
     methods:{
         reset: function(){
-            let tmp=this.search;
-            this.search = tmp+" ";
-            this.search=tmp;
+            this.initCustom = new Custom();
         }
     },
         computed :{

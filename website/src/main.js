@@ -50,6 +50,9 @@ import ListCategories from './components/BorneSetting/ListCategories';
 import DeleteCategories from './components/BorneSetting/DeleteCategorie';
 
 import RecapCommande from './components/BorneSetting/RecapCommande';
+
+import SafeCustom from './components/Carte/Custom/SafeCustom';
+import SaveAllCustom from './components/Carte/Custom/SaveAllCustom';
 import RecapTitre from './components/BorneSetting/RecapTitre';
 import RecapBTNCommander from './components/BorneSetting/RecapBTNCommander';
 import RecapPrix from './components/BorneSetting/RecapPrix';
@@ -104,6 +107,7 @@ Vue.component('app-whereSettings',WhereSettings)
 Vue.component('app-carrouselSettings',CarrouselSettings);
 Vue.component('app-iconSelector',IconSelector);
 Vue.component('app-savecategorie',SaveCategorie);
+Vue.component('app-safeCustom',SafeCustom);
 Vue.component('app-ajoutemenu', AjouteMenu);
 Vue.component('app-listformenu', ListForMenu);
 Vue.component('app-modifieplat', ModifieMenu);
@@ -133,7 +137,7 @@ Vue.component('app-validCommandeRecap',ValidCommandeRecap);
 Vue.component('app-validCommandeRecapTitre',ValidCommandeRecapTitre);
 Vue.component('app-validCommandeRecapDetails',ValidCommandeRecapDetails);
 Vue.component('app-validCommandeBack',ValidCommandeBack);
-
+Vue.component('app-saveAllCustom',SaveAllCustom);
 Vue.component('app-displayTypeForCustom',DisplayTypeForCustom);
 Vue.component('app-validCommandeNext',ValidCommandeNext);
 Vue.component('app-customTitleCate',CustomTitleCate);

@@ -106,6 +106,13 @@ mutations: {
     changeCarouselFont(state,data){
         state.fontPicker['carrousel'] = data;
     },
+    ADD_CUSTOM(state,data){
+        state.custom.push(data[0]);
+        console.log('OK');
+    },
+    UPDATE_CUSTOM(state,data){
+        state.custom[data[1]] = data[0];
+    },
     SET_ICON(state,data){
         state.icon[data[0]] = data[1];
     },
@@ -289,6 +296,17 @@ actions: {
         }
         var blob = new Blob([data_string], {type: 'text/plain'});
         route.put(blob);
+},
+ADD_ALLCUSTOM_FB({state}){
+    let res='';
+    for(let i=0;i<state.custom.length;i++){
+        res+= state.custom[i].nom;
+        if(state.custom[i].pushHimToFb)
+            state.custom[i].upload(state.user.email);
+    }
+    let route = fb.storage().ref('dataOfUser/' + state.user.email + '/custom.txt');
+    route.put(new Blob([res], {type: 'text/plain'}));
+
 },
 ADD_ALLPLAT_FB({state, dispatch})
 {
