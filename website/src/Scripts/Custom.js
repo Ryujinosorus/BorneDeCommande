@@ -96,13 +96,15 @@ export class Custom {
                             nom : arg[0],
                             data : []
                         };
-                        let tmp = arg[1].split(', ');
-                        for(let i=0; i< tmp.length;i++){
-                            let tmpp = tmp[i].split(' - ');
-                            obj.data.push({
-                                nom : tmpp[0],
-                                url : tmpp[1]
-                            });
+                        if(arg[1]!=''){ 
+                            let tmp = arg[1].split(', ');
+                            for(let i=0; i< tmp.length;i++){
+                                let tmpp = tmp[i].split(' - ');
+                                obj.data.push({
+                                    nom : tmpp[0],
+                                    url : tmpp[1]
+                                });
+                            }
                         }
                         this.content.push(obj);
                     }
