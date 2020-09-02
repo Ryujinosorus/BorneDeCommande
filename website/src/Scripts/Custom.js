@@ -51,17 +51,44 @@ export class Custom {
         xhr.responseType = 'blob';
         let self = this;
         xhr.onload = function() {
-        if (this.status == 200) {
+        if (this.status == 200) {   
             var myBlob = this.response;
             let uploadTask = routePicture.put(myBlob);
             //GET URL
             uploadTask.then((snapshot) => {
                 snapshot.ref.getDownloadURL().then((url) => {
                 self.picture = url;
-                self.uploadWithoutPicture(email);
-            });})
+                }).then(() => self.uploadWithoutPicture(email)) ;
+            })
         }
         };
         xhr.send();
+    }
+    init(data){
+        console.log(data);
+        this.nom = 'aaaaaa';
+        let file = data.split('\n');
+        for(let x=0;x<file.length;x++){
+            let arg = file[x].split(' : ');
+            switch(arg[0]){
+                case 'Nom' : {
+                    this.nom = arg[1];
+                    break;
+                }
+                case 'Prix' : {
+                    this.prix = arg[1];
+                    break;
+                }
+                case 'Catégorie': {
+                    this.categorie = arg[1];
+                    break;
+                }
+                case 'Picture' : {
+                    this.picture = arg[1];
+                    break;
+                }
+            }
+        }
+        return this;
     }
 }

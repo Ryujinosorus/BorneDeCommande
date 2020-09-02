@@ -44,8 +44,7 @@ import SaveAllMenu from './components/Carte/Menu/SaveAllMenu';
 import ListSettings from './components/BorneSetting/BornePart/ListSettings.vue'
 import SafeBorneSettings from './components/BorneSetting/SaveBorneSettings.vue';
 import vuetify from './plugins/vuetify';
-import {Plat} from './Scripts//Plat.js';
-import {Menu} from './Scripts//Menu.js';
+import {Custom} from './Scripts//Custom.js';
 import ListCategories from './components/BorneSetting/ListCategories';
 import DeleteCategories from './components/BorneSetting/DeleteCategorie';
 
@@ -60,7 +59,7 @@ import Recap from './components/BorneSetting/Recap'
 import ListPlat from './components/BorneSetting/ListPlat';
 import BackCard from './components/BorneSetting/BackCardMenu';
 import CustomToolbar from './components/BorneSetting/CustomToolbar'
-import Custom from './components/BorneSetting/Custom'
+import CustomVue from './components/BorneSetting/Custom'
 import CustomCarrouselTitle from './components/BorneSetting/CustomCarrouselTitle';
 import CustomSelect from './components/BorneSetting/CustomSelect'
 import CustomCardDeatils from './components/BorneSetting/CustomCardDetail'
@@ -128,7 +127,7 @@ Vue.component('app-recap',Recap);
 Vue.component('app-listPlat',ListPlat);
 Vue.component('app-backCardMenu',BackCard);
 Vue.component('app-customToolbar',CustomToolbar);
-Vue.component('app-custom',Custom);
+Vue.component('app-custom',CustomVue);
 Vue.component('app-customCarrouselTitle',CustomCarrouselTitle);
 Vue.component('app-customSelect',CustomSelect);
 Vue.component('app-customCardDeatils',CustomCardDeatils);
@@ -157,6 +156,7 @@ firebase.auth().onAuthStateChanged(user => {
 });
 
 load('BorneSettings.txt');
+load('custom.txt');
 
 loadIcon('back');
 loadIcon('iconIN');
@@ -273,32 +273,12 @@ function loadIcon(name){
 //REDIR
 function SET_UP(name,data){
     switch(name){
-        case 'plat.txt':{
-            ADD_PLAT_START(data);
-            break;
-        }
-        case 'Menu.txt':{
-            ADD_MENU_START(data);
-            break;
-        }
-        case 'Accompagnement Menu.txt':{
-            ADD_DEFAULT_START(data,'Accompagnement Menu');
-            break;
-        }
-        case 'desserts.txt':{
-            ADD_DEFAULT_START(data,'desserts');
-            break;
-        }
-        case 'supplements.txt':{
-            ADD_DEFAULT_START(data,'supplements');
-            break;
-        }
-        case 'boissons.txt':{
-            ADD_DEFAULT_START(data,'boissons');
-            break;
-        }
         case 'BorneSettings.txt':{
             ADD_BORNESETTINGS(data);
+            break;
+        }
+        case 'custom.txt':{
+            ADD_CUSTOM(data);
             break;
         }
     }
@@ -307,16 +287,18 @@ function SET_UP(name,data){
 
 //ALL LOAD
 
-function ADD_PLAT_START(data){
+function ADD_CUSTOM(data){
     let file = data.split("\n");
     var res=[];
-    for(let x=0;x<file.length;x++){
-        let storageRef = fb.storage().ref('dataOfUser/'+store.getters.user.email+'/Plat/'+file[x]+'/recap.txt');
+    console.log(file);
+    for(let x=0;x<file.length;x++)
+        if(file[x] !=''){
+        let storageRef = fb.storage().ref('dataOfUser/'+store.getters.user.email+'/Custom/'+file[x]+'/recap.txt');
         let xhr = new XMLHttpRequest();
         storageRef.getDownloadURL().then(function(url) {
             xhr.responseType = '';
             xhr.onload = function() {
-                res.push(new Plat().init(xhr.response));
+                res.push(new Custom().init(xhr.response));
             }
             xhr.open('GET', url);
             xhr.send();
@@ -324,40 +306,9 @@ function ADD_PLAT_START(data){
             console.log(error);
         });
     }
-    store.commit('INIT_PLAT',res);
+    store.commit('INIT_CUSTOM',res);
 }
 
-function ADD_MENU_START(data){
-    let res=[];
-    let file = data.split('\n');
-    for(let x=0;x<file.length;x++){
-        if(file[x]!=''){
-            let storageRef = fb.storage().ref('dataOfUser/'+store.getters.user.email+'/Menu/'+file[x]+'/recap.txt');
-            let xhr = new XMLHttpRequest();
-            storageRef.getDownloadURL().then(function(url) {
-                xhr.responseType = '';
-                xhr.onload = function() {
-                    res.push(new Menu().init(xhr.response));
-                }
-                xhr.open('GET', url);
-                xhr.send();
-            }).catch(function(error) {
-                console.log(error);
-            });
-        }
-    }
-    store.commit('INIT_MENU',res);
-}
-function ADD_DEFAULT_START(data,name){
-    let res=[];
-    let file = data.split('\n');
-    for(let x=0;x<file.length;x++)
-        if(file[x]!='') {
-            let tmp = file[x].split(' : ');
-            res.push([tmp[0],tmp[1],tmp[2]]);
-        }
-    store.commit('INIT',[name,res]);
-}
 function ADD_BORNESETTINGS(data){
     store.commit('ADD_BORNESETTINGS',JSON.parse(data));
     getFont();

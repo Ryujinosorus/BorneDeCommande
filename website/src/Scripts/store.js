@@ -188,6 +188,9 @@ mutations: {
     INIT_MENU(state,data){
         state.menu = data;
     },
+    INIT_CUSTOM(state,data){
+        state.custom = data;
+    },
     ADD_PLAT(state,plat){
         let pos = state.plat.indexOf(plat);
         if(plat.tmpFile == null){
@@ -291,7 +294,7 @@ actions: {
 ADD_ALLCUSTOM_FB({state}){
     let res='';
     for(let i=0;i<state.custom.length;i++){
-        res+= state.custom[i].nom;
+        res+= (state.custom[i].nom + '\n');
         if(state.custom[i].pushHimToFb)
             state.custom[i].upload(state.user.email);
     }
