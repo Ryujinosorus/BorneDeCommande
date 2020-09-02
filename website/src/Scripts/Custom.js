@@ -35,8 +35,11 @@ export class Custom {
         res += 'Picture : ' + this.picture + '\n';
         for(let i=0;i<this.content.length;i++){
             res += (this.content[i].nom + ' : ');
-            for(let j=0;j< this.content[i].data.length;j++)
-                res+= (this.content[i].data[j].nom + ' ' + this.content[i].data[j].url) + j==this.content[i].data.length-1 ? '' :', ';
+            for(let j=0;j< this.content[i].data.length;j++){
+                res += this.content[i].data[j].nom + ' - ' + this.content[i].data[j].url;
+                res += j==this.content[i].data.length-1 ? '' :', ';
+                console.log(this.content[i].data[j].nom);
+            }
             res+='\n';
         }
        let route = fb.storage().ref('dataOfUser/' + email + '/Custom/'+ this.nom + '/recap.txt');
@@ -68,26 +71,42 @@ export class Custom {
         console.log(data);
         this.nom = 'aaaaaa';
         let file = data.split('\n');
-        for(let x=0;x<file.length;x++){
-            let arg = file[x].split(' : ');
-            switch(arg[0]){
-                case 'Nom' : {
-                    this.nom = arg[1];
-                    break;
+        for(let x=0;x<file.length;x++)
+            if(file[x]!=''){
+                let arg = file[x].split(' : ');
+                switch(arg[0]){
+                    case 'Nom' : {
+                        this.nom = arg[1];
+                        break;
+                    }
+                    case 'Prix' : {
+                        this.prix = arg[1];
+                        break;
+                    }
+                    case 'Catégorie': {
+                        this.categorie = arg[1];
+                        break;
+                    }
+                    case 'Picture' : {
+                        this.picture = arg[1];
+                        break;
+                    }
+                    default : {
+                        let obj = {
+                            nom : arg[0],
+                            data : []
+                        };
+                        let tmp = arg[1].split(', ');
+                        for(let i=0; i< tmp.length;i++){
+                            let tmpp = tmp[i].split(' - ');
+                            obj.data.push({
+                                nom : tmpp[0],
+                                url : tmpp[1]
+                            });
+                        }
+                        this.content.push(obj);
+                    }
                 }
-                case 'Prix' : {
-                    this.prix = arg[1];
-                    break;
-                }
-                case 'Catégorie': {
-                    this.categorie = arg[1];
-                    break;
-                }
-                case 'Picture' : {
-                    this.picture = arg[1];
-                    break;
-                }
-            }
         }
         return this;
     }
