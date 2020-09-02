@@ -155,6 +155,7 @@ Vue.use(Vuetify);
 firebase.auth().onAuthStateChanged(user => {
     store.dispatch("fetchUser", user);
 });
+
 load('BorneSettings.txt');
 
 loadIcon('back');
@@ -163,6 +164,8 @@ loadIcon('iconOUT');
 loadIcon('next');
 loadIcon('add');
 loadIcon('cancel');
+
+loadTypeDataForCustom('Pains');
 
 store.commit("START");
 const router = new VueRouter({
@@ -189,6 +192,39 @@ function load(name){
         xhr.responseType = '';
         xhr.onload = function() {
             SET_UP(name,xhr.response);
+        }
+        xhr.open('GET', url);
+        xhr.send();
+    }).catch(function() {
+        if(name =='BorneSettings.txt'){
+            store.commit('ADD_BORNESETTINGS',new BorneSetting());
+            getFont();
+        }
+
+        console.log("file not found");
+    });
+}
+
+function loadTypeDataForCustom(name){
+    let storageRef = fb.storage().ref('data/typeDataForCustom/');
+    let res=[];
+    var xhr = new XMLHttpRequest();
+    storageRef.child(name+'.txt').getDownloadURL().then(function(url) {
+        xhr.responseType = '';
+        xhr.onload = function() {
+            let data = xhr.response.split('\n');
+            for(let i=0;i<data.length;i++)
+                if(data[i]!=''){
+                    let line = data[i].split(' : ');
+                    let obj = {
+                        name : '',
+                        url : '',
+                    }
+                    obj.name = line[0];
+                    obj.url = line[1];
+                    res.push(obj);
+                }
+            store.commit('SET_FOOD',[name,res]);
         }
         xhr.open('GET', url);
         xhr.send();

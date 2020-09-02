@@ -17,13 +17,13 @@
                 </v-toolbar>
                 <v-container class="grey lighten-5">
                     <v-row>
-                        <v-col cols="3">
+                        <v-col cols="3" v-for="i in foodName" :key="i">
                             <v-card>
                                 <v-img src="https://image.freepik.com/free-photo/professional-male-cook-sprinkles-dough-with-flour-preapares-bakes-bread-kitchen-table_155003-10124.jpg" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px">
-                                    <v-card-title>Pain</v-card-title>
+                                    <v-card-title>{{i}}</v-card-title>
                                 </v-img>
                                 <v-card-actions>
-                                    <app-displayTypeForCustom :allData="food['pains']" :content='content'></app-displayTypeForCustom>
+                                    <app-displayTypeForCustom :allData="food[i]" :content='content'></app-displayTypeForCustom>
                                 </v-card-actions>
                             </v-card>
                             <v-col cols="1">
@@ -45,6 +45,7 @@ export default {
     data(){
         return{
             dialog : false,
+            foodName: [],
             food : []
         }
     },
@@ -55,14 +56,15 @@ export default {
             let res =  this.content.data.length + " nombre de choix \n"
             for(let i=0;i<this.content.data.length;i++){
                 res+= this.content.data[i].nom ;
-                res += i==this.content.length-1 ? ', ': ''; 
+                res += (i==this.content.data.length-1) ? '': ', '; 
             }
             return res;
         }
     },
     created(){
         this.food = this.$store.getters.getAllFood;
-        console.log(this.food);
+        for(let i in this.food)
+            this.foodName.push(i);
     }
 }
 </script>

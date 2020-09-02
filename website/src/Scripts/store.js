@@ -9,18 +9,6 @@ export default new Vuex.Store({
             data: null
         },
         food:{
-            'legumes' : [],
-            'pains' : [
-                {'name' : 'aa','url' : 'jajaja'}
-            ],
-            'viandes et poissons' : [],
-            'sauces' : [],
-            'boissons' : [],
-            'extras' : [],
-            'fromages': [],
-            'desserts': [],
-            'supplements' : [],
-            'Accompagnement Menu':[],
         },
         plat:[],
         menu:[],
@@ -115,6 +103,9 @@ mutations: {
     },
     SET_ICON(state,data){
         state.icon[data[0]] = data[1];
+    },
+    SET_FOOD(state,data){
+        state.food[data[0]] = data[1];
     },
     SET_LOGGED_IN(state, value) {
         state.user.loggedIn = value;
