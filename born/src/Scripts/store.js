@@ -196,9 +196,19 @@ export class Selectable {
     return this;
   }
   fromCustom(custom){
+    this.nom = custom.nom;
     this.prix = custom.prix;
     this.picture = custom.picture;
     this.content = [];
+    for(let i=0;i<custom.content.length;i++){
+      let obj = {
+        nom : custom.content[i].nom,
+        all : custom.content[i].data,
+        selected : [],
+        payable : custom.content[i].payable
+      }
+      this.content.push(obj);
+    }
     return this;
 
   }

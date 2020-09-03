@@ -49,11 +49,13 @@
       },
       methods : {
         canShow(i){
+          console.log(this.$store.getters.platByCate[i]);
           return this.$store.getters.platByCate[i]!=undefined;
         }
       },
       created(){
         this.cate = this.settings.categorie; 
+        console.log(this.cate);
       }
   }
 </script>
