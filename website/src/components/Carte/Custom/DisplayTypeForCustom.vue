@@ -62,15 +62,16 @@
                     </v-col>
                 </v-row>
                 <v-row>
-                    <v-col cols="3" v-for="data of filterCard" v-bind:key="data['.key']">
+                    <v-col cols="3" v-for="(data,index) of filterCard" v-bind:key="data['.key']">
                         <v-card>
                             <v-img :src="data.url" height="200px">
                             </v-img>
                             <v-card-actions heigth="10px">
                                 <v-card-title class="mx-auto title subtitle-1">{{data.name}} </v-card-title>
                                 <v-spacer></v-spacer>
-                                <v-switch inset  flat color="rgb(3, 120, 166)" @change="add(data.name,data.url)" :input-value="checkOnOffSwitchStart(data.name,data.url)"></v-switch>
+                                <v-switch inset  flat color="rgb(3, 120, 166)" @change="add(data.name,data.url,index)" :input-value="checkOnOffSwitchStart(data.name,data.url)"></v-switch>
                             </v-card-actions>
+                            <v-text-field type="number" v-model="priceTab[index]" @change="changePrice(data.name,data.url,index)" v-if="content.payable"></v-text-field>
                         </v-card>
                         <v-col cols="1">
                         </v-col>
@@ -94,14 +95,16 @@
                 search: '',
                 selectedObject: [],
                 dialog : false,
-                dialogSelectAll : false
+                dialogSelectAll : false,
+                priceTab : []
             }
         },
         methods:{
-            add: function (name,link) {
+            add: function (name,link,index) {
                 let obj={
                     nom : name,
-                    url : link
+                    url : link,
+                    price : this.priceTab[index]
                 }
                 console.log(obj);
                 let pos = -1;
@@ -113,6 +116,17 @@
                     this.content.data.push(obj);
                 else this.content.data.splice(pos,1);
                 
+            },
+            changePrice(name,link,index){
+                let pos = -1;
+                for(let i=0;i<this.content.data.length;i++)
+                    if(this.content.data[i].nom == name && this.content.data[i].url == link)
+                        pos = i;
+                if(pos==-1)
+                    return
+                else this.content.data[pos].price = this.priceTab[index];
+                console.log(pos);
+
             },
             selectAll : function(){
                 for(let x=0;x<this.allData.length;x++)
@@ -134,7 +148,13 @@
             }
         },
         created: function () {
-            this.selectedObject = this.$store.getters.user;
+            for(let i=0;i<this.allData.length;i++){
+                let price = 2;
+                for(let j=0;j<this.content.data.length;j++)
+                    if(this.allData[i].name == this.content.data[j].nom)
+                        price = this.content.data[j].price;
+                this.priceTab.push(price);
+            }
         }
 }</script>
 

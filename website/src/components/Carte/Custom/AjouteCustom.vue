@@ -33,6 +33,8 @@
                                 </v-card-title>
                                 <v-card-actions>
                                     <app-selectTypeForCustom :content="data"></app-selectTypeForCustom>
+                                    <v-spacer></v-spacer>
+                                    <v-checkbox v-model="data.payable"></v-checkbox>
                                 </v-card-actions>
                             </v-card>
                             <v-col cols="1">
@@ -115,6 +117,7 @@
         addNewCate(){
             let obj = {
                 'nom' : this.newCateName,
+                'payable' : false,
                 'data' : []
             };
             this.custom.content.push(obj);

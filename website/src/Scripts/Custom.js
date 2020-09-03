@@ -36,7 +36,7 @@ export class Custom {
         for(let i=0;i<this.content.length;i++){
             res += (this.content[i].nom + ' : ');
             for(let j=0;j< this.content[i].data.length;j++){
-                res += this.content[i].data[j].nom + ' - ' + this.content[i].data[j].url;
+                res += this.content[i].data[j].nom + ' - ' + this.content[i].data[j].url + ' - ' + this.content[i].data[j].price;
                 res += j==this.content[i].data.length-1 ? '' :', ';
                 console.log(this.content[i].data[j].nom);
             }
@@ -102,7 +102,8 @@ export class Custom {
                                 let tmpp = tmp[i].split(' - ');
                                 obj.data.push({
                                     nom : tmpp[0],
-                                    url : tmpp[1]
+                                    url : tmpp[1],
+                                    price : tmpp[2]
                                 });
                             }
                         }
