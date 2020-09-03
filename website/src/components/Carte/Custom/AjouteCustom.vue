@@ -19,6 +19,7 @@
                     <v-toolbar-title>Ajouter un nouveau plat !</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
+                        <app-deleteCustom :custom="custom" @CLOSE="reset()">></app-deleteCustom>
                         <app-safeCustom :canBeSafe="custom.canBeSafe()" :custom="custom" :action="action" @CLOSE="reset()"></app-safeCustom>
                     </v-toolbar-items>
                 </v-toolbar>

@@ -191,6 +191,10 @@ mutations: {
     INIT_CUSTOM(state,data){
         state.custom = data;
     },
+    DELETE_CUSTOM(state,custom){
+        let pos = state.custom.indexOf(custom);
+        state.custom.splice(pos,1);
+    },
     ADD_PLAT(state,plat){
         let pos = state.plat.indexOf(plat);
         if(plat.tmpFile == null){

@@ -11,19 +11,15 @@
           v-bind="attrs"
           v-on="on"
         >
-        {{action == 'ADD_CUSTOM' ? 'Ajouter' : 'Modifier'}}
-          <v-icon>mdi-safe</v-icon>
+          Supprimer
+          <v-icon>mdi-delete</v-icon>
         </v-btn>
       </template>
 
       <v-card>
         <v-card-title class="headline grey lighten-2">
-          Etes vous sur de vouloir sauvegarder ?
+          Etes vous sur de vouloir supprimer ?
         </v-card-title>
-
-        <v-card-text>
-            <v-textarea></v-textarea>
-        </v-card-text>
 
         <v-divider></v-divider>
 
@@ -32,7 +28,7 @@
           <v-btn
             color="primary"
             text
-            @click="save()"
+            @click="deleteCustom()"
           >
             Oui
           </v-btn>
@@ -57,12 +53,8 @@ export default {
         }
     },
     methods : {
-        save(){
-            console.log('EN TRAIN D AJOUTER');
-            this.$store.commit(this.action,[
-                this.custom,
-                this.index
-            ]);
+        deleteCustom(){
+            this.$store.commit('DELETE_CUSTOM',this.custom);
             this.$emit('CLOSE');
             this.dialog = false;
         }

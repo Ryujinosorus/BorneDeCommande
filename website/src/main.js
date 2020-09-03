@@ -76,6 +76,8 @@ import CustomCancelBtn from './components/BorneSetting/CustomCancelBtn';
 import RecapBTNMinus from './components/BorneSetting/RecapBTNMinus';
 import RecapBTNPlus from './components/BorneSetting/RecapBTNPlus';
 
+import DeleteCustom from './components/Carte/Custom/DeleteCustom'
+
 Vue.config.productionTip = false;
 var firebaseConfig = {
     apiKey: "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
@@ -143,6 +145,8 @@ Vue.component('app-customTitleCate',CustomTitleCate);
 Vue.component('app-customTitlePlat',CustomTitlePlat);
 Vue.component('app-customAddBtn',CustomAddBtn);
 Vue.component('app-customCancelBtn',CustomCancelBtn);
+
+Vue.component('app-deleteCustom',DeleteCustom);
 Vue.component('app-recapBTNMinus',RecapBTNMinus);
 Vue.component('app-recapBTNPlus',RecapBTNPlus);
 //Vue.component('app-bornefirstpage',BorneFirstPage);
