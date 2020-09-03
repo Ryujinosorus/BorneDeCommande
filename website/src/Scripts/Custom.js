@@ -41,6 +41,9 @@ export class Custom {
                 console.log(this.content[i].data[j].nom);
             }
             res+='\n';
+            if(this.content[i].payable)
+                res += ('Payable : ' + this.content[i].nom + '\n')
+            
         }
        let route = fb.storage().ref('dataOfUser/' + email + '/Custom/'+ this.nom + '/recap.txt');
        route.put(new Blob([res], {type: 'text/plain'}));
@@ -91,10 +94,17 @@ export class Custom {
                         this.picture = arg[1];
                         break;
                     }
+                    case 'Payable':{
+                        for(let i=0;i<this.content.length;i++)
+                            if(this.content[i].nom == arg[1])
+                                this.content[i].payable = true;
+                        break;
+                    }
                     default : {
                         let obj = {
                             nom : arg[0],
-                            data : []
+                            data : [],
+                            payable : false
                         };
                         if(arg[1]!=''){ 
                             let tmp = arg[1].split(', ');
