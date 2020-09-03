@@ -11,6 +11,7 @@ const store = new Vuex.Store({
       data: null
     },
     plat: [],
+    custom : [],
     menu: [],
     platByCate: [],
     menuByPlat : [],
@@ -58,22 +59,16 @@ const store = new Vuex.Store({
         state.allPics = new Array(state.borneSettings.firstPage.nbDiapo);
       state.allPics[data[0]] = data[1];
     },
-    ADD_PLAT(state, res) {
-      state.plat.push(res);
+    ADD_CUSTOM(state, res) {
+      state.custom.push(res);
 
-      if (state.platByCate[res.tab['categorie']] == null) {
-        state.platByCate[res.tab['categorie']] = [];
-      }
-      let cv = Convertor.fromPlatToSelectable(res);
+      let cv = Convertor.fromCustomToSelectable(res);
 
-      if (state.platByCate[res.tab['categorie']] == null)
-        state.platByCate[res.tab['categorie']] = [];
-      
-      if(state.menuByPlat[res.tab['nom']] == undefined)
-        state.menuByPlat[res.tab['nom']] = [];
+      if (state.platByCate[res.categorie] == null)
+        state.platByCate[res.categorie] = [];
+  
 
-      state.platByCate[res.tab['categorie']].push(cv);
-      state.menuByPlat[res.tab['nom']].push(cv);
+      state.platByCate[res.categorie].push(cv);
 
     },
     ADD_SELECTABLE(state,com){
@@ -135,6 +130,10 @@ class Convertor {
     let sele = new Selectable();
     return sele.fromMenu(menu,allPlat);
   }
+  static fromCustomToSelectable(custom){
+    let sele = new Selectable();
+    return sele.fromCustom(custom);
+  }
 }
 export class Selectable {
   constructor() {
@@ -195,6 +194,13 @@ export class Selectable {
           this.content.push(obj);
         }
     return this;
+  }
+  fromCustom(custom){
+    this.prix = custom.prix;
+    this.picture = custom.picture;
+    this.content = [];
+    return this;
+
   }
   reset(){
     if(this.type =="MENU")

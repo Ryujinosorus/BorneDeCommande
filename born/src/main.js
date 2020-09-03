@@ -9,8 +9,7 @@ import VueRessource from 'vue-resource';
 import * as firebase from "firebase";
 
 
-import {Plat} from './Scripts//Plat.js';
-import {Menu} from './Scripts//Menu.js';
+import {Custom} from './Scripts//Custom.js';
 import BorneSetting from './Scripts/BorneSetting.js'
 Vue.config.productionTip = false;
 var firebaseConfig = {
@@ -54,13 +53,15 @@ function initPic(){
   }).$mount('#app')
 }
 
-function load(name){
+
+// CUSTOM
+function loadCustom(){
   let storageRef = fb.storage().ref('dataOfUser/'+store.getters.user.email+'/');
   var xhr = new XMLHttpRequest();
-  storageRef.child(name).getDownloadURL().then(function(url) {
+  storageRef.child('custom.txt').getDownloadURL().then(function(url) {
       xhr.responseType = '';
       xhr.onload = function() {
-          SET_UP(name,xhr.response);
+          ADD_CUSTOM_START(xhr.response);
       }
       xhr.open('GET', url);
       xhr.send();
@@ -74,51 +75,18 @@ function load(name){
 }
 
 
-function SET_UP(name,data){
-  switch(name){
-      case 'plat.txt':{
-          ADD_PLAT_START(data);
-          break;
-      }
-      case 'Menu.txt':{
-          ADD_MENU_START(data);
-          break;
-      }
-      case 'Accompagnement Menu.txt':{
-          ADD_DEFAULT_START(data,'Accompagnement Menu');
-          break;
-      }
-      case 'desserts.txt':{
-          ADD_DEFAULT_START(data,'desserts');
-          break;
-      }
-      case 'boissons.txt':{
-          ADD_DEFAULT_START(data,'boissons');
-          break;
-      }
-      case 'BorneSettings.txt':{
-          ADD_BORNESETTINGS(data);
-          break;
-      }
-      case 'supplements.txt' : {
-        ADD_SUPPLEMENTS_START(data);
-        break;
-      }
-  }
-}
 
 
-function ADD_PLAT_START(data){
+function ADD_CUSTOM_START(data){
   let file = data.split("\n");
-  for(let x=0;x<file.length;x++){
-      let storageRef = fb.storage().ref('dataOfUser/'+'undefined'+'/Plat/'+file[x]+'/recap.txt');
+  for(let x=0;x<file.length;x++)
+    if(file[x]!=''){
+      let storageRef = fb.storage().ref('dataOfUser/'+'undefined'+'/Custom/'+file[x]+'/recap.txt');
       let xhr = new XMLHttpRequest();
       storageRef.getDownloadURL().then(function(url) {
           xhr.responseType = '';
           xhr.onload = function() {
-              store.commit('ADD_PLAT',new Plat().init(xhr.response));
-              if(x == file.length-1)
-                load('Menu.txt');
+              store.commit('ADD_CUSTOM',new Custom().init(xhr.response));
           }
           xhr.open('GET', url);
           xhr.send();
@@ -129,58 +97,25 @@ function ADD_PLAT_START(data){
   }
 }
 
-function ADD_MENU_START(data){
-  let file = data.split('\n');
-  for(let x=0;x<file.length;x++){
-      if(file[x]!=''){
-          let storageRef = fb.storage().ref('dataOfUser/'+'undefined'+'/Menu/'+file[x]+'/recap.txt');
-          let xhr = new XMLHttpRequest();
-          storageRef.getDownloadURL().then(function(url) {
-              xhr.responseType = '';
-              xhr.onload = function() {
-                  store.commit('INIT_MENU',new Menu().init(xhr.response));
-              }
-              xhr.open('GET', url);
-              xhr.send();
-          }).catch(function(error) {
-              console.log(error);
-          });
+//BORNE SETTINGS
+
+function loadBorneSettings(){
+  let storageRef = fb.storage().ref('dataOfUser/'+store.getters.user.email+'/');
+  var xhr = new XMLHttpRequest();
+  storageRef.child('BorneSettings.txt').getDownloadURL().then(function(url) {
+      xhr.responseType = '';
+      xhr.onload = function() {
+        store.commit('ADD_BORNESETTINGS',JSON.parse(xhr.response));
+        initPic();
       }
-  }
-}
-function ADD_DEFAULT_START(data,name){
-  let res=[];
-  let file = data.split('\n');
-  for(let x=0;x<file.length;x++)
-      if(file[x]!='') {
-          let tmp = file[x].split(' : ');
-          res.push([tmp[0],tmp[1],tmp[2]]);
-      }
-  store.commit('INIT',[name,res]);
+      xhr.open('GET', url);
+      xhr.send();
+  }).catch(function() {
+      store.commit('ADD_BORNESETTINGS',new BorneSetting());
+      initPic();
+      console.log("file not found");
+  });
 }
 
-
-function ADD_SUPPLEMENTS_START(data){
-  let res=[];
-  let file = data.split('\n');
-  for(let x=0;x<file.length;x++)
-      if(file[x]!='') {
-          let tmp = file[x].split(' : ');
-          res.push([tmp[0],tmp[1],tmp[2]]);
-      }
-  store.commit('INIT_SUPPLEMENT',res);
-}
-function ADD_BORNESETTINGS(data){
-  store.commit('ADD_BORNESETTINGS',JSON.parse(data));
-  initPic();
-}
-
-
-
-
-load('plat.txt');
-load('Accompagnement Menu.txt');
-load('desserts.txt');
-load('boissons.txt');
-load('supplements.txt');
-load('BorneSettings.txt');
+loadCustom();
+loadBorneSettings();
