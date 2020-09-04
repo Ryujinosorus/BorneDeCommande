@@ -278,7 +278,7 @@
             </div>
           </div>
 
-          <div v-for="(content) in selectable.content" :key="content.nom">
+          <div v-for="(content,indexC) in selectable.content" :key="content.nom">
             <h1 class="apply-font-nomPlatFont" :style="{
                 color : settings.custom.nomPlat.fontColor,
                 marginTop : settings.custom.nomPlat.marginT + 'px',
@@ -297,9 +297,9 @@
               <div>
                 <v-row>
                   <v-card
-                    v-for="(detail) in content.all"
-                    :key="detail.nom"
-                    @click="addDetail(content,detail)"
+                    v-for="(detail,indexSC) in content.data"
+                    :key="indexS + ' ' + detail.nom + ' ' + detail.picture"
+                    @click="addDetail(content,detail,indexC,indexSC)"
                     :style="{
                     height : settings.custom.cardDetail.hauteur + 'px',
                     width : settings.custom.cardDetail.largeur + 'px',
@@ -324,6 +324,8 @@
                       <v-checkbox
                         dark
                         readonly
+                        v-if="reRenderCheckBox"
+                        v-model="model[indexS][indexC][indexSC]"
                         :style="{float : 'right',marginTop: '0px'}"
                       ></v-checkbox>
                     </div>
@@ -406,8 +408,6 @@
 <script>
 import FontPicker from "font-picker";
 import { Selectable } from "../Scripts/store";
-import { legumes } from "../Data/legumes";
-import { sauce } from "../Data/sauce";
 export default {
   props: ["settings"],
   data() {
@@ -416,76 +416,39 @@ export default {
       dialog: false,
       selectable: null,
       data: [],
-      localLegumes: legumes,
-      localSauces: sauce,
-      sauceSelected: [],
-      sauceArray: [],
-      legumeArray: [],
-      supplementArray: [],
       allSelectable: [],
-      selectableArray: [true],
+      selectableArray : [true],
+      model: [],
       indexS: 0,
-      fixSuppRender : true
+      reRenderCheckBox : true
     };
   },
   methods: {
     clickOnCard(data) {
-      console.log(data);
       this.allSelectable = this.$store.getters.menuByPlat[data.nom];
-      this.selectable = this.allSelectable[0];
-      /*
-      this.indexS = 0;
 
-      this.selectableArray[0] = true;
-      for (let i = 1; i < this.selectableArray.legumes; i++)
-        this.selectableArray.push(false);
-
-      for (let x = 0; x < this.allSelectable.length; x++) {
-        this.legumeArray[x] = Array(this.allSelectable[x].content.length);
-        this.sauceArray[x] = Array(this.allSelectable[x].content.length);
-        this.supplementArray[x] = Array(this.allSelectable[x].content.length);
-
-        for (let y = 0; y < this.allSelectable[x].content.length; y++) {
-          this.legumeArray[x][y] = [];
-          this.sauceArray[x][y] = [];
-          this.supplementArray[x][y] = [];
-
-          for(let legumeIndex = 0;legumeIndex <this.allSelectable[x].content[y].modifiable.legume[0].length;legumeIndex++)
-            this.legumeArray[x][y].push(true);
-          for (let sauceIndex = 0;sauceIndex <this.allSelectable[x].content[y].modifiable.sauce[0].length;sauceIndex++)
-            this.sauceArray[x][y].push(false);
-          for(let suppelementIndex = 0;suppelementIndex <this.allSelectable[x].content[y].modifiable.supplement[0].length;suppelementIndex++)
-            this.supplementArray[x][y].push(false);
+      for(let i=0;i<this.allSelectable.length;i++){
+        this.model[i] = [];
+        for(let j=0;j<this.allSelectable[i].content.length;j++){
+          this.model[i][j] = new Array(this.allSelectable[i].content[j].data.length);
+          for(let k=0;k<this.allSelectable[i].content[j].data.length;k++)
+            this.model[i][j][k] = false;
         }
       }
-    */
+      this.selectable = this.allSelectable[0];
+      this.indexS = 0;
+
       this.dialog = true;
     },
-    addDetail(content, detail){
+    addDetail(content, detail,indexC,indexSC){
       let pos = content.selected.indexOf(detail);
       if(pos== -1)
         content.selected.push(detail)
       else content.selected.splice(pos,1);
-      console.log(content.selected);
-    },
-    getURL(cate, name) {
-      switch (cate) {
-        case "supplement": {
-          return "a";
-        }
-        case "legume": {
-          for (let i = 0; i < this.localLegumes.length; i++)
-            if (this.localLegumes[i].name == name)
-              return this.localLegumes[i].url;
-          break;
-        }
-        case "sauce": {
-          for (let i = 0; i < this.localSauces.length; i++)
-            if (this.localSauces[i].name == name)
-              return this.localSauces[i].url;
-          break;
-        }
-      }
+      this.model[this.indexS][indexC][indexSC] = !this.model[this.indexS][indexC][indexSC];
+      this.reRenderCheckBox = false;
+      this.reRenderCheckBox = true;
+      console.log(this.model);
     },
     add() {
       this.$store.commit(

@@ -117,7 +117,8 @@ export class Custom {
                         let obj = {
                             nom : arg[0],
                             data : [],
-                            payable : false
+                            payable : false,
+                            selected : []
                         };
                         if(arg[1]!=''){ 
                             let tmp = arg[1].split(', ');
