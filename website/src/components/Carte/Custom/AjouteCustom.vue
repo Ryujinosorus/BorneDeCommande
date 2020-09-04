@@ -6,7 +6,7 @@
                        dark
                        v-bind="attrs"
                        v-on="on"
-                       @click="custom.pushHimToFb = true"
+                       @click="custom.pushHimToFb = true;setCustomName()"
                        >
                     Nouveau
                 </v-btn>
@@ -71,6 +71,20 @@
                                 <v-img :src="custom.picture">
                                 </v-img>
                         </v-col>
+
+                        <v-col cols="3">
+                            <v-card>
+                                <v-card-title>
+                                    Plat en ré=elation
+                                </v-card-title>
+                                <v-card-actions>
+                                              <v-select :items="customName" v-model="custom.linkedWith" chips label="Chips" multiple solo></v-select>
+                                </v-card-actions>
+                            </v-card>
+                            <v-col cols="1">
+                            </v-col>
+                        </v-col>
+
                         <v-col cols="12" sm="12">
                             <v-textarea label="Recap" auto-grow outlined rows="1" row-height="10" :value="custom.toString()" readonly></v-textarea>
                         </v-col>
@@ -103,6 +117,7 @@
         newCateName : '',
         rows :'',
                 items: [],
+                customName : [],
                 platName :'',
                 platCategorie:'',
                 platPrix:'',
@@ -138,6 +153,12 @@
         },
         uploadImage:function(e){
             this.custom.picture = URL.createObjectURL(new Blob([e], {type: 'image/bmp'}));
+        },
+        setCustomName:function(){
+            let allCustom = this.$store.getters.getAllCustom;
+            for(let i=0;i<allCustom.length;i++)
+                if(allCustom[i].nom != this.custom.nom)
+                    this.customName.push(allCustom[i].nom);
         }
     },
     created: function(){
@@ -148,6 +169,7 @@
         this.platName = this.custom.nom;
         this.platCategorie = this.custom.categorie;
         this.platPrix = this.custom.prix;
+        this.setCustomName();
     }
     }
 </script>

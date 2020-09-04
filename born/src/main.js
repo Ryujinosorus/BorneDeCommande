@@ -108,6 +108,7 @@ function loadBorneSettings(){
         store.commit('ADD_BORNESETTINGS',JSON.parse(xhr.response));
         initPic();
       }
+
       xhr.open('GET', url);
       xhr.send();
   }).catch(function() {

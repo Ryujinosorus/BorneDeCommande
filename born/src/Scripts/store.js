@@ -207,7 +207,6 @@ export class Selectable {
         selected : [],
         payable : custom.content[i].payable
       }
-      this.content.push(obj);
     }
     return this;
 
