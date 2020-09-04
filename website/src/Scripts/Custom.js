@@ -106,6 +106,8 @@ export class Custom {
                         break;
                     }
                     case 'LinkedWith' : {
+                        if(arg[1]=='')
+                            break;
                         let tmp = arg[1].split(', ');
                         for(let i=0; i< tmp.length;i++)
                             this.linkedWith.push(tmp[i]);

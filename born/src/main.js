@@ -85,7 +85,7 @@ function ADD_CUSTOM_START(data){
               store.commit('SET_CUSTOM');
           }
           xhr.open('GET', url);
-          xhr.send();
+          xhr.send(true);
           
       }).catch(function(error) {
           console.log(error);

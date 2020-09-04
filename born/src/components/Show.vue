@@ -244,7 +244,6 @@
             
             <div>
               <v-row>
-                <!--
                 <v-card
                   v-for="(detail,index) in allSelectable"
                   @click="changeSelectable(index)"
@@ -275,7 +274,6 @@
                     ></v-checkbox>
                   </div>
                 </v-card>
-                -->
               </v-row>
             </div>
           </div>
@@ -432,9 +430,10 @@ export default {
   },
   methods: {
     clickOnCard(data) {
-      /*
+      console.log(data);
       this.allSelectable = this.$store.getters.menuByPlat[data.nom];
       this.selectable = this.allSelectable[0];
+      /*
       this.indexS = 0;
 
       this.selectableArray[0] = true;
@@ -460,7 +459,6 @@ export default {
         }
       }
     */
-      this.selectable = data;
       this.dialog = true;
     },
     addDetail(content, detail){
