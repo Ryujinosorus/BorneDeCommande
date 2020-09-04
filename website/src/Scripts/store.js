@@ -192,8 +192,19 @@ mutations: {
         state.custom = data;
     },
     DELETE_CUSTOM(state,custom){
+        let nom = custom.nom;
+
         let pos = state.custom.indexOf(custom);
         state.custom.splice(pos,1);
+
+        for(let i=0;i<state.custom.length;i++){
+                let posName = state.custom[i].linkedWith.indexOf(nom);
+                if(posName != -1){
+                    state.custom[i].linkedWith.splice(posName,1);
+                    state.custom[i].pushHimToFb = true;
+                }
+        }
+            
     },
     ADD_PLAT(state,plat){
         let pos = state.plat.indexOf(plat);
