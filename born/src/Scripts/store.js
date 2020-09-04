@@ -71,6 +71,22 @@ const store = new Vuex.Store({
       state.platByCate[res.categorie].push(cv);
 
     },
+    SET_CUSTOM(state){
+      for(let i=0;i<state.custom.length;i++){
+        let curentCustom = state.custom[i];
+        state.menuByPlat[curentCustom.nom] = [curentCustom];
+        for(let j=0;j<curentCustom.linkedWith.length;j++){
+          let pos = -1;
+          for(let k=0;k<state.custom.length;k++)
+            if(curentCustom.linkedWith[j] == state.custom[k].nom)
+              pos = k;
+
+          state.menuByPlat[curentCustom.nom].push(state.custom[pos]);
+          
+        }
+      }
+      console.log(state.menuByPlat);
+    },
     ADD_SELECTABLE(state,com){
       let index = -1;
       let comString = JSON.stringify(com);
@@ -207,6 +223,7 @@ export class Selectable {
         selected : [],
         payable : custom.content[i].payable
       }
+      this.content.push(obj);
     }
     return this;
 

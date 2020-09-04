@@ -53,7 +53,6 @@ function initPic(){
   }).$mount('#app')
 }
 
-
 // CUSTOM
 function loadCustom(){
   let storageRef = fb.storage().ref('dataOfUser/'+store.getters.user.email+'/');
@@ -66,10 +65,6 @@ function loadCustom(){
       xhr.open('GET', url);
       xhr.send();
   }).catch(function() {
-      if(name =='BorneSettings.txt'){
-          store.commit('ADD_BORNESETTINGS',new BorneSetting());
-      }
-
       console.log("file not found");
   });
 }
@@ -79,14 +74,15 @@ function loadCustom(){
 
 function ADD_CUSTOM_START(data){
   let file = data.split("\n");
-  for(let x=0;x<file.length;x++)
-    if(file[x]!=''){
+  for(let x=0;x<file.length-1;x++){
       let storageRef = fb.storage().ref('dataOfUser/'+'undefined'+'/Custom/'+file[x]+'/recap.txt');
       let xhr = new XMLHttpRequest();
       storageRef.getDownloadURL().then(function(url) {
           xhr.responseType = '';
           xhr.onload = function() {
               store.commit('ADD_CUSTOM',new Custom().init(xhr.response));
+              if(x== file.length-2)
+              store.commit('SET_CUSTOM');
           }
           xhr.open('GET', url);
           xhr.send();

@@ -7,6 +7,7 @@ export class Custom {
         this.picture = 'https://image.freepik.com/vecteurs-libre/cadres-photo-fond-couleur-pastel_1017-26512.jpg';
         this.categorie = "Pas classé";
         this.pushHimToFb = true;
+        this.linkedWith = [];
     }
     canBeSafe(){
         return true;
@@ -45,6 +46,10 @@ export class Custom {
                 res += ('Payable : ' + this.content[i].nom + '\n')
             
         }
+        res += this.linkedWith.length == 0 ? '' : 'LinkedWith : ';
+        for(let x=0;x<this.linkedWith.length;x++)
+            res +=(this.linkedWith[x] + (x == this.linkedWith.length - 1 ? '' : ', '));
+        res += this.linkedWith.length == 0 ? '' : '\n';
        let route = fb.storage().ref('dataOfUser/' + email + '/Custom/'+ this.nom + '/recap.txt');
        route.put(new Blob([res], {type: 'text/plain'}));
     }
@@ -98,6 +103,12 @@ export class Custom {
                         for(let i=0;i<this.content.length;i++)
                             if(this.content[i].nom == arg[1])
                                 this.content[i].payable = true;
+                        break;
+                    }
+                    case 'LinkedWith' : {
+                        let tmp = arg[1].split(', ');
+                        for(let i=0; i< tmp.length;i++)
+                            this.linkedWith.push(tmp[i]);
                         break;
                     }
                     default : {
