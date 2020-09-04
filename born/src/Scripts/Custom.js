@@ -137,4 +137,8 @@ export class Custom {
         }
         return this;
     }
+    reset(){
+        for(let i=0;i<this.content.length;i++)
+            this.content[i].selected = [];
+    }
 }

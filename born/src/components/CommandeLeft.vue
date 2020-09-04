@@ -42,44 +42,16 @@
           color : settings.list.recap.commandeTitleColor,
         }">
         {{data.nom}}</h2>
-        <!-- SI UN SEUL PLAT-->
-        <div v-if="data.content.length ==1">
-          <p class="apply-font-commandeDetail" :style="{
-          fontSize : settings.list.recap.commandeDetailSize +'px',
-          color : settings.list.recap.commandeDetailColor,
-        }">Sauce : {{data.content[0].modifiable.sauce[1].length == 0 ? "Pas de sauce" : fromArrayToString(data.content[0].modifiable.sauce[1]) }}</p>
-          
-          <p class="apply-font-commandeDetail" :style="{
-          fontSize : settings.list.recap.commandeDetailSize +'px',
-          color : settings.list.recap.commandeDetailColor,
-        }">Légumes : {{data.content[0].modifiable.legume[1].length == 0 ? "Pas de légume" : fromArrayToString(data.content[0].modifiable.legume[1]) }}</p>
-
-          <p class="apply-font-commandeDetail" :style="{
-          fontSize : settings.list.recap.commandeDetailSize +'px',
-          color : settings.list.recap.commandeDetailColor,
-        }">Suppléments : {{data.content[0].modifiable.supplement[1].length == 0 ? "Pas de suppléments" : fromArray3ToString(data.content[0].modifiable.supplement[1]) }}</p>
-
-        </div>
         <!-- SI PLUSIEURS PLATS -->
         
-        <div v-else>
+        <div>
           <div v-for="(content,index) in data.content" :key="index">
             <div>
               <h1>{{content.nom}}</h1>
               <p class="apply-font-commandeDetail" :style="{
               fontSize : settings.list.recap.commandeDetailSize +'px',
               color : settings.list.recap.commandeDetailColor,
-            }">Sauce : {{content.modifiable.sauce[1].length == 0 ? "Pas de sauce" : fromArrayToString(content.modifiable.sauce[1]) }}</p>
-              
-              <p class="apply-font-commandeDetail" :style="{
-              fontSize : settings.list.recap.commandeDetailSize +'px',
-              color : settings.list.recap.commandeDetailColor,
-            }">Légumes : {{content.modifiable.legume[1].length == 0 ? "Pas de légume" : fromArrayToString(content.modifiable.legume[1]) }}</p>
-
-              <p class="apply-font-commandeDetail" :style="{
-              fontSize : settings.list.recap.commandeDetailSize +'px',
-              color : settings.list.recap.commandeDetailColor,
-            }">Suppléments : {{content.modifiable.supplement[1].length == 0 ? "Pas de suppléments" : fromArray3ToString(content.modifiable.supplement[1]) }}</p>
+            }">  {{content.selected.length == 0 ? "Pas de sauce" : fromArrayToString(content.selected) }}</p>
           </div>
         </div>
         </div>
@@ -166,12 +138,8 @@ export default {
       }
     },
     methods : {
-      getPrice(obj){
-        let p = parseFloat(obj.prix);
-        for(let x=0;x<obj.content.length;x++)
-          for(let y=0;y<obj.content[x].modifiable.supplement[1].length;y++)
-            p +=  parseFloat(obj.content[x].modifiable.supplement[1][y][1])
-        return p;
+      getPrice(){
+        return 'a';
       },
       minusNB(data){
         data.nb--;
@@ -187,7 +155,7 @@ export default {
       fromArrayToString(data){
         let res='';
         for(let i=0;i<data.length;i++)
-          res+= (data[i].toString() + (i==data.length-1? '' : ', '));
+          res+= (data[i].nom ) + (i==data.length-1? '' : ', ');
         return res;
       },
       fromArray3ToString(data){
