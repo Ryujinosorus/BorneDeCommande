@@ -138,8 +138,13 @@ export default {
       }
     },
     methods : {
-      getPrice(){
-        return 'a';
+      getPrice(data){
+        let res = parseFloat(data.prix);
+        for (let i=0;i<data.content.length;i++)
+          if(data.content[i].payable)
+            for(let j=0;j<data.content[i].selected.length;j++)
+              res+= parseFloat(data.content[i].selected[j].price);
+        return res;
       },
       minusNB(data){
         data.nb--;

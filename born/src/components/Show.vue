@@ -321,6 +321,7 @@
                       float : 'left'
                     }"
                       >{{detail.nom}}</p>
+                      <p v-if="content.payable">{{detail.price}} </p>
                       <v-checkbox
                         dark
                         readonly
