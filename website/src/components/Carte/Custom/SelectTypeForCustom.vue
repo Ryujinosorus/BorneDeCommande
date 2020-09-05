@@ -31,8 +31,10 @@
                         </v-col>
                     </v-row>
                     <v-row>
-                        <v-textarea :value="getText()">
-                        </v-textarea>
+
+                        <v-col cols="12" sm="12">
+                            <v-textarea label="Recap" auto-grow outlined rows="1" row-height="10" :value="getText()" readonly></v-textarea>
+                        </v-col>
                     </v-row>
                 </v-container>
             </v-card>

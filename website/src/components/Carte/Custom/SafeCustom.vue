@@ -22,7 +22,9 @@
         </v-card-title>
 
         <v-card-text>
-            <v-textarea></v-textarea>
+            <v-col cols="12" sm="12">
+              <v-textarea label="Plat qui va etre ajouté" auto-grow outlined rows="1" row-height="10" :value="custom.toString()" readonly></v-textarea>
+           </v-col>
         </v-card-text>
 
         <v-divider></v-divider>

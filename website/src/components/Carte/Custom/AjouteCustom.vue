@@ -34,7 +34,11 @@
                                 <v-card-actions>
                                     <app-selectTypeForCustom :content="data"></app-selectTypeForCustom>
                                     <v-spacer></v-spacer>
-                                    <v-checkbox v-model="data.payable"></v-checkbox>
+                                    <v-checkbox v-model="data.payable">
+                                        <template v-slot:label>
+                                            <span :style="{color : data.payable ? 'green' : 'red'}">Payant</span>
+                                        </template>
+                                    </v-checkbox>
                                 </v-card-actions>
                             </v-card>
                             <v-col cols="1">
@@ -75,7 +79,7 @@
                         <v-col cols="3">
                             <v-card>
                                 <v-card-title>
-                                    Plat en ré=elation
+                                    Plat en relation
                                 </v-card-title>
                                 <v-card-actions>
                                               <v-select :items="customName" v-model="custom.linkedWith" chips label="Chips" multiple solo></v-select>

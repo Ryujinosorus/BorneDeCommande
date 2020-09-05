@@ -70,8 +70,8 @@
                                 <v-card-title class="mx-auto title subtitle-1">{{data.name}} </v-card-title>
                                 <v-spacer></v-spacer>
                                 <v-switch inset  flat color="rgb(3, 120, 166)" @change="add(data.name,data.url,index)" :input-value="checkOnOffSwitchStart(data.name,data.url)"></v-switch>
+                                <v-text-field type="number" v-model="priceTab[index]" @change="changePrice(data.name,data.url,index)" v-if="content.payable"></v-text-field>
                             </v-card-actions>
-                            <v-text-field type="number" v-model="priceTab[index]" @change="changePrice(data.name,data.url,index)" v-if="content.payable"></v-text-field>
                         </v-card>
                         <v-col cols="1">
                         </v-col>

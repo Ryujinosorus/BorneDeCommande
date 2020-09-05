@@ -18,13 +18,13 @@
                         <v-icon>mdi-arrow-left</v-icon>
                     </v-btn>
                 </v-col>
-                <v-col>
+                <v-col cols="1">
                     <app-saveAllCustom></app-saveAllCustom>
                 </v-col>
             </v-row>
 
             <v-row>
-                <v-col cols="3">
+                <v-col xs="10" sm='6' md="4" lg="3">
                     <v-card>
                         <v-img src="https://image.freepik.com/free-photo/junk-food-black-slate-with-copy-space_23-2148273109.jpg" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px">
                             <v-card-title>Nouveau plat </v-card-title>
@@ -39,7 +39,7 @@
 
 
 
-                <v-col cols="3" v-for="(custom,index) of updateCustom" v-bind:key="custom['.key']">
+                <v-col xs="10" sm='6' md="4" lg="3" v-for="(custom,index) of updateCustom" v-bind:key="custom['.key']">
                     <v-card>
                         <v-img :src="custom.picture" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px">
                             <v-card-title>{{custom.nom}} </v-card-title>
