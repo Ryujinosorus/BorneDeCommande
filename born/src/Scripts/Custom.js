@@ -1,4 +1,3 @@
-import {fb} from '../main';
 export class Custom {
     constructor(){
         this.nom = "";
@@ -8,76 +7,12 @@ export class Custom {
         this.categorie = "Pas classé";
         this.pushHimToFb = true;
         this.linkedWith = [];
+        this.otherCustom = [];
+        this.nb = 1;
     }
-    canBeSafe(){
-        return true;
-    }
-    toString(){
-        let res='';
-        res += 'Nom : '  + this.nom + '\n';
-        res += 'Prix : '  + this.prix + '\n';
-        res += 'Catégorie : '  + this.categorie + '\n';
-        for(let i=0;i<this.content.length;i++)
-            res += (this.content[i].nom + ' : ' + this.content[i].data.length + ' éléments\n')
-        return res;
 
-    }
-    upload(email){
-        if(this.picture.startsWith('blob:'))
-            this.uploadWithPicture(email);
-        else this.uploadWithoutPicture(email);
-    }
-    uploadWithoutPicture(email){ 
-        this.pushHimToFb = false;
-        let res='';
-        res += 'Nom : '  + this.nom + '\n';
-        res += 'Prix : '  + this.prix + '\n';
-        res += 'Catégorie : '  + this.categorie + '\n';
-        res += 'Picture : ' + this.picture + '\n';
-        for(let i=0;i<this.content.length;i++){
-            res += (this.content[i].nom + ' : ');
-            for(let j=0;j< this.content[i].data.length;j++){
-                res += this.content[i].data[j].nom + ' - ' + this.content[i].data[j].url + ' - ' + this.content[i].data[j].price;
-                res += j==this.content[i].data.length-1 ? '' :', ';
-                console.log(this.content[i].data[j].nom);
-            }
-            res+='\n';
-            if(this.content[i].payable)
-                res += ('Payable : ' + this.content[i].nom + '\n')
-            
-        }
-        res += this.linkedWith.length == 0 ? '' : 'LinkedWith : ';
-        for(let x=0;x<this.linkedWith.length;x++)
-            res +=(this.linkedWith[x] + (x == this.linkedWith.length - 1 ? '' : ', '));
-        res += this.linkedWith.length == 0 ? '' : '\n';
-       let route = fb.storage().ref('dataOfUser/' + email + '/Custom/'+ this.nom + '/recap.txt');
-       route.put(new Blob([res], {type: 'text/plain'}));
-    }
-    uploadWithPicture(email){
-        console.log('UPLOAD A PICTURE !');
-        //UPLOAD PICTURE
-        let routePicture = fb.storage().ref('dataOfUser/' + email + '/Custom/'+ this.nom + '/picture.png');
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', this.picture, true);
-        xhr.responseType = 'blob';
-        let self = this;
-        xhr.onload = function() {
-        if (this.status == 200) {   
-            var myBlob = this.response;
-            let uploadTask = routePicture.put(myBlob);
-            //GET URL
-            uploadTask.then((snapshot) => {
-                snapshot.ref.getDownloadURL().then((url) => {
-                self.picture = url;
-                }).then(() => self.uploadWithoutPicture(email)) ;
-            })
-        }
-        };
-        xhr.send();
-    }
     init(data){
-        console.log(data);
-        this.nom = 'aaaaaa';
+        this.file = data;
         let file = data.split('\n');
         for(let x=0;x<file.length;x++)
             if(file[x]!=''){
@@ -113,12 +48,20 @@ export class Custom {
                             this.linkedWith.push(tmp[i]);
                         break;
                     }
+                    case 'OtherCustom' : {
+                        if(arg[1]=='')
+                            break;
+                        let tmp = arg[1].split(', ');
+                        for(let i=0; i< tmp.length;i++)
+                            this.otherCustom.push(tmp[i]);
+                        break;
+                    }
                     default : {
                         let obj = {
                             nom : arg[0],
                             data : [],
                             payable : false,
-                            selected : []
+                            selected : [],
                         };
                         if(arg[1]!=''){ 
                             let tmp = arg[1].split(', ');
@@ -127,8 +70,10 @@ export class Custom {
                                 obj.data.push({
                                     nom : tmpp[0],
                                     url : tmpp[1],
-                                    price : tmpp[2]
+                                    price : tmpp[2],
+                                    selected : false
                                 });
+                                obj.selected.push(false);
                             }
                         }
                         this.content.push(obj);
@@ -139,6 +84,42 @@ export class Custom {
     }
     reset(){
         for(let i=0;i<this.content.length;i++)
-            this.content[i].selected = [];
+            for(let j=0;j<this.content[i].data.length;j++)
+                this.content[i].data[j].selected = false;
+    }
+    clone(){
+        let res = new Custom();
+        res.nom = this.nom ;
+        res.prix = this.prix ;
+        res.content = this.content ;
+        res.picture = this.picture ;
+        res.categorie = this.categorie ;
+        res.linkedWith = this.linkedWith ;
+        res.otherCustom = this.otherCustom ;
+        res.nb = 1;
+
+    }
+    toJSON(){
+    var result = {};
+    for (var x in this) {
+        if (x !== "privateProperty1" && x !== "privateProperty2") {
+            result[x] = this[x];
+        }
+    }
+    return result;
+    }
+
+    pareil(com){
+        console.log("COMPARE");
+        console.log(com);
+        console.log("AVEC");
+        console.log(this);
+        if(this.nom !=com.nom)
+            return false;
+        for(let x=0;x<this.content.length;x++)
+            for(let y=0;y<this.content[x].data.length;y++)
+                if(this.content[x].data[y].selected != com.content[x].data[y].selected)
+                    return false;
+        return true;
     }
 }

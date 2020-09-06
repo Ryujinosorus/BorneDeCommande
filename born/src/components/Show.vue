@@ -278,63 +278,7 @@
             </div>
           </div>
 
-          <div v-for="(content,indexC) in selectable.content" :key="content.nom">
-            <h1 class="apply-font-nomPlatFont" :style="{
-                color : settings.custom.nomPlat.fontColor,
-                marginTop : settings.custom.nomPlat.marginT + 'px',
-                marginLeft : settings.custom.nomPlat.marginL + 'px',
-                fontSize : settings.custom.nomPlat.fontSize + 'px'
-              }">{{content.nom}}</h1>
-            <!-- CONTENT -->
-            <div>
-              <!--
-              <h3 class="apply-font-nomDetailFont" :style="{
-                color : settings.custom.nomDetail.fontColor,
-                marginTop : settings.custom.nomDetail.marginT + 'px',
-                marginLeft : settings.custom.nomDetail.marginL + 'px',
-                fontSize : settings.custom.nomDetail.fontSize + 'px'
-              }">Sauce {{content.modifiable.sauce[1].length + '/' + content.maxSauce}}</h3>-->
-              <div>
-                <v-row>
-                  <v-card
-                    v-for="(detail,indexSC) in content.data"
-                    :key="indexS + ' ' + detail.nom + ' ' + detail.picture"
-                    @click="addDetail(content,detail,indexC,indexSC)"
-                    :style="{
-                    height : settings.custom.cardDetail.hauteur + 'px',
-                    width : settings.custom.cardDetail.largeur + 'px',
-                    marginLeft:settings.custom.cardDetail.marginL + 'px',
-                    marginTop:settings.custom.cardDetail.marginT + 'px',
-                    backgroundColor : 'blue'
-                  }"
-                  >
-                    <v-img
-                    :src='detail.url'
-                      :height="settings.custom.cardDetail.hauteur - 50"
-                    ></v-img>
-                    <div>
-                      <p
-                        class="apply-font-detailTitreFont"
-                        :style="{
-                      fontSize :  settings.custom.cardDetail.fontSize+ 'px',
-                      color : settings.custom.cardDetail.fontColor,
-                      float : 'left'
-                    }"
-                      >{{detail.nom}}</p>
-                      <p v-if="content.payable">{{detail.price}} </p>
-                      <v-checkbox
-                        dark
-                        readonly
-                        v-if="reRenderCheckBox"
-                        v-model="model[indexS][indexC][indexSC]"
-                        :style="{float : 'right',marginTop: '0px'}"
-                      ></v-checkbox>
-                    </div>
-                  </v-card>
-                </v-row>
-              </div>
-            </div>
-          </div>
+          <app-showSelectable :selectable="selectable" :settings="settings" @add-detail="addDetail" ></app-showSelectable>
         </div>
         <div>
                   <!-- CANCEL BTN -->
@@ -408,7 +352,6 @@
 
 <script>
 import FontPicker from "font-picker";
-import { Selectable } from "../Scripts/store";
 export default {
   props: ["settings"],
   data() {
@@ -419,42 +362,29 @@ export default {
       data: [],
       allSelectable: [],
       selectableArray : [true],
-      model: [],
-      indexS: 0,
-      reRenderCheckBox : true
     };
   },
   methods: {
     clickOnCard(data) {
       this.allSelectable = this.$store.getters.menuByPlat[data.nom];
-
-      for(let i=0;i<this.allSelectable.length;i++){
-        this.model[i] = [];
-        for(let j=0;j<this.allSelectable[i].content.length;j++){
-          this.model[i][j] = new Array(this.allSelectable[i].content[j].data.length);
-          for(let k=0;k<this.allSelectable[i].content[j].data.length;k++)
-            this.model[i][j][k] = false;
-        }
-      }
+      console.log("ALL SELECTABLE C SA !");
+      console.log(this.allSelectable);
       this.selectable = this.allSelectable[0];
       this.indexS = 0;
 
       this.dialog = true;
     },
-    addDetail(content, detail,indexC,indexSC){
-      let pos = content.selected.indexOf(detail);
-      if(pos== -1)
-        content.selected.push(detail)
-      else content.selected.splice(pos,1);
-      this.model[this.indexS][indexC][indexSC] = !this.model[this.indexS][indexC][indexSC];
-      this.reRenderCheckBox = false;
-      this.reRenderCheckBox = true;
-      console.log(this.model);
+    addDetail(event){
+      event[0].selected[event[1]] = !event[0].selected[event[1]];
+      console.log(event[0]);
+      console.log("AJOUT BG");
     },
     add() {
+      console.log('AJOUT DE');
+      console.log(this.selectable);
       this.$store.commit(
         "ADD_SELECTABLE",
-        JSON.parse(JSON.stringify(this.selectable))
+        ({...this.selectable})
       );
 
       this.resetAllSelectable();
@@ -471,10 +401,6 @@ export default {
       for(let x=0;x<this.allSelectable.length;x++)
         this.allSelectable[x].reset();
     }
-  },
-  created() {
-    this.selectable = new Selectable();
-    for (let i in this.selectable.modifiable) this.data.push(i);
   },
   mounted() {
     this.carte = this.$store.getters.platByCate[this.$route.params.id];

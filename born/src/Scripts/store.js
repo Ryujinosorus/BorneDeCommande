@@ -61,7 +61,6 @@ const store = new Vuex.Store({
     },
     ADD_CUSTOM(state, res) {
       state.custom.push(res);
-
       let cv = Convertor.fromCustomToSelectable(res);
 
       if (state.platByCate[res.categorie] == null)
@@ -84,15 +83,26 @@ const store = new Vuex.Store({
           state.menuByPlat[curentCustom.nom].push(state.custom[pos]);
           
         }
+
+        for(let j=0;j<curentCustom.otherCustom.length;j++){
+          let pos = -1;
+          for(let k=0;k<state.custom.length;k++)
+            if(curentCustom.otherCustom[j] == state.custom[k].nom)
+              pos = k;
+
+          if(pos!=-1)curentCustom.otherCustom[j] = state.custom[pos];
+          
+        }
+        console.log(" ici bg");
+        console.log(state.custom)
+
       }
       console.log(state.menuByPlat);
     },
     ADD_SELECTABLE(state,com){
       let index = -1;
-      let comString = JSON.stringify(com);
-      console.log(comString);
       for(let x=0;x<state.commande.length;x++)
-        if(JSON.stringify(state.commande[x]) == comString)
+        if(com.pareil(state.commande[x]))
           index = x;
       if(index !=-1)
         state.commande[index].nb +=1;
@@ -220,7 +230,6 @@ export class Selectable {
       let obj = {
         nom : custom.content[i].nom,
         all : custom.content[i].data,
-        selected : [],
         payable : custom.content[i].payable
       }
       this.content.push(obj);

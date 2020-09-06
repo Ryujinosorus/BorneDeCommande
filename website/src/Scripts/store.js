@@ -198,9 +198,14 @@ mutations: {
         state.custom.splice(pos,1);
 
         for(let i=0;i<state.custom.length;i++){
-                let posName = state.custom[i].linkedWith.indexOf(nom);
-                if(posName != -1){
-                    state.custom[i].linkedWith.splice(posName,1);
+                let posNameLinkedWith = state.custom[i].linkedWith.indexOf(nom);
+                let posNameOtherCustom = state.custom[i].otherCustom.indexOf(nom);
+                if(posNameLinkedWith != -1){
+                    state.custom[i].linkedWith.splice(posNameLinkedWith,1);
+                    state.custom[i].pushHimToFb = true;
+                }
+                if(posNameOtherCustom != -1){
+                    state.custom[i].otherCustom.splice(posNameOtherCustom,1);
                     state.custom[i].pushHimToFb = true;
                 }
         }

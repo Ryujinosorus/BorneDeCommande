@@ -5,6 +5,7 @@ import store from './Scripts/store';
 import Routes from './route';
 import VueRouter from 'vue-router'
 import commandeLeft from './components/CommandeLeft';
+import showSelectable from './components/ShowSelectable';
 import VueRessource from 'vue-resource';
 import * as firebase from "firebase";
 
@@ -31,6 +32,7 @@ Vue.use(VueRessource);
 Vue.use(VueRouter);
 
 Vue.component('app-commandeLeft',commandeLeft);
+Vue.component('app-showSelectable',showSelectable);
 const router = new VueRouter({
   mode: 'history',
   routes: Routes

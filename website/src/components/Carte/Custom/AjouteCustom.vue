@@ -89,6 +89,21 @@
                             </v-col>
                         </v-col>
 
+
+                        <v-col cols="3">
+                            <v-card>
+                                <v-card-title>
+                                    Integré un autre plat
+                                </v-card-title>
+                                <v-card-actions>
+                                              <v-select :items="customName" v-model="custom.otherCustom" chips label="Chips" multiple solo></v-select>
+                                </v-card-actions>
+                            </v-card>
+                            <v-col cols="1">
+                            </v-col>
+                        </v-col>
+
+
                         <v-col cols="12" sm="12">
                             <v-textarea label="Recap" auto-grow outlined rows="1" row-height="10" :value="custom.toString()" readonly></v-textarea>
                         </v-col>

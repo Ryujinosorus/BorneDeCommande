@@ -51,7 +51,7 @@
               <p class="apply-font-commandeDetail" :style="{
               fontSize : settings.list.recap.commandeDetailSize +'px',
               color : settings.list.recap.commandeDetailColor,
-            }">  {{content.selected.length == 0 ? "Pas de sauce" : fromArrayToString(content.selected) }}</p>
+            }">  {{content.selected.length == 0 ? "Pas de "+ content.nom : fromArrayToString(content.selected) }}</p>
           </div>
         </div>
         </div>

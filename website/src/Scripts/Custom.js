@@ -8,6 +8,7 @@ export class Custom {
         this.categorie = "Pas classé";
         this.pushHimToFb = true;
         this.linkedWith = [];
+        this.otherCustom = [];
     }
     canBeSafe(){
         return true;
@@ -50,6 +51,13 @@ export class Custom {
         for(let x=0;x<this.linkedWith.length;x++)
             res +=(this.linkedWith[x] + (x == this.linkedWith.length - 1 ? '' : ', '));
         res += this.linkedWith.length == 0 ? '' : '\n';
+
+        res += this.otherCustom.length == 0 ? '' : 'OtherCustom : ';
+
+        for(let x=0;x<this.otherCustom.length;x++)
+            res +=(this.otherCustom[x] + (x == this.linkedWith.length - 1 ? '' : ', '));
+        res += this.otherCustom.length == 0 ? '' : '\n';
+
        let route = fb.storage().ref('dataOfUser/' + email + '/Custom/'+ this.nom + '/recap.txt');
        route.put(new Blob([res], {type: 'text/plain'}));
     }
@@ -111,6 +119,14 @@ export class Custom {
                         let tmp = arg[1].split(', ');
                         for(let i=0; i< tmp.length;i++)
                             this.linkedWith.push(tmp[i]);
+                        break;
+                    }
+                    case 'OtherCustom' : {
+                        if(arg[1]=='')
+                            break;
+                        let tmp = arg[1].split(', ');
+                        for(let i=0; i< tmp.length;i++)
+                            this.otherCustom.push(tmp[i]);
                         break;
                     }
                     default : {
