@@ -4,7 +4,7 @@
         <div id="font-picker-IN" style="display : none"></div>
         <v-container fluid>
             <v-row class="full">
-                <div class="leftSide" :style="{backgroundColor : settings.icon.iconOUT.bgColor}">
+                <div class="leftSide" :style="{backgroundColor : settings.icon.iconOUT.bgColor}" @click="changeWhere('OUT')">
                     <div class="pictureLeft" :style="{ backgroundImage: 'url(' + settings.icon.iconOUT.url + '.png)' }">
                     </div>
                     <p class="text apply-font-OUT" :style="{ fontSize: settings.icon.iconOUT.fontSize + 'px',
@@ -14,7 +14,7 @@
                         {{settings.icon.iconOUT.text}}
                     </p>
                 </div>
-                <div class="rightSide" :style="{backgroundColor : settings.icon.iconIN.bgColor}">
+                <div class="rightSide" :style="{backgroundColor : settings.icon.iconIN.bgColor}" @click="changeWhere('IN')">
                     <div class="pictureLeft" :style="{ backgroundImage: 'url(' + settings.icon.iconIN.url + '.png)' }">
                         </div>
                     <p class="text apply-font-IN" :style="{ fontSize : settings.icon.iconIN.fontSize +'px',
@@ -38,6 +38,12 @@ export default {
         return{
             fontOUT:null,
             fontIN:null
+        }
+    },
+    methods : {
+        changeWhere : function(wh){
+            this.$store.commit('SET_WHERE',wh);
+            this.$router.replace('/desorganise');
         }
     },
     mounted(){

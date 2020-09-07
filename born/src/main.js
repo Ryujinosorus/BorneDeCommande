@@ -34,7 +34,7 @@ Vue.use(VueRouter);
 Vue.component('app-commandeLeft',commandeLeft);
 Vue.component('app-showSelectable',showSelectable);
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   routes: Routes
 });
 
@@ -83,11 +83,10 @@ function ADD_CUSTOM_START(data){
           xhr.responseType = '';
           xhr.onload = function() {
               store.commit('ADD_CUSTOM',new Custom().init(xhr.response));
-              if(x== file.length-2)
-              store.commit('SET_CUSTOM');
+              store.commit('SET_CUSTOM'); // A VOIR POUR METTRE A LA FIN DE TOUTES LES XHTMLREQUESTS
           }
-          xhr.open('GET', url);
-          xhr.send(true);
+          xhr.open('GET', url,true);
+          xhr.send();
           
       }).catch(function(error) {
           console.log(error);
