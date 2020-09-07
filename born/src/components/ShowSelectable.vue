@@ -74,7 +74,7 @@ export default {
     },
     methods : {
         addDetail(detail){
-            detail.selected =!detail.selected;
+            this.$emit('ADD_DETAIL',detail);
             this.reRenderCheckBox = false;
             this.reRenderCheckBox = true;
         }

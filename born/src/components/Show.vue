@@ -278,7 +278,7 @@
             </div>
           </div>
 
-          <app-showSelectable :selectable="selectable" :settings="settings" @add-detail="addDetail" ></app-showSelectable>
+          <app-showSelectable :selectable="selectable" :settings="settings" @ADD_DETAIL="addDetail" ></app-showSelectable>
         </div>
         <div>
                   <!-- CANCEL BTN -->
@@ -366,7 +366,11 @@ export default {
   },
   methods: {
     clickOnCard(data) {
-      this.allSelectable = this.$store.getters.menuByPlat[data.nom];
+      this.allSelectable = {...this.$store.getters.menuByPlat[data.nom]};
+      
+      for(let x in this.allSelectable)
+        (this.allSelectable[x]).reset();
+      
       console.log("ALL SELECTABLE C SA !");
       console.log(this.allSelectable);
       this.selectable = this.allSelectable[0];
@@ -375,8 +379,7 @@ export default {
       this.dialog = true;
     },
     addDetail(event){
-      event[0].selected[event[1]] = !event[0].selected[event[1]];
-      console.log(event[0]);
+      event.selected =!event.selected;
       console.log("AJOUT BG");
     },
     add() {
@@ -386,8 +389,6 @@ export default {
         "ADD_SELECTABLE",
         ({...this.selectable})
       );
-
-      this.resetAllSelectable();
       this.dialog = false;
       this.$router.replace("/desorganise");
     },
@@ -396,10 +397,6 @@ export default {
       for (let i = 0; i < this.allSelectable.length; i++)
         this.selectableArray[i] = i == index;
       this.indexS = index;
-    },
-    resetAllSelectable(){
-      for(let x=0;x<this.allSelectable.length;x++)
-        this.allSelectable[x].reset();
     }
   },
   mounted() {

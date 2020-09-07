@@ -15,6 +15,7 @@ const store = new Vuex.Store({
     menu: [],
     platByCate: [],
     menuByPlat : [],
+    otherMenuByPlat : [],
     supplements : [],
     commande : []
   },
@@ -98,15 +99,11 @@ const store = new Vuex.Store({
 
       }
       console.log(state.menuByPlat);
+      state.otherMenuByPlat = {...state.menuByPlat};
     },
     ADD_SELECTABLE(state,com){
-      let index = -1;
-      for(let x=0;x<state.commande.length;x++)
-        if(com.pareil(state.commande[x]))
-          index = x;
-      if(index !=-1)
-        state.commande[index].nb +=1;
-      else state.commande.push(com);
+      state.commande.push(com);
+      state.menuByPlat = {...state.otherMenuByPlat};
     },
     DEL_COMMANDE(state,com){
       let index = state.commande.indexOf(com);
