@@ -144,8 +144,6 @@ export class Menu {
     }
     toFirebase(name) {
         //SET UP REF
-        console.log(new Menu().clone(this));
-        console.log(this);
         let routeData = fb.storage().ref(name+ "recap.txt");
         let routePicture = fb.storage().ref(name + "/picture.png");
 
@@ -237,7 +235,6 @@ export class Menu {
     return this;
     }
     addSure(arg){
-    console.log(arg);
         switch(arg[0]){
             case "plat":
             {

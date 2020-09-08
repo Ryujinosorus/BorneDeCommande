@@ -9,9 +9,15 @@
         <div id="font-picker-commandePrix"></div>
         <div id="font-picker-commandeBoutton"></div>
         <div id="font-picker-cateTextFont"></div>
+
+        <div id="font-picker-menuTextFont"></div>
+        <div id="font-picker-titleFont"></div>
+        <div id="font-picker-fontToolbar"></div>
+        <div id="font-picker-detailTitreFont"></div>
+        <div id="font-picker-nomDetailFont"></div>
+        <div id="font-picker-nomPlatFont"></div>
       </div>
     </v-app>
-    
 </template> 
 
 <script>
@@ -82,6 +88,51 @@ export default {
           pickerId: "cateTextFont",
           limit: 150 },
         );
+
+
+         new FontPicker(
+      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
+      this.settings.list.showFood.menuTextFont,
+      {
+        pickerId: "menuTextFont",
+        limit: 150,
+      }
+    );
+
+    new FontPicker(
+      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
+      this.settings.custom.title.font,
+      {
+        pickerId: "titleFont",
+        limit: 150,
+      }
+    );
+
+    new FontPicker(
+      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
+      this.settings.custom.cardDetail.font,
+      {
+        pickerId: "detailTitreFont",
+        limit: 150,
+      }
+    );
+    new FontPicker(
+      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
+      this.settings.custom.nomDetail.font,
+      {
+        pickerId: "nomDetailFont",
+        limit: 150,
+      }
+    );
+
+    new FontPicker(
+      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
+      this.settings.custom.nomPlat.font,
+      {
+        pickerId: "nomPlatFont",
+        limit: 150,
+      }
+    );
     }
 };
 </script>

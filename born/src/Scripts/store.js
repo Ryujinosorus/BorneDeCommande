@@ -58,6 +58,16 @@ const store = new Vuex.Store({
     },
     ADD_BORNESETTINGS(state, bg) {
       state.borneSettings = bg;
+      for(let i=0;i<state.borneSettings.categorie.length;i++){
+        let xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = function() {
+          state.borneSettings.categorie[i][1] = URL.createObjectURL(xhr.response);
+          console.log(bg);
+        }
+        xhr.open('GET', state.borneSettings.categorie[i][1]);
+        xhr.send();
+      }
     },
     ADD_PICLINK(state, data) {
       if (state.allPics.length == 0)
@@ -98,11 +108,9 @@ const store = new Vuex.Store({
           if(pos!=-1)curentCustom.otherCustom[j] = state.custom[pos];
           
         }
-        console.log(" ici bg");
-        console.log(state.custom)
 
       }
-      console.log(state.menuByPlat);
+      (state.menuByPlat);
       state.otherMenuByPlat = {...state.menuByPlat};
     },
     ADD_SELECTABLE(state,com){

@@ -99,27 +99,4 @@ export class Custom {
         res.nb = 1;
 
     }
-    toJSON(){
-    var result = {};
-    for (var x in this) {
-        if (x !== "privateProperty1" && x !== "privateProperty2") {
-            result[x] = this[x];
-        }
-    }
-    return result;
-    }
-
-    pareil(com){
-        console.log("COMPARE");
-        console.log(com);
-        console.log("AVEC");
-        console.log(this);
-        if(this.nom !=com.nom)
-            return false;
-        for(let x=0;x<this.content.length;x++)
-            for(let y=0;y<this.content[x].data.length;y++)
-                if(this.content[x].data[y].selected != com.content[x].data[y].selected)
-                    return false;
-        return true;
-    }
 }

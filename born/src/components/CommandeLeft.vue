@@ -172,7 +172,6 @@ export default {
     },
     computed : {
       getCommande(){
-        console.log("refresh");
         let tmp = this.$store.getters.commande;
         return tmp;
       }

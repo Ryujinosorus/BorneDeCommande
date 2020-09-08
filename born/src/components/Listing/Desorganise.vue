@@ -2,7 +2,7 @@
 <div :style="{backgroundColor : settings.list.recap.backgroundColorCate}">
   <app-commandeLeft :settings="settings"></app-commandeLeft>
     <v-row>
-      <div v-for="data in cate" :key="data[0]">
+      <div v-for="data in settings.categorie" :key="data[0]">
         <router-link :to="'Show/'+data[0]" v-if="canShow(data[0])">
         <v-card :height="settings.list['Organisé']['hauteur']" :width="settings.list['Organisé']['largeur']" :style="{
           marginLeft :settings.list['Organisé']['espacementG'] +'px',
@@ -42,21 +42,11 @@
 <script>
   export default {
       props:['settings'],
-      data(){
-        return{
-          cate :[]
-        }
-      },
       methods : {
         canShow(i){
-          console.log(this.$store.getters.platByCate[i]);
           return this.$store.getters.platByCate[i]!=undefined;
         }
       },
-      created(){
-        this.cate = this.settings.categorie; 
-        console.log(this.cate);
-      }
   }
 </script>
 

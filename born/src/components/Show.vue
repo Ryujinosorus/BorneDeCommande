@@ -351,7 +351,6 @@
 </template>
 
 <script>
-import FontPicker from "font-picker";
 export default {
   props: ["settings"],
   data() {
@@ -370,9 +369,7 @@ export default {
       
       for(let x in this.allSelectable)
         (this.allSelectable[x]).reset();
-      
-      console.log("ALL SELECTABLE C SA !");
-      console.log(this.allSelectable);
+
       this.selectable = this.allSelectable[0];
       this.indexS = 0;
 
@@ -380,11 +377,8 @@ export default {
     },
     addDetail(event){
       event.selected =!event.selected;
-      console.log("AJOUT BG");
     },
     add() {
-      console.log('AJOUT DE');
-      console.log(this.selectable);
       this.$store.commit(
         "ADD_SELECTABLE",
         ({...this.selectable})
@@ -401,50 +395,6 @@ export default {
   },
   mounted() {
     this.carte = this.$store.getters.platByCate[this.$route.params.id];
-
-    new FontPicker(
-      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
-      this.settings.list.showFood.menuTextFont,
-      {
-        pickerId: "menuTextFont",
-        limit: 150,
-      }
-    );
-
-    new FontPicker(
-      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
-      this.settings.custom.title.font,
-      {
-        pickerId: "titleFont",
-        limit: 150,
-      }
-    );
-
-    new FontPicker(
-      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
-      this.settings.custom.cardDetail.font,
-      {
-        pickerId: "detailTitreFont",
-        limit: 150,
-      }
-    );
-    new FontPicker(
-      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
-      this.settings.custom.nomDetail.font,
-      {
-        pickerId: "nomDetailFont",
-        limit: 150,
-      }
-    );
-
-    new FontPicker(
-      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
-      this.settings.custom.nomPlat.font,
-      {
-        pickerId: "nomPlatFont",
-        limit: 150,
-      }
-    );
   },
 };
 </script>
