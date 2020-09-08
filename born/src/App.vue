@@ -16,6 +16,8 @@
         <div id="font-picker-detailTitreFont"></div>
         <div id="font-picker-nomDetailFont"></div>
         <div id="font-picker-nomPlatFont"></div>
+        <div id="font-picker-IN"></div>
+        <div id="font-picker-OUT"></div>
       </div>
     </v-app>
 </template> 
@@ -132,6 +134,23 @@ export default {
         pickerId: "nomPlatFont",
         limit: 150,
       }
+    );
+
+    new FontPicker(
+      'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
+      this.settings.icon.iconOUT.font, 
+      { 
+          pickerId : 'OUT',
+          limit: 150 
+      },
+  );
+    new FontPicker(
+      'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
+      this.settings.icon.iconIN.font, 
+      { 
+          pickerId : 'IN',
+          limit: 150 
+      },
     );
     }
 };

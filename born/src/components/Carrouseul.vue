@@ -1,7 +1,7 @@
 <template>
     <div class="all">
       <div id="font-picker" style="display :none;"></div>
-      <div class="bg" v-bind:style="{ backgroundImage: 'url(' + allPics[tmp] + '.png)'  }"></div>
+      <div class="bg"><v-img :src="allPics[tmp]"></v-img></div>
       <router-link to="/where">
       <div class="footer" :style="{
                             backgroundColor: settings.firstPage.panelColor,
@@ -31,19 +31,24 @@ export default {
         fontPicker : null
     }
   },
-  methods:{
-    change_pics(){
-      this.tmp = (this.tmp+1) % 4 ;
-      //this.usedPic = this.allPics[(this.allPics.indexOf(this.usedPic)+1)%this.allPics.length];  
-    }
-  },
 	created: function() {
     let self = this;
 		setInterval(function() {
-      self.change_pics();
+      self.tmp = (self.tmp+1) % self.settings.firstPage.nbDiapo ;
     }, (this.settings.firstPage.interval)*1000);
   },
   mounted:function(){
+    this.allPics = this.$store.getters.getAllPics;
+    for(let x=0;x<this.allPics.length;x++){
+      let xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      const self= this;
+      xhr.onload = function() {
+       self.allPics[x] = URL.createObjectURL(xhr.response);
+      }
+      xhr.open('GET',this.allPics[x]);
+      xhr.send();
+    }
     this.fontPicker = new FontPicker(
         'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
         this.settings.firstPage.font, 

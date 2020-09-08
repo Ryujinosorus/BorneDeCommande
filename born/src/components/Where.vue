@@ -5,7 +5,8 @@
         <v-container fluid>
             <v-row class="full">
                 <div class="leftSide" :style="{backgroundColor : settings.icon.iconOUT.bgColor}" @click="changeWhere('OUT')">
-                    <div class="pictureLeft" :style="{ backgroundImage: 'url(' + settings.icon.iconOUT.url + '.png)' }">
+                    <div class="pictureLeft">
+                        <v-img :src="settings.icon.iconOUT.url"></v-img>
                     </div>
                     <p class="text apply-font-OUT" :style="{ fontSize: settings.icon.iconOUT.fontSize + 'px',
                                                 color : settings.icon.iconOUT.fontColor,
@@ -15,7 +16,8 @@
                     </p>
                 </div>
                 <div class="rightSide" :style="{backgroundColor : settings.icon.iconIN.bgColor}" @click="changeWhere('IN')">
-                    <div class="pictureLeft" :style="{ backgroundImage: 'url(' + settings.icon.iconIN.url + '.png)' }">
+                    <div class="pictureLeft">
+                        <v-img :src="settings.icon.iconIN.url"></v-img>
                         </div>
                     <p class="text apply-font-IN" :style="{ fontSize : settings.icon.iconIN.fontSize +'px',
                                             color : settings.icon.iconIN.fontColor,
@@ -25,21 +27,15 @@
                     </p>
                 </div>
             </v-row>
+            <p>{{settings.icon}}</p>
         </v-container>
     </div>      
 </template>
     
 <script>
-import FontPicker from "font-picker";
 export default {
     name:'Where',
     props : ['settings'],
-    data(){
-        return{
-            fontOUT:null,
-            fontIN:null
-        }
-    },
     methods : {
         changeWhere : function(wh){
             this.$store.commit('SET_WHERE',wh);
@@ -47,22 +43,6 @@ export default {
         }
     },
     mounted(){
-        this.fontOUT = new FontPicker(
-            'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
-            this.settings.icon.iconOUT.font, 
-            { 
-                pickerId : 'OUT',
-                limit: 150 
-            },
-        );
-        this.fontIN = new FontPicker(
-            'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
-            this.settings.icon.iconIN.font, 
-            { 
-                pickerId : 'IN',
-                limit: 150 
-            },
-        );
     }
 };
 </script>  

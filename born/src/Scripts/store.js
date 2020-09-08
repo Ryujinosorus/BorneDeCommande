@@ -68,22 +68,63 @@ const store = new Vuex.Store({
         xhr.open('GET', state.borneSettings.categorie[i][1]);
         xhr.send();
       }
+
+      let xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      xhr.onload = function() {
+        state.borneSettings.icon.iconIN.url = URL.createObjectURL(xhr.response);
+        console.log(bg);
+      }
+      xhr.open('GET', state.borneSettings.icon.iconIN.url);
+      xhr.send();
+
+      let xhr2 = new XMLHttpRequest();
+      xhr2.responseType = 'blob';
+      xhr2.onload = function() {
+        console.log(xhr2.response)
+        let newURL =  URL.createObjectURL(xhr2.response);
+        console.log(newURL);
+        state.borneSettings.icon.iconOUT.url = newURL;
+      }
+      xhr2.open('GET', state.borneSettings.icon.iconOUT.url);
+      xhr2.send();
+
+      let xhr3 = new XMLHttpRequest();
+      xhr3.responseType = 'blob';
+      xhr3.onload = function() {
+       state.borneSettings.list.showFood.back.picture = URL.createObjectURL(xhr3.response);
+      }
+      xhr3.open('GET', state.borneSettings.list.showFood.back.picture);
+      xhr3.send();
+
     },
     ADD_PICLINK(state, data) {
       if (state.allPics.length == 0)
         state.allPics = new Array(state.borneSettings.firstPage.nbDiapo);
       state.allPics[data[0]] = data[1];
+      console.log(state.allPics);
     },
     ADD_CUSTOM(state, res) {
-      state.custom.push(res);
-      let cv = Convertor.fromCustomToSelectable(res);
+      console.log("res : ");
+      console.log(res);
+      let xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      let self = this;
+      xhr.onload = function() {
+       res.picture = URL.createObjectURL(xhr.response);
 
-      if (state.platByCate[res.categorie] == null)
-        state.platByCate[res.categorie] = [];
-  
-
-      state.platByCate[res.categorie].push(cv);
-
+       state.custom.push(res);
+       let cv = Convertor.fromCustomToSelectable(res);
+ 
+       if (state.platByCate[res.categorie] == null)
+         state.platByCate[res.categorie] = [];
+   
+ 
+       state.platByCate[res.categorie].push(cv);
+       self.commit('SET_CUSTOM');
+      }
+      xhr.open('GET', res.picture);
+      xhr.send();
     },
     SET_CUSTOM(state){
       for(let i=0;i<state.custom.length;i++){

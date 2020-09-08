@@ -338,15 +338,6 @@
             }"></div>
       </v-card>
     </v-dialog>
-
-    <div class="hidden">
-      <div id="font-picker-menuTextFont"></div>
-      <div id="font-picker-titleFont"></div>
-      <div id="font-picker-fontToolbar"></div>
-      <div id="font-picker-detailTitreFont"></div>
-      <div id="font-picker-nomDetailFont"></div>
-      <div id="font-picker-nomPlatFont"></div>
-    </div>
   </v-container>
 </template>
 
@@ -366,6 +357,7 @@ export default {
   methods: {
     clickOnCard(data) {
       this.allSelectable = {...this.$store.getters.menuByPlat[data.nom]};
+      console.log(this.allSelectable);
       
       for(let x in this.allSelectable)
         (this.allSelectable[x]).reset();

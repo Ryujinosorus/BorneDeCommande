@@ -51,7 +51,6 @@
                     v-if="reRenderCheckBox"
                     :style="{float : 'right',marginTop: '0px'}"
                     ></v-checkbox>
-                    <p>{{detail}}</p>
                 </div>
                 </v-card>
             </v-row>

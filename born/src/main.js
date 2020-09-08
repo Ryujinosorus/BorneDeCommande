@@ -42,7 +42,13 @@ function initPic(){
   let pictureRef = fb.storage().ref('dataOfUser/undefined/BorneSetting/picure');
   for(let x=0;x<store.getters.borneSettings.firstPage.nbDiapo;x++){
     pictureRef.child('slide' + x + '.png').getDownloadURL().then(function(url) {
-      store.commit('ADD_PICLINK',[x,url]);
+      let xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      xhr.onload = function() {
+        store.commit('ADD_PICLINK',[x,URL.createObjectURL(xhr.response)]);
+      }
+      xhr.open('GET',url);
+      xhr.send();
     }).catch(function(error) {
         console.log(error);
     });
