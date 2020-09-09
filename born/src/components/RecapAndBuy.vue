@@ -1,11 +1,13 @@
 <template>
     <div class="full" :style="{backgroundColor: settings.valid.backgroundColor}">
+        <div :style="{height :settings.valid.recap.marginT+'px' }">
+        </div>
         <v-card  :height="settings.valid.recap.hauteur" :width="settings.valid.recap.largeur" :style="{
                                                                                                         borderRight : settings.valid.recap.borderR ? settings.valid.recap.borderSize + 'px solid' + settings.valid.recap.borderColor : '',
                                                                                                         borderLeft : settings.valid.recap.borderL ? settings.valid.recap.borderSize + 'px solid' + settings.valid.recap.borderColor : '',
                                                                                                         borderTop: settings.valid.recap.borderT ? settings.valid.recap.borderSize + 'px solid' + settings.valid.recap.borderColor : '',
                                                                                                         borderBottom : settings.valid.recap.borderB ? settings.valid.recap.borderSize + 'px solid' + settings.valid.recap.borderColor : '',
-                                                                                                        margin :  settings.valid.recap.marginT + 'px auto 0px auto'
+                                                                                                        margin : '0px auto 0px auto'
         }">
         <div :style="{
             backgroundColor : settings.valid.recap.titre.backgroundColor,
@@ -23,7 +25,7 @@
         </div>
         <div :style="{
             height : settings.valid.recap.hauteur - settings.valid.recap.titre.height -settings.valid.recap.titre.borderSize -settings.valid.recap.borderSize  + 'px',
-            backgroundColor : 'red'
+            backgroundColor : 'blue'
         }">
 
         </div>
@@ -38,7 +40,9 @@
             class="apply-font-textFont"
             > {{settings.valid.text}} </h1>
         </div>
-
+        <div :style="{backgroundColor : settings.valid.backgroundColor,
+                    height : settings.valid.backBTN.hauteur + settings.valid.backBTN.marginT  + 'px'
+        }">
         <!-- BACK BTN -->
         <router-link to="/desorganise">
         <div :style="{
@@ -92,6 +96,7 @@
             </div>
         </div>
         </router-link>
+        </div>
         <div class="hidden">
             <div id="font-picker-textFont"></div>
             <div id="font-picker-titreRecapFont"></div>

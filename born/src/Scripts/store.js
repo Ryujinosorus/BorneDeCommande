@@ -6,17 +6,13 @@ const store = new Vuex.Store({
   state: {
     allPics: [],
     borneSettings: "a",
-    user: {
-      loggedIn: false,
-      data: null
-    },
+    user: null,
     plat: [],
     custom : [],
     where : null,
     menu: [],
     platByCate: [],
     menuByPlat : [],
-    otherMenuByPlat : [],
     supplements : [],
     commande : []
   },
@@ -54,7 +50,7 @@ const store = new Vuex.Store({
       state.where = wh;
     },
     SET_USER(state, data) {
-      state.user.data = data;
+      state.user = data;
     },
     ADD_BORNESETTINGS(state, bg) {
       state.borneSettings = bg;
@@ -63,7 +59,6 @@ const store = new Vuex.Store({
         xhr.responseType = 'blob';
         xhr.onload = function() {
           state.borneSettings.categorie[i][1] = URL.createObjectURL(xhr.response);
-          console.log(bg);
         }
         xhr.open('GET', state.borneSettings.categorie[i][1]);
         xhr.send();
@@ -73,7 +68,6 @@ const store = new Vuex.Store({
       xhr.responseType = 'blob';
       xhr.onload = function() {
         state.borneSettings.icon.iconIN.url = URL.createObjectURL(xhr.response);
-        console.log(bg);
       }
       xhr.open('GET', state.borneSettings.icon.iconIN.url);
       xhr.send();
@@ -81,10 +75,7 @@ const store = new Vuex.Store({
       let xhr2 = new XMLHttpRequest();
       xhr2.responseType = 'blob';
       xhr2.onload = function() {
-        console.log(xhr2.response)
-        let newURL =  URL.createObjectURL(xhr2.response);
-        console.log(newURL);
-        state.borneSettings.icon.iconOUT.url = newURL;
+        state.borneSettings.icon.iconOUT.url = URL.createObjectURL(xhr2.response);
       }
       xhr2.open('GET', state.borneSettings.icon.iconOUT.url);
       xhr2.send();
@@ -117,11 +108,8 @@ const store = new Vuex.Store({
       if (state.allPics.length == 0)
         state.allPics = new Array(state.borneSettings.firstPage.nbDiapo);
       state.allPics[data[0]] = data[1];
-      console.log(state.allPics);
     },
     ADD_CUSTOM(state, res) {
-      console.log("res : ");
-      console.log(res);
       let xhr = new XMLHttpRequest();
       xhr.responseType = 'blob';
       let self = this;
@@ -167,11 +155,9 @@ const store = new Vuex.Store({
 
       }
       (state.menuByPlat);
-      state.otherMenuByPlat = {...state.menuByPlat};
     },
     ADD_SELECTABLE(state,com){
       state.commande.push(com);
-      state.menuByPlat = {...state.otherMenuByPlat};
     },
     DEL_COMMANDE(state,com){
       let index = state.commande.indexOf(com);
@@ -195,15 +181,8 @@ const store = new Vuex.Store({
   },
   actions: {
     fetchUser({ commit }, user) {
-      commit("SET_LOGGED_IN", user !== null);
-      if (user) {
-        commit("SET_USER", {
-          displayName: user.displayName,
-          email: user.email
-        });
-      } else {
-        commit("SET_USER", null);
-      }
+      if (user) 
+        commit("SET_USER",user);
     }
   }
 });

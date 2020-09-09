@@ -30,6 +30,7 @@ export default {
     }
   },
 	created: function() {
+    console.log(this.settings);
     this.allPics = this.$store.getters.getAllPics;
     for(let x=0;x<this.allPics.length;x++){
       let xhr = new XMLHttpRequest();

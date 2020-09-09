@@ -11,7 +11,7 @@
         <p class="apply-font-commandeDetail" :style="{
         fontSize : settings.list.recap.commandeDetailSize +'px',
         color : settings.list.recap.commandeDetailColor,
-    }">  {{content.selected.length == 0 ? "Pas de "+ content.nom : fromArrayToString(content.selected) }}</p>
+    }">  {{fromArrayToString(content.data) }}</p>
     </div>
     </div>
     <div v-for="otherCustom in data.otherCustom" :key="otherCustom.nom">
@@ -27,16 +27,14 @@ export default {
       fromArrayToString(data){
         let res='';
         for(let i=0;i<data.length;i++)
-          res+= (data[i].nom ) + (i==data.length-1? '' : ', ');
-        return res;
+            if(data[i].selected)
+                res += data[i].nom + ', ';
+        if(res =='')
+            return 'Rien';
+        return res.slice(0,res.length-2);
       },
-      fromArray3ToString(data){
-        let res='';
-        for(let i=0;i<data.length;i++)
-          res+= (data[i][0].toString() + (i==data.length-1? '' : ', '));
-        return res;
-      }
-    }
+      
+    },
 }
 </script>
 

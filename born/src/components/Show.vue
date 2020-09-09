@@ -2,7 +2,10 @@
   <v-container
     fluid
     class="main"
-    :style="{backgroundColor : settings.list.showFood.backgroundColorMenu}"
+    :style="{backgroundColor : settings.list.showFood.backgroundColorMenu,
+            height : '100vh'
+    
+    }"
   >
     <app-commandeLeft :settings="settings"></app-commandeLeft>
     <v-row>
@@ -357,10 +360,6 @@ export default {
   methods: {
     clickOnCard(data) {
       this.allSelectable = {...this.$store.getters.menuByPlat[data.nom]};
-      console.log(this.allSelectable);
-      
-      for(let x in this.allSelectable)
-        (this.allSelectable[x]).reset();
 
       this.selectable = this.allSelectable[0];
       this.indexS = 0;
@@ -373,10 +372,16 @@ export default {
     add() {
       this.$store.commit(
         "ADD_SELECTABLE",
-        ({...this.selectable})
+        JSON.parse(JSON.stringify(this.selectable))
       );
+      this.resetAllSelectable();
       this.dialog = false;
       this.$router.replace("/desorganise");
+    },
+    resetAllSelectable(){
+      for(let i in this.allSelectable){
+        this.allSelectable[i].reset();
+      }
     },
     changeSelectable(index) {
       this.selectable = this.allSelectable[index];

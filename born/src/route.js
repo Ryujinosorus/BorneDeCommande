@@ -4,6 +4,7 @@ import Where from './components/Where';
 import Desorganise from './components/Listing/Desorganise';
 import ShowCate from './components/Show.vue';
 import RecapAndBuy from './components/RecapAndBuy';
+import LoadingData from './components/LoadingData';
 export default[
     {
       path: '/',
@@ -11,6 +12,10 @@ export default[
     },
     {
       path: '/start',
+      component:LoadingData
+    },
+    {
+      path: '/Carrousel',
       component:Carrousel
     },
     {

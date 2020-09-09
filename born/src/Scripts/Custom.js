@@ -86,17 +86,19 @@ export class Custom {
         for(let i=0;i<this.content.length;i++)
             for(let j=0;j<this.content[i].data.length;j++)
                 this.content[i].data[j].selected = false;
+        for(let k=0;k<this.otherCustom.length;k++)
+            if(this.otherCustom[k] !='')
+            this.otherCustom[k].reset();
     }
-    clone(){
-        let res = new Custom();
-        res.nom = this.nom ;
-        res.prix = this.prix ;
-        res.content = this.content ;
-        res.picture = this.picture ;
-        res.categorie = this.categorie ;
-        res.linkedWith = this.linkedWith ;
-        res.otherCustom = this.otherCustom ;
-        res.nb = 1;
-
+    getPrice(){
+        let prix = this.price;
+        for(let i=0;i<this.content.length;i++)
+            if(this.content.payable)
+                for(let j=0;j<this.content[i].data.length;j++)
+                    if(this.content[i].data[j].selected)
+                        prix += this.content[i].data[j].price;
+        for(let k=0;k<this.otherCustom.length;k++)
+            prix += this.otherCustom[k].getPrice();
+        return prix;
     }
 }

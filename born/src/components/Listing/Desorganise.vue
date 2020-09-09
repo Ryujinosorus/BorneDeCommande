@@ -1,5 +1,5 @@
 <template>
-<div :style="{backgroundColor : settings.list.recap.backgroundColorCate}">
+<div :style="{backgroundColor : settings.list.recap.backgroundColorCate}" style="height : 100vh">
   <app-commandeLeft :settings="settings"></app-commandeLeft>
     <v-row>
       <div v-for="data in settings.categorie" :key="data[0]">
