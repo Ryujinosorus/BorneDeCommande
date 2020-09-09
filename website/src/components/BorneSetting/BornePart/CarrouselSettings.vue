@@ -102,8 +102,8 @@
             <v-slider
               v-model="borne.firstPage.panelHeight"
               class="align-center"
-              :max="globalSettings.panelHeight.max"
-              :min="globalSettings.panelHeight.min"
+              max="100"
+              min="10"
               hide-details
             >
               <template v-slot:append>

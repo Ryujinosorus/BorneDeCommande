@@ -4,7 +4,7 @@ export class Custom {
         this.nom = "";
         this.prix = "5";
         this.content = [];
-        this.picture = 'https://image.freepik.com/vecteurs-libre/cadres-photo-fond-couleur-pastel_1017-26512.jpg';
+        this.picture = 'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334';
         this.categorie = "Pas classé";
         this.pushHimToFb = true;
         this.linkedWith = [];

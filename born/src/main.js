@@ -6,6 +6,7 @@ import Routes from './route';
 import VueRouter from 'vue-router'
 import commandeLeft from './components/CommandeLeft';
 import showSelectable from './components/ShowSelectable';
+import detailPlat from './components/DetailPlat';
 import VueRessource from 'vue-resource';
 import * as firebase from "firebase";
 
@@ -33,6 +34,7 @@ Vue.use(VueRouter);
 
 Vue.component('app-commandeLeft',commandeLeft);
 Vue.component('app-showSelectable',showSelectable);
+Vue.component('app-detailPlat',detailPlat);
 const router = new VueRouter({
   mode: 'hash',
   routes: Routes

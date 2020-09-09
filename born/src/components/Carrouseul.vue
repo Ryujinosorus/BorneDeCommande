@@ -7,7 +7,7 @@
                             backgroundColor: settings.firstPage.panelColor,
                             height: settings.firstPage.panelHeight + '%',
                           }">
-        <p class="apply-font" :style="{
+        <p class="apply-font-diapoFont" :style="{
           fontSize:  settings.firstPage.fontSize +'px',
           color: settings.firstPage.fontColor, 
           'margin-top': settings.firstPage.marginTop + 'px',
@@ -18,8 +18,6 @@
 </template> 
 
 <script>
-import FontPicker from "font-picker";
-
 export default {
   name: 'Carrousel',
   props:['settings'],
@@ -32,12 +30,6 @@ export default {
     }
   },
 	created: function() {
-    let self = this;
-		setInterval(function() {
-      self.tmp = (self.tmp+1) % self.settings.firstPage.nbDiapo ;
-    }, (this.settings.firstPage.interval)*1000);
-  },
-  mounted:function(){
     this.allPics = this.$store.getters.getAllPics;
     for(let x=0;x<this.allPics.length;x++){
       let xhr = new XMLHttpRequest();
@@ -49,11 +41,11 @@ export default {
       xhr.open('GET',this.allPics[x]);
       xhr.send();
     }
-    this.fontPicker = new FontPicker(
-        'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
-        this.settings.firstPage.font, 
-        { limit: 150 },
-    );
+
+    let self = this;
+		setInterval(function() {
+      self.tmp = (self.tmp+1) % self.settings.firstPage.nbDiapo ;
+    }, (this.settings.firstPage.interval)*1000);
   }
 };
 </script>

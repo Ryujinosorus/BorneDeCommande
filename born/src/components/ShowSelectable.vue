@@ -1,11 +1,18 @@
 <template>
     <div>
+        <div>
+            <h1 :style="{fontSize : settings.custom.nomPlat.fontSize + 'px',
+                        color : settings.custom.nomPlat.fontColor,
+                        marginTop : settings.custom.nomPlat.marginT + 'px',
+                        marginLeft : settings.custom.nomPlat.marginL + 'px',
+            }">{{selectable.nom}}</h1>
+        </div>
         <div v-for="(content) in selectable.content" :key="content.nom">
         <h1 class="apply-font-nomPlatFont" :style="{
-            color : settings.custom.nomPlat.fontColor,
-            marginTop : settings.custom.nomPlat.marginT + 'px',
-            marginLeft : settings.custom.nomPlat.marginL + 'px',
-            fontSize : settings.custom.nomPlat.fontSize + 'px'
+            color : settings.custom.nomDetail.fontColor,
+            marginTop : settings.custom.nomDetail.marginT + 'px',
+            marginLeft : settings.custom.nomDetail.marginL + 'px',
+            fontSize : settings.custom.nomDetail.fontSize + 'px'
             }">{{content.nom}}</h1>
         <!-- CONTENT -->
         <div>
@@ -42,7 +49,7 @@
                     color : settings.custom.cardDetail.fontColor,
                     float : 'left'
                 }"
-                    >{{detail.nom}}</p>
+                    >{{detail.selected}}</p>
                     <p v-if="content.payable">{{detail.price}} </p>
                     <v-checkbox
                     dark
@@ -57,6 +64,9 @@
             </div>
         </div>
         </div>
+        <div v-for="otherCustom in selectable.otherCustom" :key="otherCustom.nom">
+            <app-showSelectable :selectable="otherCustom" :settings="settings"></app-showSelectable>
+        </div>
     </div>
 </template>
 
@@ -67,13 +77,12 @@ export default {
         return{
             indexS: 0,
             reRenderCheckBox : true,
-            allSelectable : null,
             model: []
         }
     },
     methods : {
         addDetail(detail){
-            this.$emit('ADD_DETAIL',detail);
+            detail.selected = ! detail.selected;
             this.reRenderCheckBox = false;
             this.reRenderCheckBox = true;
         }

@@ -97,6 +97,21 @@ const store = new Vuex.Store({
       xhr3.open('GET', state.borneSettings.list.showFood.back.picture);
       xhr3.send();
 
+      let xhr4 = new XMLHttpRequest();
+      xhr4.responseType = 'blob';
+      xhr4.onload = function() {
+       state.borneSettings.valid.backBTN.url = URL.createObjectURL(xhr4.response);
+      }
+      xhr4.open('GET', state.borneSettings.valid.backBTN.url);
+      xhr4.send();
+
+      let xhr5 = new XMLHttpRequest();
+      xhr5.responseType = 'blob';
+      xhr5.onload = function() {
+       state.borneSettings.valid.nextBTN.url = URL.createObjectURL(xhr5.response);
+      }
+      xhr5.open('GET', state.borneSettings.valid.nextBTN.url);
+      xhr5.send();
     },
     ADD_PICLINK(state, data) {
       if (state.allPics.length == 0)

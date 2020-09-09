@@ -36,26 +36,10 @@
         <div :style="{
           borderBottom : settings.list.recap.borderCommandeSize +'px solid ' + settings.list.recap.borderCommandeColor,
         }" v-for="(data,index) of getCommande" :key="index">
-          <!-- TITRE DE LA COMMANDE-->
-          <h2 class="apply-font-commandeTitle" :style="{
-          fontSize : settings.list.recap.commandeTitleSize +'px',
-          color : settings.list.recap.commandeTitleColor,
-        }">
-        {{data.nom}}</h2>
-        <!-- SI PLUSIEURS PLATS -->
-        
-        <div>
-          <div v-for="(content,index) in data.content" :key="index">
-            <div>
-              <h1>{{content.nom}}</h1>
-              <p class="apply-font-commandeDetail" :style="{
-              fontSize : settings.list.recap.commandeDetailSize +'px',
-              color : settings.list.recap.commandeDetailColor,
-            }">  {{content.selected.length == 0 ? "Pas de "+ content.nom : fromArrayToString(content.selected) }}</p>
-          </div>
-        </div>
-        </div>
 
+        <!-- DETAIL DES PLATS -->
+        
+        <app-detailPlat :data="data" :settings="settings"></app-detailPlat>
 
         <!-- + ET - -->
         <div>
@@ -157,18 +141,6 @@ export default {
         this.$store.commit('DEL_COMMANDE',this.data);
         this.dialog = false;
       },
-      fromArrayToString(data){
-        let res='';
-        for(let i=0;i<data.length;i++)
-          res+= (data[i].nom ) + (i==data.length-1? '' : ', ');
-        return res;
-      },
-      fromArray3ToString(data){
-        let res='';
-        for(let i=0;i<data.length;i++)
-          res+= (data[i][0].toString() + (i==data.length-1? '' : ', '));
-        return res;
-      }
     },
     computed : {
       getCommande(){

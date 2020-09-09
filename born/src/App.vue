@@ -18,6 +18,7 @@
         <div id="font-picker-nomPlatFont"></div>
         <div id="font-picker-IN"></div>
         <div id="font-picker-OUT"></div>
+        <div id="font-picker-diapoFont"></div>
       </div>
     </v-app>
 </template> 
@@ -151,6 +152,15 @@ export default {
           pickerId : 'IN',
           limit: 150 
       },
+    );
+
+    new FontPicker(
+        'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
+        this.settings.firstPage.font, 
+        { 
+          limit: 150,
+          pickerId : 'diapoFont'
+        },
     );
     }
 };
