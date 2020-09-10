@@ -141,8 +141,6 @@ mutations: {
     },
     ADD_CATEGORIE(state,data){
         state.bornesettings.categorie.push(data);
-        state.bornesettings.list["Désorganisé"][data[0]] = {
-        };
     },
     DEL_CATEGORIE(state,data){
         let pos = -1;
@@ -219,7 +217,7 @@ mutations: {
             else state.plat.push(plat);
         }
         else{
-            let route = fb.storage().ref('dataOfUser/' + state.user.email + '/Plat/' + plat.tab['nom'] +'/picture.png');
+            let route = fb.storage().ref('dataOfUser/' + state.user.data.email + '/Plat/' + plat.tab['nom'] +'/picture.png');
 
             let uploadTask = route.put(plat.tmpFile);
 
@@ -253,7 +251,7 @@ mutations: {
             else state.menu.push(menu);
         }
         else{
-            let route = fb.storage().ref('dataOfUser/' + state.user.email + '/Menu/' + menu.nom +'/picture.png');
+            let route = fb.storage().ref('dataOfUser/' + state.user.data.email+ '/Menu/' + menu.nom +'/picture.png');
 
             let uploadTask = route.put(menu.tmpFile);
 
@@ -299,7 +297,7 @@ actions: {
 ,
     UPDATE_PLAT({state})
     {
-        let route = fb.storage().ref('dataOfUser/' + state.user.email + '/plat.txt');
+        let route = fb.storage().ref('dataOfUser/' + state.user.data.email + '/plat.txt');
         let data_string = '';
         for (let x = 0; x < state.plat.length; x++) {
             data_string += state.plat[x].tab['nom'];
@@ -316,22 +314,22 @@ ADD_ALLCUSTOM_FB({state}){
     for(let i=0;i<state.custom.length;i++){
         res+= (state.custom[i].nom + '\n');
         if(state.custom[i].pushHimToFb)
-            state.custom[i].upload(state.user.email);
+            state.custom[i].upload(state.user.data.email);
     }
-    let route = fb.storage().ref('dataOfUser/' + state.user.email + '/custom.txt');
+    let route = fb.storage().ref('dataOfUser/' + state.user.data.email + '/custom.txt');
     route.put(new Blob([res], {type: 'text/plain'}));
 
 },
 ADD_ALLPLAT_FB({state, dispatch})
 {
     for(let x=0;x<state.plat.length;x++)
-        state.plat[x].toFirebase('dataOfUser/' + state.user.email + "/Plat/" + state.plat[x].tab['nom'] + "/");
+        state.plat[x].toFirebase('dataOfUser/' + state.user.data.email + "/Plat/" + state.plat[x].tab['nom'] + "/");
     dispatch('UPDATE_PLAT');
 },
 ADD_ALLMENU_FB({state, dispatch})
 {
     for(let x=0;x<state.menu.length;x++)
-        state.menu[x].toFirebase('dataOfUser/' + state.user.email + "/Menu/" + state.menu[x].nom + "/");
+        state.menu[x].toFirebase('dataOfUser/' + state.user.data.email + "/Menu/" + state.menu[x].nom + "/");
     dispatch('UPDATE_MENU');
 }
 ,
@@ -349,7 +347,7 @@ getPrice({state},data){
             res += ( state.menu[x].nom + "\n");
         }
         var blob = new Blob([res], {type: 'text/plain'});
-        fb.storage().ref('dataOfUser/' + state.user.email + '/Menu.txt').put(blob);
+        fb.storage().ref('dataOfUser/' +state.user.data.email + '/Menu.txt').put(blob);
     }
 },
 });

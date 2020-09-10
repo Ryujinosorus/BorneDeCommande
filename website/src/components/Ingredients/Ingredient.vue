@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="showIngredient || true">
+        <div v-if="showIngredient">
             <section id="about-me">
                 <div class="py-12"></div>
 
@@ -57,101 +57,6 @@
             </section>
 
 
-
-            <!--
-                    <section
-                id="features"
-                class="grey lighten-3"
-            >
-                <div class="py-12"></div>
-
-                <v-container class="text-center">
-                <h2 class="display-2 font-weight-bold mb-3">INGREDIENTS NON DISPONIBLE A LA VENTE</h2>
-
-                <v-responsive
-                    class="mx-auto mb-12"
-                    width="56"
-                >
-                    <v-divider class="mb-1"></v-divider>
-
-                    <v-divider></v-divider>
-                </v-responsive>
-
-                <v-row>
-                    <v-col
-                    cols="12"
-                    md="4"
-                    v-for="data of myData" v-bind:key="data['.key']"
-                    >
-                    <v-card
-                        class="py-12 px-4"
-                        color="grey lighten-5"
-                        flat
-                    >
-                        <v-theme-provider dark>
-                        <v-img :src="data.url" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"></v-img>
-                        </v-theme-provider>
-
-                        <v-card-title
-                        class="justify-center font-weight-black text-uppercase"> {{data.name}}</v-card-title>
-                        <v-card-text
-                        class="subtitle-1"
-                        > {{data.bio}}.</v-card-text>
-                        <v-card-actions class="justify-center"><v-btn x-large class="center white--text" color="#1976D2" @click="goTo(data.name)">Acceder</v-btn></v-card-actions>
-                    </v-card>
-                    </v-col>
-                </v-row>
-                
-                </v-container>
-
-                <div class="py-12"></div>
-            </section>
-
-
-                    <section
-                id="features"
-                class="grey lighten-3"
-            >
-                <div class="py-12"></div>
-
-                <v-container class="text-center">
-                <h2 class="display-2 font-weight-bold mb-3">INGREDIENTS DISPONIBLE A LA VENTE</h2>
-
-                <v-responsive
-                    class="mx-auto mb-12"
-                    width="56"
-                >
-                    <v-divider class="mb-1"></v-divider>
-
-                    <v-divider></v-divider>
-                </v-responsive>
-
-                <v-row>
-                    <v-col
-                    cols="12"
-                    md="4"
-                    v-for="data of myPayData" v-bind:key="data['.key']"
-                    >
-                    <v-card
-                        class="py-12 px-4"
-                        color="grey lighten-5"
-                        flat
-                    >
-                        <v-theme-provider dark>
-                        <v-img :src="data.url" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"></v-img>
-                        </v-theme-provider>
-
-                        <v-card-title
-                        class="justify-center font-weight-black text-uppercase"> {{data.name}}</v-card-title>
-                        <v-card-text
-                        class="subtitle-1"
-                        > {{data.bio}}.</v-card-text>
-                        <v-card-actions class="justify-center"><v-btn x-large class="center white--text" color="#1976D2" @click="goTo(data.name)">Acceder</v-btn></v-card-actions>
-                    </v-card>
-                    </v-col>
-                </v-row>
-                </v-container>
-            -->
             <section
                 id="features"
                 class="grey lighten-3"
@@ -171,30 +76,7 @@
                 </v-responsive>
 
                 <v-row justify="center">
-                    <!--
-                    <v-col
-                    cols="12"
-                    md="4"
-                    v-for="data of myMPData" v-bind:key="data['.key']"
-                    >
-                    <v-card
-                        class="py-12 px-4"
-                        color="grey lighten-5"
-                        flat
-                    >
-                        <v-theme-provider dark>
-                        <v-img :src="data.url" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"></v-img>
-                        </v-theme-provider>
-
-                        <v-card-title
-                        class="justify-center font-weight-black text-uppercase"> {{data.name}}</v-card-title>
-                        <v-card-text
-                        class="subtitle-1"
-                        > {{data.bio}}.</v-card-text>
-                        <v-card-actions class="justify-center"><v-btn x-large class="center white--text" color="#1976D2" @click="goTo(data.name)">Acceder</v-btn></v-card-actions>
-                    </v-card>
-                    </v-col>
-                    -->
+                    
                      <v-col
                     cols="12"
                     md="4"

@@ -16,11 +16,12 @@
           <v-btn icon dark @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <v-toolbar-title>Catégories
+          <v-toolbar-title>Catégorie
           </v-toolbar-title>
         </v-toolbar>
 
-  <v-container>
+  
+<v-container>
             <br>
             <br>
             <br>
@@ -40,8 +41,9 @@
                 <v-col cols="1">
                         <app-savecategorie></app-savecategorie>
                 </v-col>
+            </v-row>
             <v-row>
-                <v-col cols="3" v-for="data of filterCard" v-bind:key="data['.key']">
+                <v-col s="10" sm="6" md="4" lg="3" xl="2" v-for="data of filterCard" v-bind:key="data['.key']">
                     <v-card>
                         <v-img :src="data[1]" height="200px">
                         </v-img>
@@ -54,7 +56,7 @@
                     <v-col cols="1">
                     </v-col>
                 </v-col>
-                <v-col cols="3">
+                <v-col s="10" sm="6" md="4" lg="3" xl="2">
                     <v-card color="grey">
                         <v-card-title>
                             <v-text-field v-model="tmpText" full-width label="Solo" placeholder="Nom catégorie"></v-text-field>
@@ -116,9 +118,7 @@
                 </v-col>
 
             </v-row>
-            </v-row>
         </v-container>
-
 
 
       </v-card>
@@ -127,7 +127,6 @@
 </template>
 
 <script>
-import {fb} from '../../main'
 export default {
     data(){
         return{
@@ -144,15 +143,9 @@ export default {
             this.tmpFile = e;
         },
         add(){
-            let ref = fb.storage().ref('dataOfUser/'+ this.$store.getters.user.email+ '/BorneSetting/categorie/' +this.tmpText+'.png');
-            let uploadTask= ref.put(new Blob([this.tmpFile],{ type: "image/png" }));
-            uploadTask.then((snapshot) => {
-                snapshot.ref.getDownloadURL().then((url) => {
-                    this.$store.commit('ADD_CATEGORIE',[this.tmpText,url]);
-                    this.tmpFile = null;
-                    this.tmpText = null;
-                });
-            });
+            this.$store.commit('ADD_CATEGORIE',[this.tmpText,URL.createObjectURL(this.tmpFile)]);
+            this.tmpFile = null;
+            this.tmpText = '';
             this.dialogSave = false;
         },
     },

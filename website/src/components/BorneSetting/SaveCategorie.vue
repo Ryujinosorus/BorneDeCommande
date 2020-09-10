@@ -64,9 +64,50 @@ export default {
     },
     methods:{
         save(){
-          let ref = fb.storage().ref('/dataOfUser/' + this.$store.getters.user.email+"/BorneSettings.txt");
-          ref.put(new Blob([JSON.stringify(this.$store.getters.bornesettings)],{type: 'text/plain'}));
-          this.dialog = false;
+            let bs = this.$store.getters.bornesettings;
+
+
+            let nbBlob = 0;
+            for(let i=0;i<bs.categorie.length;i++)
+                if(bs.categorie[i][1].startsWith('blob'))
+                    nbBlob++;
+
+            if(nbBlob == 0){
+                console.log('pass pas dans boulce');
+                let ref = fb.storage().ref('/dataOfUser/' + this.$store.getters.user.data.email+"/BorneSettings.txt");
+                ref.put(new Blob([JSON.stringify(bs)],{type: 'text/plain'}));
+                this.dialog = false;
+                return
+            }
+
+            let nbBlobFound = 0;
+            for(let i=0;i<bs.categorie.length;i++)
+                if(bs.categorie[i][1].startsWith('blob')){
+                let ref = fb.storage().ref('dataOfUser/'+ this.$store.getters.user.data.email+ '/BorneSetting/categorie/' + bs.categorie[i][0] +'.png');
+                let xhr = new XMLHttpRequest();
+                const self = this;
+                xhr.responseType = 'blob';
+                xhr.onload = function(){
+                    console.log(xhr.response);
+                    let uploadTask= ref.put(xhr.response);
+                    uploadTask.then((snapshot) => {
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        bs.categorie[i][1] = url;
+                        nbBlobFound ++;
+                        if(nbBlob == nbBlobFound){
+                            console.log('add depuis bouvl')
+                            let ref = fb.storage().ref('/dataOfUser/' + self.$store.getters.user.data.email+"/BorneSettings.txt");
+                            ref.put(new Blob([JSON.stringify(bs)],{type: 'text/plain'}));
+                        }
+                    });
+                });
+                }
+                xhr.open('GET', bs.categorie[i][1]);
+                xhr.send();
+
+            }
+
+            this.dialog = false;
         },
         getText(){
             let res= '';

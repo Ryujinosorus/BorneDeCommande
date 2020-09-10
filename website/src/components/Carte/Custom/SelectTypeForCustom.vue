@@ -17,7 +17,7 @@
                 </v-toolbar>
                 <v-container class="grey lighten-5">
                     <v-row>
-                        <v-col cols="3" v-for="i in foodName" :key="i">
+                        <v-col  s="10" sm="6" md="4" lg="3" xl="2" v-for="i in foodName" :key="i">
                             <v-card>
                                 <v-img src="https://image.freepik.com/free-photo/professional-male-cook-sprinkles-dough-with-flour-preapares-bakes-bread-kitchen-table_155003-10124.jpg" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px">
                                     <v-card-title>{{i}}</v-card-title>

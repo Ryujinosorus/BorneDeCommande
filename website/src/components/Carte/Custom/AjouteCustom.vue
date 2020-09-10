@@ -26,7 +26,7 @@
                 <v-container class="grey lighten-5">
                     <v-row>
 
-                        <v-col cols="3" v-for="data in custom.content" :key="data.nom">
+                        <v-col  s="10" sm="6" md="4" lg="3" xl="2" v-for="data in custom.content" :key="data.nom">
                             <v-card>
                                 <v-card-title>
                                     {{data.nom}}
@@ -45,7 +45,7 @@
                             </v-col>
                         </v-col>
 
-                        <v-col cols="3">
+                        <v-col  s="10" sm="6" md="4" lg="3" xl="2">
                             <v-card>
                                 <v-card-title>
                                     Nouvelle catégorie
@@ -58,12 +58,12 @@
                             <v-col cols="1">
                             </v-col>
                         </v-col>
-                        <v-col cols="3">
+                        <v-col  s="10" sm="6" md="4" lg="3" xl="2">
                             <v-textarea label="Nom du plat" auto-grow outlined rows="1" row-height="10" v-model="platName" @change="custom.nom = platName"></v-textarea>
                             <v-select :items="items" label="Categorie" dense solo v-model="platCategorie" @change="custom.categorie = platCategorie"></v-select>
                             <v-textarea label="Prix � l'unit�" auto-grow outlined rows="1" row-height="10" v-model="platPrix" @change="custom.prix = platPrix"></v-textarea>
                         </v-col>
-                        <v-col cols="3">
+                        <v-col c s="10" sm="6" md="4" lg="3" xl="2">
                             <v-file-input
                                     :rules="rules"
                                     accept="image/png, image/jpeg, image/bmp"
@@ -76,7 +76,7 @@
                                 </v-img>
                         </v-col>
 
-                        <v-col cols="3">
+                        <v-col  s="10" sm="6" md="4" lg="3" xl="2">
                             <v-card>
                                 <v-card-title>
                                     Plat en relation
@@ -90,7 +90,7 @@
                         </v-col>
 
 
-                        <v-col cols="3">
+                        <v-col  s="10" sm="6" md="4" lg="3" xl="2">
                             <v-card>
                                 <v-card-title>
                                     Integré un autre plat

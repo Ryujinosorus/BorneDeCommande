@@ -53,7 +53,7 @@ export default {
     login(){
       const self = this;
       fb.auth().signInWithEmailAndPassword(this.email, this.password).catch(function(error) {
-        self.error = error.code;
+        self.error = error.message;
       });
 
     fb.auth().onAuthStateChanged(user => {
@@ -88,6 +88,7 @@ export default {
           storageRef.getDownloadURL().then(function(url) {
               xhr.responseType = '';
               xhr.onload = function() {
+                console.log(xhr.response);
                   self.$store.commit('ADD_CUSTOM',new Custom().init(xhr.response));
                   self.$store.commit('SET_CUSTOM'); // A VOIR POUR METTRE A LA FIN DE TOUTES LES XHTMLREQUESTS
               }

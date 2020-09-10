@@ -52,7 +52,8 @@
 </template>
 <script>
     /* eslint-disable */
-    import firebase from "firebase";
+    import {fb} from "../../main";
+    import {Custom} from '../../Scripts/Custom';
 
     export default {
         name: 'Login',
@@ -82,14 +83,155 @@
             },
         login(){
             
-            firebase.auth().signInWithEmailAndPassword(this.form.signIn.email, this.form.signIn.password).then(data => {
-                this.$router.replace("/ingredient");
+            fb.auth().signInWithEmailAndPassword(this.form.signIn.email, this.form.signIn.password).then(data => {
                 this.$emit("updateUser");
                 }).catch(err => {this.error = err.message;});
                 
+            fb.auth().onAuthStateChanged(user => {
+                if(user){
+                this.$store.dispatch("fetchUser", user);
+                this.load('BorneSettings.txt');
+                this.load('custom.txt');
+
+                this.loadIcon('back');
+                this.loadIcon('iconIN');
+                this.loadIcon('iconOUT');
+                this.loadIcon('next');
+                this.loadIcon('add');
+                this.loadIcon('cancel');
+
+                this.loadTypeDataForCustom('Pains');
+                this.loadTypeDataForCustom('Legumes');
+                this.loadTypeDataForCustom('Fromages');
+                this.loadTypeDataForCustom('Viande');
+                }
+});
+        },
+        load(name){
+            let storageRef = fb.storage().ref('dataOfUser/'+this.$store.getters.user.data.email+'/');
+            console.log('mail is');
+            console.log(this.$store.getters.user);
+            var xhr = new XMLHttpRequest();
+            const self = this;
+            storageRef.child(name).getDownloadURL().then(function(url) {
+                xhr.responseType = '';
+                xhr.onload = function() {
+                    self.SET_UP(name,xhr.response);
+                }
+                xhr.open('GET', url);
+                xhr.send();
+            }).catch(function() {
+                if(name=='BorneSettings.txt'){
+                    self.$store.commit('ADD_BORNESETTINGS',new BorneSetting());
+                    getFont();
+                }
+
+                console.log("file not found");
+            });
+        },
+        SET_UP(name,data){
+            switch(name){
+                case 'BorneSettings.txt':{
+                    this.$store.commit('ADD_BORNESETTINGS',JSON.parse(data));
+                    console.log("bss is");
+                    console.log(JSON.parse(data));
+                    this.$router.replace("/ingredient");
+                    break;
+                }
+                case 'custom.txt':{
+                    this.ADD_CUSTOM(data);
+                    break;
+                }
+            }
+        },
+        ADD_CUSTOM(data){
+            let file = data.split("\n");
+            var res=[];
+            console.log(file);
+            for(let x=0;x<file.length;x++)
+                if(file[x] !=''){
+                let storageRef = fb.storage().ref('dataOfUser/'+this.$store.getters.user.data.email+'/Custom/'+file[x]+'/recap.txt');
+                let xhr = new XMLHttpRequest();
+                storageRef.getDownloadURL().then(function(url) {
+                    xhr.responseType = '';
+                    xhr.onload = function() {
+                        res.push(new Custom().init(xhr.response));
+                    }
+                    xhr.open('GET', url);
+                    xhr.send();
+                }).catch(function(error) {
+                    console.log(error);
+                });
+            }
+            this.$store.commit('INIT_CUSTOM',res);
+        },
+        loadIcon(name){
+            let storageRef = fb.storage().ref('picture/iconSelector/');
+            let res=[];
+            var xhr = new XMLHttpRequest();
+            const self = this;
+            storageRef.child(name+'.txt').getDownloadURL().then(function(url) {
+                xhr.responseType = '';
+                xhr.onload = function() {
+                    let data = xhr.response.split('\n');
+                    for(let i=0;i<data.length;i++)
+                        if(data[i]!=''){
+                            let line = data[i].split(' : ');
+                            let obj = {
+                                name : '',
+                                url : '',
+                            }
+                            obj.name = line[0];
+                            obj.url = line[1];
+                            res.push(obj);
+                        }
+                    self.$store.commit('SET_ICON',[name,res]);
+                }
+                xhr.open('GET', url);
+                xhr.send();
+            }).catch(function() {
+                if(name =='BorneSettings.txt'){
+                    self.$store.commit('ADD_BORNESETTINGS',new BorneSetting());
+                    getFont();
+                }
+
+                console.log("file not found");
+            });
+        },
+        loadTypeDataForCustom(name){
+            let storageRef = fb.storage().ref('data/typeDataForCustom/');
+            let res=[];
+            var xhr = new XMLHttpRequest();
+            const self = this;
+            storageRef.child(name+'.txt').getDownloadURL().then(function(url) {
+                xhr.responseType = '';
+                xhr.onload = function() {
+                    let data = xhr.response.split('\n');
+                    for(let i=0;i<data.length;i++)
+                        if(data[i]!=''){
+                            let line = data[i].split(' : ');
+                            let obj = {
+                                name : '',
+                                url : '',
+                            }
+                            obj.name = line[0];
+                            obj.url = line[1];
+                            res.push(obj);
+                        }
+                    self.$store.commit('SET_FOOD',[name,res]);
+                }
+                xhr.open('GET', url);
+                xhr.send();
+            }).catch(function() {
+                if(name =='BorneSettings.txt'){
+                    self.$store.commit('ADD_BORNESETTINGS',new BorneSetting());
+                }
+
+                console.log("file not found");
+            });
         },
         createAccount(){
-        firebase
+        fb
                 .auth()
                 .createUserWithEmailAndPassword(this.form.signUp.email, this.form.signUp.password)
                 .then(data => {

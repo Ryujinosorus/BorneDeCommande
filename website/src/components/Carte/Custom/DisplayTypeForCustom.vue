@@ -62,7 +62,7 @@
                     </v-col>
                 </v-row>
                 <v-row>
-                    <v-col cols="3" v-for="(data,index) of filterCard" v-bind:key="data['.key']">
+                    <v-col  s="10" sm="6" md="4" lg="3" xl="2" v-for="(data,index) of filterCard" v-bind:key="data['.key']">
                         <v-card>
                             <v-img :src="data.url" height="200px">
                             </v-img>
@@ -70,7 +70,7 @@
                                 <v-card-title class="mx-auto title subtitle-1">{{data.name}} </v-card-title>
                                 <v-spacer></v-spacer>
                                 <v-switch inset  flat color="rgb(3, 120, 166)" @change="add(data.name,data.url,index)" :input-value="checkOnOffSwitchStart(data.name,data.url)"></v-switch>
-                                <v-text-field type="number" v-model="priceTab[index]" @change="changePrice(data.name,data.url,index)" v-if="content.payable"></v-text-field>
+                                <v-text-field type="number" style="min-width : 0px;width : 10px;" v-model="priceTab[index]" @change="changePrice(data.name,data.url,index)" v-if="content.payable"></v-text-field>
                             </v-card-actions>
                         </v-card>
                         <v-col cols="1">

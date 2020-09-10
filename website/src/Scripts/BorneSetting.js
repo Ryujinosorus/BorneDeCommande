@@ -46,30 +46,6 @@ export default class BorneSetting{
             }
             },
             this.categorie = [
-            [
-            "Pain",
-            "https://image.freepik.com/photos-gratuite/vue-cote-poulet-doner-poulet-grille-concombre-tomates-vertes-oignon-rouge-sauce-dans-pain_141793-4822.jpg"
-            ],
-            [
-            "Gallette",
-            "https://image.freepik.com/photos-gratuite/tortilla-au-poulet-poivrons_2829-11093.jpg"
-            ],
-            [
-            "Pizza",
-            "https://image.freepik.com/photos-gratuite/savoureuse-pizza-au-poulet-aux-champignons-epices_114579-10420.jpg"
-            ],
-            [
-            "Dessert",
-            "https://image.freepik.com/photos-gratuite/dessert-tiramisu_2829-8554.jpg"
-            ],
-            [
-            "Accompagnement",
-            "https://image.freepik.com/photos-gratuite/vue-cote-frites-assaisonnement_141793-4899.jpg"
-            ],
-            [
-            "Boissons",
-            "https://image.freepik.com/photos-gratuite/boites-boisson-froide_144627-21423.jpg"
-            ]
             ],
             this.list = {
             "DÃ©sorganisÃ©":{

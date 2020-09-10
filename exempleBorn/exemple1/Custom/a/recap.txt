@@ -1,0 +1,6 @@
+Nom : a
+Prix : 5
+CatÃ©gorie : Aa
+Picture : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/dataOfUser%2Fundefined%2FCustom%2Fa%2Fpicture.png?alt=media&token=005dd518-20f5-4574-bb0d-e0db621df907
+cate A : Baguette - https://image.freepik.com/photos-gratuite/baguette-fraichement-preparee-table_23-2148229092.jpg - 3.56
+Payable : cate A

@@ -301,7 +301,7 @@ export default {
             if (this.tmpDiapoPicture[x].startsWith('blob')) 
                 nbBlob++;
         let nbBlobFound = 0;
-      let myRef ="dataOfUser/" + this.$store.getters.user.email + "/BorneSetting/";
+      let myRef ="dataOfUser/" + this.$store.getters.user.data.email + "/BorneSetting/";
       for (let x = 0; x < this.borne.firstPage.nbDiapo; x++){
         if (this.tmpDiapoPicture[x].startsWith('blob')) {
             nbBlobFound++;
@@ -321,7 +321,7 @@ export default {
         this.save();
     },
     save:function(){
-    let myRef ="dataOfUser/" + this.$store.getters.user.email + "/BorneSetting/"; 
+    let myRef ="dataOfUser/" + this.$store.getters.user.data.email + "/BorneSetting/"; 
       if (this.backPicture != null) {
         let ref = fb.storage().ref(myRef + "picure/backPicture.png");
         let uploadTask = ref.put(
@@ -337,7 +337,7 @@ export default {
               .storage()
               .ref(
                 "/dataOfUser/" +
-                  this.$store.getters.user.email +
+                  this.$store.getters.user.data.email +
                   "/BorneSettings.txt"
               );
             ref.put(new Blob([data], { type: "text/plain" }));
@@ -350,7 +350,7 @@ export default {
           .storage()
           .ref(
             "/dataOfUser/" +
-              this.$store.getters.user.email +
+              this.$store.getters.user.data.email +
               "/BorneSettings.txt"
           );
         ref.put(new Blob([data], { type: "text/plain" }));

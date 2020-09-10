@@ -28,7 +28,6 @@ import ListForMenu from './components/Carte/Menu/ListForMenu.vue'
 import ModifieMenu from './components/Carte/Menu/ModifieMenu.vue'
 import SelectTypeForCustom from './components/Carte/Custom/SelectTypeForCustom.vue'
 import DisplayTypeForCustom from './components/Carte/Custom/DisplayTypeForCustom.vue'
-import BorneSetting from './Scripts/BorneSetting.js'
 
 import AjouteCustom from './components/Carte/Custom/AjouteCustom';
 //import BorneFirstPage from './components/BorneSetting/firstPage.vue';
@@ -44,7 +43,6 @@ import SaveAllMenu from './components/Carte/Menu/SaveAllMenu';
 import ListSettings from './components/BorneSetting/BornePart/ListSettings.vue'
 import SafeBorneSettings from './components/BorneSetting/SaveBorneSettings.vue';
 import vuetify from './plugins/vuetify';
-import {Custom} from './Scripts//Custom.js';
 import ListCategories from './components/BorneSetting/ListCategories';
 import DeleteCategories from './components/BorneSetting/DeleteCategorie';
 
@@ -155,21 +153,6 @@ Vue.component('app-recapBTNPlus',RecapBTNPlus);
 Vue.use(VueResource);
 Vue.use(VueRouter);
 Vue.use(Vuetify);
-firebase.auth().onAuthStateChanged(user => {
-    store.dispatch("fetchUser", user);
-});
-
-load('BorneSettings.txt');
-load('custom.txt');
-
-loadIcon('back');
-loadIcon('iconIN');
-loadIcon('iconOUT');
-loadIcon('next');
-loadIcon('add');
-loadIcon('cancel');
-
-loadTypeDataForCustom('Pains');
 
 store.commit("START");
 const router = new VueRouter({
@@ -177,151 +160,10 @@ const router = new VueRouter({
     routes: Routes
 });
 
-function getFont(){
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = '';
-    xhr.onload = function() {
-        store.commit('ADD_ALL_FONTS',(JSON.parse(xhr.response)));
-        RENDER();
-    }
-    xhr.open('GET', 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg');
-    xhr.send();
-}
+new Vue({
+    render: h => h(App),
+vuetify,
+router: router,
+store
+}).$mount('#app')
 
-//LOAD DATA
-function load(name){
-    let storageRef = fb.storage().ref('dataOfUser/'+store.getters.user.email+'/');
-    var xhr = new XMLHttpRequest();
-    storageRef.child(name).getDownloadURL().then(function(url) {
-        xhr.responseType = '';
-        xhr.onload = function() {
-            SET_UP(name,xhr.response);
-        }
-        xhr.open('GET', url);
-        xhr.send();
-    }).catch(function() {
-        if(name =='BorneSettings.txt'){
-            store.commit('ADD_BORNESETTINGS',new BorneSetting());
-            getFont();
-        }
-
-        console.log("file not found");
-    });
-}
-
-function loadTypeDataForCustom(name){
-    let storageRef = fb.storage().ref('data/typeDataForCustom/');
-    let res=[];
-    var xhr = new XMLHttpRequest();
-    storageRef.child(name+'.txt').getDownloadURL().then(function(url) {
-        xhr.responseType = '';
-        xhr.onload = function() {
-            let data = xhr.response.split('\n');
-            for(let i=0;i<data.length;i++)
-                if(data[i]!=''){
-                    let line = data[i].split(' : ');
-                    let obj = {
-                        name : '',
-                        url : '',
-                    }
-                    obj.name = line[0];
-                    obj.url = line[1];
-                    res.push(obj);
-                }
-            store.commit('SET_FOOD',[name,res]);
-        }
-        xhr.open('GET', url);
-        xhr.send();
-    }).catch(function() {
-        if(name =='BorneSettings.txt'){
-            store.commit('ADD_BORNESETTINGS',new BorneSetting());
-            getFont();
-        }
-
-        console.log("file not found");
-    });
-}
-
-function loadIcon(name){
-    let storageRef = fb.storage().ref('picture/iconSelector/');
-    let res=[];
-    var xhr = new XMLHttpRequest();
-    storageRef.child(name+'.txt').getDownloadURL().then(function(url) {
-        xhr.responseType = '';
-        xhr.onload = function() {
-            let data = xhr.response.split('\n');
-            for(let i=0;i<data.length;i++)
-                if(data[i]!=''){
-                    let line = data[i].split(' : ');
-                    let obj = {
-                        name : '',
-                        url : '',
-                    }
-                    obj.name = line[0];
-                    obj.url = line[1];
-                    res.push(obj);
-                }
-            store.commit('SET_ICON',[name,res]);
-        }
-        xhr.open('GET', url);
-        xhr.send();
-    }).catch(function() {
-        if(name =='BorneSettings.txt'){
-            store.commit('ADD_BORNESETTINGS',new BorneSetting());
-            getFont();
-        }
-
-        console.log("file not found");
-    });
-}
-//REDIR
-function SET_UP(name,data){
-    switch(name){
-        case 'BorneSettings.txt':{
-            ADD_BORNESETTINGS(data);
-            break;
-        }
-        case 'custom.txt':{
-            ADD_CUSTOM(data);
-            break;
-        }
-    }
-}
-
-
-//ALL LOAD
-
-function ADD_CUSTOM(data){
-    let file = data.split("\n");
-    var res=[];
-    console.log(file);
-    for(let x=0;x<file.length;x++)
-        if(file[x] !=''){
-        let storageRef = fb.storage().ref('dataOfUser/'+store.getters.user.email+'/Custom/'+file[x]+'/recap.txt');
-        let xhr = new XMLHttpRequest();
-        storageRef.getDownloadURL().then(function(url) {
-            xhr.responseType = '';
-            xhr.onload = function() {
-                res.push(new Custom().init(xhr.response));
-            }
-            xhr.open('GET', url);
-            xhr.send();
-        }).catch(function(error) {
-            console.log(error);
-        });
-    }
-    store.commit('INIT_CUSTOM',res);
-}
-
-function ADD_BORNESETTINGS(data){
-    store.commit('ADD_BORNESETTINGS',JSON.parse(data));
-    getFont();
-}
-function RENDER(){
-        new Vue({
-            render: h => h(App),
-        vuetify,
-        router: router,
-        store
-    }).$mount('#app')
-}
