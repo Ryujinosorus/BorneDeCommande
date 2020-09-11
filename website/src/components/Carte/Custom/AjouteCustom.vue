@@ -39,6 +39,14 @@
                                             <span :style="{color : data.payable ? 'green' : 'red'}">Payant</span>
                                         </template>
                                     </v-checkbox>
+                                    <div  @click="changeNbSelection(data)">
+                                    <v-checkbox readonly :input-value="data.nbSelection == -1">
+                                        <template v-slot:label>
+                                            <span :style="{color : data.nbSelection == -1 ? 'green' : 'red'}">Limiter le nombre de selection</span>
+                                        </template>
+                                    </v-checkbox>
+                                    </div>
+                                    <v-text-field type="number" v-if="data.nbSelection != -1" v-model="data.nbSelection" min="0"></v-text-field>
                                 </v-card-actions>
                             </v-card>
                             <v-col cols="1">
@@ -152,13 +160,17 @@
             let obj = {
                 'nom' : this.newCateName,
                 'payable' : false,
-                'data' : []
+                'data' : [],
+                'nbSelection' : -1
             };
             this.custom.content.push(obj);
             this.newCateName = '';
         },
-        updatePlatRecap:function(){
-            //this.solo = this.custom.toString();
+        changeNbSelection:function(data){
+            if(data.nbSelection == -1)
+                data.nbSelection = 0;
+            else data.nbSelection = -1;
+            console.log(data.nbSelection);
         },
         reset : function(){
             this.$emit('CLOSE');

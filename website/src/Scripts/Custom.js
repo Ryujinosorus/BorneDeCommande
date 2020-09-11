@@ -58,6 +58,12 @@ export class Custom {
             res +=(this.otherCustom[x] + (x == this.linkedWith.length - 1 ? '' : ', '));
         res += this.otherCustom.length == 0 ? '' : '\n';
 
+        let nbSelectionText ='';
+        for(let x=0;x<this.content.length;x++)
+            nbSelectionText += (this.content[x].nbSelection != -1 ? this.content[x].nom + '-' +  this.content[x].nbSelection + ', ' : '');
+        if(nbSelectionText!='')
+            res += 'NbSelection : ' + nbSelectionText;
+
        let route = fb.storage().ref('dataOfUser/' + email + '/Custom/'+ this.nom + '/recap.txt');
        route.put(new Blob([res], {type: 'text/plain'}));
     }
@@ -129,10 +135,24 @@ export class Custom {
                             this.otherCustom.push(tmp[i]);
                         break;
                     }
+                    case 'NbSelection' : {
+                        let tmp = arg[1].split(', ');
+                        for(let x=0;x<tmp.length;x++)
+                            if(tmp[x]!=''){
+                                let line = tmp[x].split('-');
+                                for(let y=0;y<this.content.length;y++)
+                                    if(this.content[y].nom == line[0]){
+                                        this.content[y].nbSelection = line[1];
+                                        break;
+                                    }
+                            }
+                        break;
+                    }
                     default : {
                         let obj = {
                             nom : arg[0],
                             data : [],
+                            nbSelection : -1,
                             payable : false
                         };
                         if(arg[1]!=''){ 
