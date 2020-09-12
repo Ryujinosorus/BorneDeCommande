@@ -43,8 +43,8 @@
   export default {
       props:['settings'],
       methods : {
-        canShow(i){
-          return this.$store.getters.platByCate[i]!=undefined;
+        canShow(){
+          return true;
         }
       },
   }

@@ -8,12 +8,12 @@
             }">{{selectable.nom}}</h1>
         </div>
         <div v-for="(content) in selectable.content" :key="content.nom">
-        <h1 class="apply-font-nomPlatFont" :style="{
+        <h1  v-if="reRenderText" class="apply-font-nomPlatFont" :style="{
             color : settings.custom.nomDetail.fontColor,
             marginTop : settings.custom.nomDetail.marginT + 'px',
             marginLeft : settings.custom.nomDetail.marginL + 'px',
             fontSize : settings.custom.nomDetail.fontSize + 'px'
-            }">{{content.nom}}</h1>
+            }">{{content.nom }} {{content.nbSelection !=-1 ? ' : ' + getNbSelected(content)+' / ' + content.nbSelection  : ''}}</h1>
         <!-- CONTENT -->
         <div>
             <!--
@@ -27,7 +27,7 @@
             <v-row>
                 <v-card
                 v-for="(detail) in content.data"
-                @click="addDetail(detail)"
+                @click="addDetail(detail,content)"
                 :key="indexS + ' ' + detail.nom + ' ' + detail.picture"
                 :style="{
                 height : settings.custom.cardDetail.hauteur + 'px',
@@ -49,7 +49,7 @@
                     color : settings.custom.cardDetail.fontColor,
                     float : 'left'
                 }"
-                    >{{detail.selected}}</p>
+                    >{{detail.nom}}</p>
                     <p v-if="content.payable">{{detail.price}} </p>
                     <v-checkbox
                     dark
@@ -77,14 +77,39 @@ export default {
         return{
             indexS: 0,
             reRenderCheckBox : true,
+            reRenderText : true,
             model: []
         }
     },
     methods : {
-        addDetail(detail){
-            detail.selected = ! detail.selected;
-            this.reRenderCheckBox = false;
-            this.reRenderCheckBox = true;
+        addDetail(detail,content){
+            console.log(content.nbSelection);
+            if(content.nbSelection =='-1'){
+                detail.selected = ! detail.selected;
+                this.reRenderCheckBox = false;
+                this.reRenderCheckBox = true;
+            }
+            else {
+                console.log("is lilited")
+                let nbSelected = this.getNbSelected(content);
+                console.log(nbSelected);
+                console.log(detail.selected);
+                if(nbSelected == content.nbSelection && !detail.selected)
+                    return;
+                detail.selected = ! detail.selected;
+                this.reRenderCheckBox = false;
+                this.reRenderCheckBox = true;
+
+            }
+        },
+        getNbSelected(content){
+            let nbSelected = 0;
+            for(let i=0;i<content.data.length;i++)
+                if(content.data[i].selected)
+                    nbSelected ++
+            this.reRenderText = false;
+            this.reRenderText = true;
+            return nbSelected;
         }
     }
 }

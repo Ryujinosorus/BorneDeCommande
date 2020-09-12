@@ -48,6 +48,19 @@ export class Custom {
                             this.linkedWith.push(tmp[i]);
                         break;
                     }
+                    case 'NbSelection' : {
+                        let tmp = arg[1].split(', ');
+                        for(let x=0;x<tmp.length;x++)
+                            if(tmp[x]!=''){
+                                let line = tmp[x].split('-');
+                                for(let y=0;y<this.content.length;y++)
+                                    if(this.content[y].nom == line[0]){
+                                        this.content[y].nbSelection = line[1];
+                                        break;
+                                    }
+                            }
+                        break;
+                    }
                     case 'OtherCustom' : {
                         if(arg[1]=='')
                             break;
@@ -61,7 +74,7 @@ export class Custom {
                             nom : arg[0],
                             data : [],
                             payable : false,
-                            selected : [],
+                            nbSelection : -1
                         };
                         if(arg[1]!=''){ 
                             let tmp = arg[1].split(', ');
@@ -73,7 +86,6 @@ export class Custom {
                                     price : tmpp[2],
                                     selected : false
                                 });
-                                obj.selected.push(false);
                             }
                         }
                         this.content.push(obj);
