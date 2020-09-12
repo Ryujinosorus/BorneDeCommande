@@ -6,11 +6,11 @@
         :class="{ 'navbar--hidden': !showNavbar }"
       >
           <div class="containerr">
-      <h1 class="logo"> <a href="/">Djanga</a></h1>
+      <h1 class="logo"> <a href="/">FAST ORDER</a></h1>
 
       <nav>
         <ul>
-          <router-link to='/borneSetting'>
+          <router-link to='/tarif'>
           <li><a class="traitENHaut">Tarif</a></li>
           </router-link>
           <router-link to='/ingredient'>
@@ -54,7 +54,9 @@ export default {
       this.lastScrollPosition = currentScrollPosition
     },
     logout(){
+      let self = this;
       firebase.auth().signOut().then(function() {
+        self.$router.replace('/');
 }, function(error) {
   console.log(error);
 });
@@ -63,7 +65,7 @@ export default {
     },
     reRender(){
       this.renderIngredient = true;
-      this.lastElement = "Espace Client";
+      this.lastElement = "Votre espace";
     }
   },
   mounted () {
@@ -135,7 +137,9 @@ body {
 nav {
   float: right;
 }
-
+h1 a{
+  color : white;
+}
 nav ul {
   margin: 0;
   padding: 0;

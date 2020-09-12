@@ -1,0 +1,34 @@
+Algérienne : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Falgerienne.png?alt=media&token=cb077002-2f6d-4a87-8d56-0319edae12b3
+Américaine : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmamericaine.png?alt=media&token=8e818040-726f-4eac-86d7-76eb54aa74bb
+Andalouse : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmandalouse.png?alt=media&token=8e818040-726f-4eac-86d7-76eb54aa74bb
+Barbecue : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmsmokey_barbecue.png?alt=media&token=fa0dc1f8-ceda-4638-9f64-12a538d17acd
+Bernaise : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmbearnaise.png?alt=media&token=610e9827-59dd-4bb4-82ef-658d2d99a9ef
+Big Burger : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftubegmbigburger.png?alt=media&token=035ec89d-bacc-4daf-95e8-3a8bbda79e24
+Bougy Burger : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmbourgyburger.png?alt=media&token=71a56afa-fe3f-43f0-a5a4-3d3e2f8be028
+Brazil : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmbrazil.png?alt=media&token=43a84332-6c63-4f7e-b76a-b689e405b1e0
+Caesar : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmcaesar.png?alt=media&token=a87d8432-ed76-4a35-8d99-5e79521543a3
+Ch'Biloute : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmchbiloute.png?alt=media&token=f224c365-3dff-492f-83aa-4e460fd0c516
+Cheezy : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmcheesy.png?alt=media&token=2d0342cf-7c34-48ab-9c13-9a7786078e06
+Curry : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmcurry.png?alt=media&token=f5379a59-ae7b-4ec9-ba3c-a453eb3d7c38
+Fish O Fish : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmfishofish.png?alt=media&token=34ec372c-4300-4e6f-86d3-48b17a8e34e1
+Hamburger : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmhamburger.png?alt=media&token=c180a0a3-5e57-4ce5-9b2c-38b80918ee99
+Hannibal : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmhannibal.png?alt=media&token=b9d6bc2c-3b3f-4edb-90aa-374c968b5849
+Ketchup Curry : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmketchupcurry.png?alt=media&token=5485a5e3-3966-4341-a6ff-ded793038548
+Marocaine : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmmarocainebd.png?alt=media&token=919b023e-d2ab-4ae6-904b-0b2509ab5559
+Mayo-Snack : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmmayo_snack.png?alt=media&token=bbcee0ac-f8d2-45b7-ad4f-9077ca48cd52
+Mayonnaise : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmmayonnaise.png?alt=media&token=93ff7392-897e-4a50-a5cb-0f2e74253eae
+Moutarde de dijon : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmmoutardedijon.png?alt=media&token=b56b8317-4b1a-4fb5-b520-439cdd99ae8c
+Oignon Poivron : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmoignonpoivron.png?alt=media&token=13232cdc-e82e-47a6-9b43-a52dd97bdb05
+Pitta : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmpittakebab.png?alt=media&token=de1050d6-c3e9-415e-9af5-5c6dc2ca8108
+Poivre : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmpoivre.png?alt=media&token=6bae35f3-c0ac-4f63-ba09-6909894e56db
+Poivre Vert : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmpoivrevert.png?alt=media&token=b21211e0-a7dc-4da7-a8ea-e27a7516084e
+Pomme Frite : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgm-pommes-frites.png?alt=media&token=80b80837-ad95-43d1-86ff-e67fc31f6f6e
+Salade : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmsalade.png?alt=media&token=8e2dcd24-0b2d-4ea1-973f-0fb6254e0472
+Samurai : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmsamourai.png?alt=media&token=ede3a02b-6be8-4da8-af9c-d7969e06501e
+Sauce verte : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgm-sauceverte.png?alt=media&token=b09ecb39-cad4-43ac-a4a1-a76e6d8e42d2
+Tartare : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmtartare.png?alt=media&token=92d890f9-60f0-47b5-9079-3c101dde6c6d
+Thai Chili : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmthaichili.png?alt=media&token=97af8683-ecc7-42ca-8853-1305225203fb
+Tomato Ketchup : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmtomatoketchup.png?alt=media&token=4d9ea9a0-0b21-4071-ac8f-8b3f09298db0
+Tunisienne : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmtunisiennebd.png?alt=media&token=6a8c5a7b-b494-4014-a267-090239fd1039
+Turque : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmturque.png?alt=media&token=ee4e00d7-0109-46d1-b80a-196a726c0333
+Vinaigre Ciboulette : https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2FtypeDataForCustom%2FSauce%2Ftgmvinaigrette_ciboulette.png?alt=media&token=52daf7b3-e1eb-438a-8d7c-c57e7633fd56

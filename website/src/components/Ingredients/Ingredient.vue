@@ -104,38 +104,6 @@
 
                 <div class="py-12"></div>
             </section>
-
-                <div class="py-12"></div>
-
-                                    <section id="about-me">
-                <div class="py-12"></div>
-
-                <v-container class="text-center">
-                <h2 class="display-2 font-weight-bold mb-3"> <i class="fas fa-utensils"></i> A SAVOIR</h2>
-
-                <v-responsive
-                    class="mx-auto mb-8"
-                    width="56"
-                >
-                    <v-divider class="mb-1"></v-divider>
-
-                    <v-divider></v-divider>
-                </v-responsive>
-
-                <v-responsive
-                    class="mx-auto title font-weight-light mb-8"
-                    max-width="720"
-                >
-                Vos ingrédients non disponible à la vente sont stoché sur votre machine, cad que si vous vous connecter sur un autre ordinateur ne vous inquietez pas si elle sont modifier.
-                Elle reviendra a la normale lors de votre retour sur votre ordinateur de base !
-                </v-responsive>
-
-
-                <div></div>
-                </v-container>
-
-                <div class="py-12"></div>
-            </section>
         </div>
         <div v-else>
             <section id="about-me">

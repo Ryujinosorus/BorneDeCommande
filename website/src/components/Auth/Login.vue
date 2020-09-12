@@ -104,6 +104,7 @@
                 this.loadTypeDataForCustom('Legumes');
                 this.loadTypeDataForCustom('Fromages');
                 this.loadTypeDataForCustom('Viande');
+                this.loadTypeDataForCustom('Sauce');
                 }
 });
         },

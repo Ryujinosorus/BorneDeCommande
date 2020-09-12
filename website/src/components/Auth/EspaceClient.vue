@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="user">
         <section id="about-me" class="white">
             <div class="py-12"></div>
 
@@ -20,6 +20,10 @@
                 max-width="720"
             >
             Bienvenue dans votre Espace Client, vous y trouverez toutes les options rélative à votre compte et à votre restaurant.
+                <br><br>
+                <router-link to="/borneSetting">
+                    <v-btn outlined color="#0D0D0D--text">Y acceder</v-btn>
+                </router-link>
             </v-responsive>
 
 
@@ -54,7 +58,7 @@
                     max-width="720"
                 >
                 <br><br>
-                <router-link to="/Connexion">
+                <router-link to="/borneSetting">
                     <v-btn outlined color="#0D0D0D--text">Y acceder</v-btn>
                 </router-link>
                 </v-responsive>
@@ -72,8 +76,12 @@
         name: 'EspaceClient',
         data() {
             return {
+                user : false,
             }
         },
+        created(){
+            this.user = this.$store.getters.user.loggedIn;
+        }
     }
 </script>
 

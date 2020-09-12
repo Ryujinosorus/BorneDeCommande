@@ -48,7 +48,7 @@ export default [
     component: carte
   },
   {
-    path: '/Espace Client',
+    path: '/Votre espace',
     component: EspaceClient
   },
   {

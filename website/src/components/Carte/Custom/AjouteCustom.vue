@@ -34,19 +34,21 @@
                                 <v-card-actions>
                                     <app-selectTypeForCustom :content="data"></app-selectTypeForCustom>
                                     <v-spacer></v-spacer>
+                                    <div style="display : inline-block">
                                     <v-checkbox v-model="data.payable">
                                         <template v-slot:label>
                                             <span :style="{color : data.payable ? 'green' : 'red'}">Payant</span>
                                         </template>
                                     </v-checkbox>
                                     <div  @click="changeNbSelection(data)">
-                                    <v-checkbox readonly :input-value="data.nbSelection == -1">
+                                    <v-checkbox readonly :input-value="data.nbSelection != -1">
                                         <template v-slot:label>
-                                            <span :style="{color : data.nbSelection == -1 ? 'green' : 'red'}">Limiter le nombre de selection</span>
+                                            <span :style="{color : data.nbSelection != -1 ? 'green' : 'red'}">Limiter le nombre de selection</span>
                                         </template>
                                     </v-checkbox>
                                     </div>
                                     <v-text-field type="number" v-if="data.nbSelection != -1" v-model="data.nbSelection" min="0"></v-text-field>
+                                    </div>
                                 </v-card-actions>
                             </v-card>
                             <v-col cols="1">

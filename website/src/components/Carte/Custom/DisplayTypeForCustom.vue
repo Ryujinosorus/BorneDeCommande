@@ -64,7 +64,7 @@
                 <v-row>
                     <v-col  s="10" sm="6" md="4" lg="3" xl="2" v-for="(data,index) of filterCard" v-bind:key="data['.key']">
                         <v-card>
-                            <v-img :src="data.url" height="200px">
+                            <v-img :src="data.url" height="300px">
                             </v-img>
                             <v-card-actions heigth="10px">
                                 <v-card-title class="mx-auto title subtitle-1">{{data.name}} </v-card-title>
