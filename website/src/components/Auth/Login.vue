@@ -1,65 +1,34 @@
 <template>
-<div>
   <div class="container" ref="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form  @submit.prevent="login()" class="sign-in-form">
-            <h2 class="title">Sign in</h2>
+          <form class="sign-in-form">
+            <h2 class="title">Connectez vous !</h2>
             <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Email" />
+              <i class="fas fa-user marginAuto"></i>
+              <input type="text" placeholder="Email" v-model="form.signIn.email" />
             </div>
             <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <i class="fas fa-lock marginAuto"></i>
+              <input type="password" placeholder="Mot de passe" v-model="form.signIn.password" />
             </div>
-            <input type="submit" class="btn solid" />
-            <p class="social-text">Or Sign in with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
+            <input value="Connexion" @click="login()" class="btn" />
           </form>
-          <form action="#" class="sign-up-form">
-            <h2 class="title">Sign up</h2>
+          <form class="sign-up-form">
+            <h2 class="title">Créer votre compte !</h2>
             <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <i class="fas fa-envelope marginAuto"></i>
+              <input v-model="form.signUp.email" type="email" placeholder="Email" />
             </div>
             <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <i class="fas fa-lock marginAuto"></i>
+              <input v-model="form.signUp.password" type="password" placeholder="Mot de passe" />
             </div>
-            <input type="submit" class="btn" value="Sign up" />
-            <p class="social-text">Or Sign up with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
+            <div class="input-field">
+              <i class="fas fa-lock marginAuto"></i>
+              <input v-model="form.signUp.otherPassword" type="password" placeholder="Retapez votre mot de passe" />
             </div>
+            <input  @click="createAccount()" class="btn" value="Connexion" />
           </form>
         </div>
       </div>
@@ -67,70 +36,114 @@
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">
-            <h3>New here ?</h3>
+            <h3>Vous etes nouveau ?</h3>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-              ex ratione. Aliquid!
+              Créer un compte est totalement gratuit et ne vous engage en rien ! 
+              <br>
+              De plus avec un compte vous allez avoir un apercu de votre borne et vous pouvez ensuite la modifier si vous le souhaitez ! 
+              <br>
+              Alors n'attendez plus !
             </p>
-            <button class="btn transparent" ref="sign_up_btn" @click="swap(true)">
-              Sign up
+            <button @click="swap(true)" class="btn transparent" id="sign-up-btn">
+              Créez un compte 
             </button>
           </div>
-          <img src="../../../public/femmeEcran.svg" class="image" alt="" />
+          <img src="femmeEcran.svg" class="image" alt="" />
         </div>
         <div class="panel right-panel">
           <div class="content">
-            <h3>One of us ?</h3>
+            <h3>Deja un compte ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+              Si vous avez déja un compte vous pouvez vous connectez dés maintenant! 
+              <br>
+              Vous pourrez alors modifier votre borne à volonté !
             </p>
-            <button class="btn transparent" ref="sign_in_btn" @click="swap(false)">
-              Sign in
+            <button  @click="swap(false)"  class="btn transparent" id="sign-in-btn">
+              Connectez vous 
             </button>
           </div>
-          <img src="../../../public/hommeFusee.svg" class="image" alt="" />
+          <img src="hommeFusee.svg" class="image" alt="" />
         </div>
       </div>
+
+
+      <v-dialog v-model="errorDialog" persistent max-width="290">
+      <v-card>
+        <v-card-title class="headline">Une erreur doit etre corrigé ! </v-card-title>
+        <v-card-text>{{this.error}}</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="errorDialog = false">Ok</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+
     </div>
-</div>
 
 </template>
 <script>
     /* eslint-disable */
     import {fb} from "../../main";
     import {Custom} from '../../Scripts/Custom';
-
+    import BorneSetting from "../../Scripts/BorneSetting";
+    window.onbeforeunload = closingCode;
+      function closingCode(){
+        fb.auth().signOut();
+         return null;
+  }
     export default {
         name: 'Login',
         data() {
         return {
             error:'',
             title :' Login',
+            titleText : 'Connectez vous ! ',
+            btnText : 'Connexion',
+            errorDialog : false,
             form:{
                 signIn:{
                     email:'',
                     password:''
                 },
                 signUp:{
-                    name:'',
                     email:'',
-                    password:''
+                    password:'',
+                    otherPassword : ''
                 }
             }
             }
         },
     methods:{
         swap:function(whatToDO){
-            if(whatToDO)
+            if(whatToDO){
                 this.$refs["container"].classList.add("sign-up-mode");
-            else
+                this.titleText = 'a';
+                this.btnText = 'a';
+            }
+            else{
                 this.$refs["container"].classList.remove("sign-up-mode");
-            },
+                this.titleText = 'b';
+                this.btnText = 'b';
+            }
+          },
+          validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        },
         login(){
-            
-            fb.auth().signInWithEmailAndPassword(this.form.signIn.email, this.form.signIn.password).then(data => {
+                if(!this.validateEmail(this.form.signIn.email)){
+                  this.error = 'Email non valide';
+                  this.errorDialog = true;
+                  return;
+                }
+
+                fb.auth().signInWithEmailAndPassword(this.form.signIn.email, this.form.signIn.password).then(data => {
                 this.$emit("updateUser");
+                }).catch(err => {this.error = "L'email oule mot de passe est incorrect";this.errorDialog = true;});
+                
+            fb.auth().onAuthStateChanged(user => {
+                if(user){
                 this.$store.dispatch("fetchUser", user);
                 this.load('BorneSettings.txt');
                 this.load('custom.txt');
@@ -147,7 +160,9 @@
                 this.loadTypeDataForCustom('Fromages');
                 this.loadTypeDataForCustom('Viande');
                 this.loadTypeDataForCustom('Sauce');
-                }).catch(err => {this.error = err.message;});
+                }
+              });
+
         },
         load(name){
             let storageRef = fb.storage().ref('dataOfUser/'+this.$store.getters.user.data.email+'/');
@@ -165,7 +180,7 @@
             }).catch(function() {
                 if(name=='BorneSettings.txt'){
                     self.$store.commit('ADD_BORNESETTINGS',new BorneSetting());
-                    getFont();
+                    self.$router.replace("/ingredient");
                 }
 
                 console.log("file not found");
@@ -175,8 +190,6 @@
             switch(name){
                 case 'BorneSettings.txt':{
                     this.$store.commit('ADD_BORNESETTINGS',JSON.parse(data));
-                    console.log("bss is");
-                    console.log(JSON.parse(data));
                     this.$router.replace("/ingredient");
                     break;
                 }
@@ -234,7 +247,6 @@
             }).catch(function() {
                 if(name =='BorneSettings.txt'){
                     self.$store.commit('ADD_BORNESETTINGS',new BorneSetting());
-                    getFont();
                 }
 
                 console.log("file not found");
@@ -273,24 +285,29 @@
             });
         },
         createAccount(){
-        fb
-                .auth()
-                .createUserWithEmailAndPassword(this.form.signUp.email, this.form.signUp.password)
-                .then(data => {
-            data.user
-                .updateProfile({
-                    displayName: this.form.signUp.name
-                })
-                .then(() => {});
+          this.error = '';
+
+          if(!this.validateEmail(this.form.signUp.email)){
+            this.error = 'Email non valide';
+            this.errorDialog = true;
+            return;
+          }
+          if(this.form.signUp.password != this.form.signUp.otherPassword){
+            this.error = 'Les deux mot de passe ne corrrespondent pas';
+            this.errorDialog = true;
+            return;
+          }
+        fb.auth().createUserWithEmailAndPassword(this.form.signUp.email, this.form.signUp.password).then(data => {
+          data.user.updateProfile({displayName: this.form.signUp.name}).then(() => {});
     })
     .catch(err => {
         this.error = err.message;
-        console.log(err);
+        this.errorDialog = true;
     });
         if(this.error=='') {
-            this.$refs["container"].classList.remove("right-panel-active");
+            this.swap(false);
             this.form.signUp.email='';
-            this.form.signUp.name='';
+            this.form.signUp.otherPassword='';
             this.form.signUp.password='';
         }
 
@@ -317,7 +334,6 @@ input {
 }
 
 .container {
-  position: relative;
   width: 100%;
   background-color: #fff;
   min-height: 100vh;
@@ -384,12 +400,8 @@ form.sign-in-form {
   position: relative;
 }
 
-.input-field i {
-  text-align: center;
-  line-height: 55px;
-  color: #acacac;
-  transition: 0.5s;
-  font-size: 1.1rem;
+.marginAuto{
+    margin: auto;
 }
 
 .input-field input {
@@ -440,6 +452,7 @@ form.sign-in-form {
 .btn {
   width: 150px;
   background-color: #5995fd;
+  text-align: center;
   border: none;
   outline: none;
   height: 49px;
@@ -703,4 +716,5 @@ form.sign-in-form {
     left: 50%;
   }
 }
+
 </style>
