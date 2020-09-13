@@ -10,7 +10,7 @@ import Login from './components/Login';
 import detailPlat from './components/DetailPlat';
 import VueRessource from 'vue-resource';
 import * as firebase from "firebase";
-
+import fullscreen from 'vue-fullscreen'
 Vue.config.productionTip = false;
 var firebaseConfig = {
     apiKey: "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
@@ -27,6 +27,7 @@ export const fb = firebase.initializeApp(firebaseConfig);
 
 Vue.use(VueRessource);
 Vue.use(VueRouter);
+Vue.use(fullscreen);
 
 Vue.component('app-commandeLeft',commandeLeft);
 Vue.component('app-showSelectable',showSelectable);

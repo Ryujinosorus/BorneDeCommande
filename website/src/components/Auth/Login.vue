@@ -1,54 +1,100 @@
 <template>
-    <section class="grey lighten-3">
-        <div class="container" id="container" ref="container" >
-            <div class="form-container sign-up-container">
-                <form action="#">
-                    <h1>Créer votre compte avec </h1>
-                    <div class="social-container">
-                        <a class="social"><i class="fab fa-facebook-f"></i></a>
-                        <a class="social"><i class="fab fa-google-plus-g"></i></a>
-                        <a class="social"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <span>ou juste avec une adresse mail</span>
-                    <input type="text" placeholder="Name" v-model="form.signUp.name" />
-                    <input type="text" placeholder="Email" v-model="form.signUp.email"/>
-                    <input type="password" placeholder="Password" v-model="form.signUp.password" />
-                    <button @click="createAccount()">Sign Up</button>
-                    <span>{{this.error}}</span>
-                </form>
+<div>
+  <div class="container" ref="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form  @submit.prevent="login()" class="sign-in-form">
+            <h2 class="title">Sign in</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Email" />
             </div>
-            <div class="form-container sign-in-container">
-                <div class="myForm">
-                    <h1>Connectez vous avec</h1>
-                    <div class="social-container">
-                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <span>ou juste avec une adresse mail</span>
-                    <input type="email" placeholder="Email" v-model="form.signIn.email" />
-                    <input type="password" placeholder="Password" v-model="form.signIn.password"/>
-                    <a >Forgot your password?</a>
-                    <button @click="login()">Sign In</button>
-                </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Password" />
             </div>
-            <div class="overlay-container">
-                <div class="overlay">
-                    <div class="overlay-panel overlay-left">
-                        <h1>Bientot fini !</h1>
-                        <p>Une fois votre compte créer vous serez connecté automatiquement</p>
-                        <button class="ghost" id="signIn" @click="swap(false)">Sign In</button>
-                    </div>
-                    <div class="overlay-panel overlay-right">
-                        <h1>Pas de compte ?</h1>
-                        <p>Créer en un gratuitement et commencez votre aventure avec nous !</p>
-                        <button class="ghost" id="signUp" @click="swap(true)">Sign Up</button>
-                    </div>
-                </div>
+            <input type="submit" class="btn solid" />
+            <p class="social-text">Or Sign in with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
             </div>
+          </form>
+          <form action="#" class="sign-up-form">
+            <h2 class="title">Sign up</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Username" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Email" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Password" />
+            </div>
+            <input type="submit" class="btn" value="Sign up" />
+            <p class="social-text">Or Sign up with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </form>
         </div>
+      </div>
 
-    </section>
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>New here ?</h3>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+              ex ratione. Aliquid!
+            </p>
+            <button class="btn transparent" ref="sign_up_btn" @click="swap(true)">
+              Sign up
+            </button>
+          </div>
+          <img src="../../../public/femmeEcran.svg" class="image" alt="" />
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>One of us ?</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+              laboriosam ad deleniti.
+            </p>
+            <button class="btn transparent" ref="sign_in_btn" @click="swap(false)">
+              Sign in
+            </button>
+          </div>
+          <img src="../../../public/hommeFusee.svg" class="image" alt="" />
+        </div>
+      </div>
+    </div>
+</div>
+
 </template>
 <script>
     /* eslint-disable */
@@ -77,18 +123,14 @@
     methods:{
         swap:function(whatToDO){
             if(whatToDO)
-                this.$refs["container"].classList.add("right-panel-active");
+                this.$refs["container"].classList.add("sign-up-mode");
             else
-                this.$refs["container"].classList.remove("right-panel-active");
+                this.$refs["container"].classList.remove("sign-up-mode");
             },
         login(){
             
             fb.auth().signInWithEmailAndPassword(this.form.signIn.email, this.form.signIn.password).then(data => {
                 this.$emit("updateUser");
-                }).catch(err => {this.error = err.message;});
-                
-            fb.auth().onAuthStateChanged(user => {
-                if(user){
                 this.$store.dispatch("fetchUser", user);
                 this.load('BorneSettings.txt');
                 this.load('custom.txt');
@@ -105,8 +147,7 @@
                 this.loadTypeDataForCustom('Fromages');
                 this.loadTypeDataForCustom('Viande');
                 this.loadTypeDataForCustom('Sauce');
-                }
-});
+                }).catch(err => {this.error = err.message;});
         },
         load(name){
             let storageRef = fb.storage().ref('dataOfUser/'+this.$store.getters.user.data.email+'/');
@@ -262,234 +303,404 @@
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    * {
-        box-sizing: border-box;
-    }
+body,
+input {
+  font-family: "Poppins", sans-serif;
+}
 
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        font-family: 'Montserrat', sans-serif;
-        height: 100vh;
-        margin: -20px 0 50px;
-    }
+.container {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  min-height: 100vh;
+  overflow: hidden;
+}
 
-    h1 {
-        font-weight: bold;
-        margin: 0;
-    }
+.forms-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
 
-    h2 {
-        text-align: center;
-    }
+.signin-signup {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 75%;
+  width: 50%;
+  transition: 1s 0.7s ease-in-out;
+  display: grid;
+  grid-template-columns: 1fr;
+  z-index: 5;
+}
 
-    p {
-        font-size: 16px;
-        font-weight: 120;
-        line-height: 20px;
-        letter-spacing: 0.5px;
-        margin: 20px 0 30px;
-        color : #fff;
-    }
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0rem 5rem;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
 
-    span {
-        font-weight: bold;
-        font-size: 15px;
-    }
+form.sign-up-form {
+  opacity: 0;
+  z-index: 1;
+}
 
-    a {
-        color: green;
-        font-size: 14px;
-        text-decoration: none;
-        margin: 15px 0;
-    }
+form.sign-in-form {
+  z-index: 2;
+}
 
-    button {
-        border-radius: 20px;
-        border: 1px solid #1976D0;
-        background-color: #1976D0;
-        color: #FFFFFF;
-        font-size: 12px;
-        font-weight: bold;
-        padding: 12px 45px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        transition: transform 80ms ease-in;
-    }
+.title {
+  font-size: 2.2rem;
+  color: #444;
+  margin-bottom: 10px;
+}
 
-    button:active {
-        transform: scale(0.95);
-    }
+.input-field {
+  max-width: 380px;
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  height: 55px;
+  border-radius: 55px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+  position: relative;
+}
 
-    button:focus {
-        outline: none;
-    }
+.input-field i {
+  text-align: center;
+  line-height: 55px;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.1rem;
+}
 
-    button.ghost {
-        background-color: transparent;
-        border-color: #FFFFFF;
-    }
+.input-field input {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
 
-    .myForm {
-        background-color: #FFFFFF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0 50px;
-        height: 100%;
-        text-align: center;
-    }
+.input-field input::placeholder {
+  color: #aaa;
+  font-weight: 500;
+}
 
-    input {
-        background-color: #fff;
-        border: none;
-        padding: 12px 15px;
-        margin: 8px 0;
-        width: 100%;
-    }
+.social-text {
+  padding: 0.7rem 0;
+  font-size: 1rem;
+}
 
-    .container {
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-        0 10px 10px rgba(0,0,0,0.22);
-        position: relative;
-        overflow: hidden;
-        width: 1000px;
-        height: 600px;
-        max-width: 100%;
-        min-height: 480px;
-        margin-top: 100px;
-    }
+.social-media {
+  display: flex;
+  justify-content: center;
+}
 
-    .form-container {
-        position: absolute;
-        top: 0;
-        height: 100%;
-        transition: all 0.6s ease-in-out;
-    }
+.social-icon {
+  height: 46px;
+  width: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.45rem;
+  color: #333;
+  border-radius: 50%;
+  border: 1px solid #333;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
 
-    .sign-in-container {
-        left: 0;
-        width: 50%;
-        z-index: 2;
-    }
+.social-icon:hover {
+  color: #4481eb;
+  border-color: #4481eb;
+}
 
-    .container.right-panel-active .sign-in-container {
-        transform: translateX(100%);
-    }
+.btn {
+  width: 150px;
+  background-color: #5995fd;
+  border: none;
+  outline: none;
+  height: 49px;
+  border-radius: 49px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
+}
 
-    .sign-up-container {
-        left: 0;
-        width: 50%;
-        opacity: 0;
-        z-index: 1;
-    }
+.btn:hover {
+  background-color: #4d84e2;
+}
+.panels-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
 
-    .container.right-panel-active .sign-up-container {
-        transform: translateX(100%);
-        opacity: 1;
-        z-index: 5;
-        animation: show 0.6s;
-    }
+.container:before {
+  content: "";
+  position: absolute;
+  height: 2000px;
+  width: 2000px;
+  top: -10%;
+  right: 48%;
+  transform: translateY(-50%);
+  background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
+  transition: 1.8s ease-in-out;
+  border-radius: 50%;
+  z-index: 6;
+}
 
-    @keyframes show {
-        0%, 49.99% {
-            opacity: 0;
-            z-index: 1;
-        }
+.image {
+  width: 100%;
+  transition: transform 1.1s ease-in-out;
+  transition-delay: 0.4s;
+}
 
-        50%, 100% {
-            opacity: 1;
-            z-index: 5;
-        }
-    }
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  text-align: center;
+  z-index: 6;
+}
 
-    .overlay-container {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 50%;
-        height: 100%;
-        overflow: hidden;
-        transition: transform 0.6s ease-in-out;
-        z-index: 100;
-    }
+.left-panel {
+  pointer-events: all;
+  padding: 3rem 17% 2rem 12%;
+}
 
-    .container.right-panel-active .overlay-container{
-        transform: translateX(-100%);
-    }
+.right-panel {
+  pointer-events: none;
+  padding: 3rem 12% 2rem 17%;
+}
 
-    .overlay {
-        background: #1976D0;
-        background: #1976D0;
-        background: #1976D0;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 0 0;
-        color: #FFFFFF;
-        position: relative;
-        left: -100%;
-        height: 100%;
-        width: 200%;
-        transform: translateX(0);
-        transition: transform 0.6s ease-in-out;
-    }
+.panel .content {
+  color: #fff;
+  transition: transform 0.9s ease-in-out;
+  transition-delay: 0.6s;
+}
 
-    .container.right-panel-active .overlay {
-        transform: translateX(50%);
-    }
+.panel h3 {
+  font-weight: 600;
+  line-height: 1;
+  font-size: 1.5rem;
+}
 
-    .overlay-panel {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0 40px;
-        text-align: center;
-        top: 0;
-        height: 100%;
-        width: 50%;
-        transform: translateX(0);
-        transition: transform 0.6s ease-in-out;
-    }
+.panel p {
+  font-size: 0.95rem;
+  padding: 0.7rem 0;
+}
 
-    .overlay-left {
-        transform: translateX(-20%);
-    }
+.btn.transparent {
+  margin: 0;
+  background: none;
+  border: 2px solid #fff;
+  width: 130px;
+  height: 41px;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
 
-    .container.right-panel-active .overlay-left {
-        transform: translateX(0);
-    }
+.right-panel .image,
+.right-panel .content {
+  transform: translateX(800px);
+}
 
-    .overlay-right {
-        right: 0;
-        transform: translateX(0);
-    }
+/* ANIMATION */
 
-    .container.right-panel-active .overlay-right {
-        transform: translateX(20%);
-    }
+.container.sign-up-mode:before {
+  transform: translate(100%, -50%);
+  right: 52%;
+}
 
-    .social-container {
-        margin: 20px 0;
-    }
+.container.sign-up-mode .left-panel .image,
+.container.sign-up-mode .left-panel .content {
+  transform: translateX(-800px);
+}
 
-    .social-container a {
-        border: 1px solid #DDDDDD;
-        border-radius: 50%;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 5px;
-        height: 40px;
-        width: 40px;
-    }
+.container.sign-up-mode .signin-signup {
+  left: 25%;
+}
+
+.container.sign-up-mode form.sign-up-form {
+  opacity: 1;
+  z-index: 2;
+}
+
+.container.sign-up-mode form.sign-in-form {
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.sign-up-mode .right-panel .image,
+.container.sign-up-mode .right-panel .content {
+  transform: translateX(0%);
+}
+
+.container.sign-up-mode .left-panel {
+  pointer-events: none;
+}
+
+.container.sign-up-mode .right-panel {
+  pointer-events: all;
+}
+
+@media (max-width: 870px) {
+  .container {
+    min-height: 800px;
+    height: 100vh;
+  }
+  .signin-signup {
+    width: 100%;
+    top: 95%;
+    transform: translate(-50%, -100%);
+    transition: 1s 0.8s ease-in-out;
+  }
+
+  .signin-signup,
+  .container.sign-up-mode .signin-signup {
+    left: 50%;
+  }
+
+  .panels-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+  }
+
+  .panel {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2.5rem 8%;
+    grid-column: 1 / 2;
+  }
+
+  .right-panel {
+    grid-row: 3 / 4;
+  }
+
+  .left-panel {
+    grid-row: 1 / 2;
+  }
+
+  .image {
+    width: 200px;
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.6s;
+  }
+
+  .panel .content {
+    padding-right: 15%;
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.8s;
+  }
+
+  .panel h3 {
+    font-size: 1.2rem;
+  }
+
+  .panel p {
+    font-size: 0.7rem;
+    padding: 0.5rem 0;
+  }
+
+  .btn.transparent {
+    width: 110px;
+    height: 35px;
+    font-size: 0.7rem;
+  }
+
+  .container:before {
+    width: 1500px;
+    height: 1500px;
+    transform: translateX(-50%);
+    left: 30%;
+    bottom: 68%;
+    right: initial;
+    top: initial;
+    transition: 2s ease-in-out;
+  }
+
+  .container.sign-up-mode:before {
+    transform: translate(-50%, 100%);
+    bottom: 32%;
+    right: initial;
+  }
+
+  .container.sign-up-mode .left-panel .image,
+  .container.sign-up-mode .left-panel .content {
+    transform: translateY(-300px);
+  }
+
+  .container.sign-up-mode .right-panel .image,
+  .container.sign-up-mode .right-panel .content {
+    transform: translateY(0px);
+  }
+
+  .right-panel .image,
+  .right-panel .content {
+    transform: translateY(300px);
+  }
+
+  .container.sign-up-mode .signin-signup {
+    top: 5%;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 570px) {
+  form {
+    padding: 0 1.5rem;
+  }
+
+  .image {
+    display: none;
+  }
+  .panel .content {
+    padding: 0.5rem 1rem;
+  }
+  .container {
+    padding: 1.5rem;
+  }
+
+  .container:before {
+    bottom: 72%;
+    left: 50%;
+  }
+
+  .container.sign-up-mode:before {
+    bottom: 28%;
+    left: 50%;
+  }
+}
 </style>
