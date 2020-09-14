@@ -123,18 +123,12 @@ export default {
     },
     methods : {
       getPrice(data){
-        if(data=='')
-          return 0;
         let prix = parseFloat(data.prix);
         for(let i=0;i<data.content.length;i++)
           if(data.content[i].payable)
             for(let j=0;j<data.content[i].data.length;j++)
               if(data.content[i].data[j].selected)
                 prix += parseFloat(data.content[i].data[j].price);
-
-        for(let k=0;k<data.otherCustom.length;k++)
-          if(data.otherCustom[k]!='')
-            prix += this.getPrice(data.otherCustom[k]) - parseFloat(data.otherCustom[k].prix);
         return (prix);
       },
       minusNB(data){
