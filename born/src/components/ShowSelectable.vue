@@ -64,9 +64,6 @@
             </div>
         </div>
         </div>
-        <div v-for="otherCustom in selectable.otherCustom" :key="otherCustom.nom">
-            <app-showSelectable :selectable="otherCustom" :settings="settings"></app-showSelectable>
-        </div>
     </div>
 </template>
 
@@ -90,10 +87,7 @@ export default {
                 this.reRenderCheckBox = true;
             }
             else {
-                console.log("is lilited")
                 let nbSelected = this.getNbSelected(content);
-                console.log(nbSelected);
-                console.log(detail.selected);
                 if(nbSelected == content.nbSelection && !detail.selected)
                     return;
                 detail.selected = ! detail.selected;
@@ -107,8 +101,6 @@ export default {
             for(let i=0;i<content.data.length;i++)
                 if(content.data[i].selected)
                     nbSelected ++
-            this.reRenderText = false;
-            this.reRenderText = true;
             return nbSelected;
         }
     }
