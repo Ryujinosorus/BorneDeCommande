@@ -12,7 +12,7 @@
               <i class="fas fa-lock marginAuto"></i>
               <input type="password" placeholder="Mot de passe" v-model="form.signIn.password" />
             </div>
-            <input value="Connexion" @click="login()" class="btn" />
+            <v-btn @click='login()' :loading='loader'>Connexion</v-btn>
           </form>
           <form class="sign-up-form">
             <h2 class="title">Créer votre compte !</h2>
@@ -101,6 +101,7 @@
             titleText : 'Connectez vous ! ',
             btnText : 'Connexion',
             errorDialog : false,
+            loader : false,
             form:{
                 signIn:{
                     email:'',
@@ -132,15 +133,22 @@
             return re.test(String(email).toLowerCase());
         },
         login(){
+          this.loader = true;
                 if(!this.validateEmail(this.form.signIn.email)){
                   this.error = 'Email non valide';
                   this.errorDialog = true;
+                  this.loader = false;
                   return;
                 }
 
                 fb.auth().signInWithEmailAndPassword(this.form.signIn.email, this.form.signIn.password).then(data => {
                 this.$emit("updateUser");
-                }).catch(err => {this.error = "L'email oule mot de passe est incorrect";this.errorDialog = true;});
+                })
+                .catch(err => {
+                  this.error = "L'email oule mot de passe est incorrect";
+                  this.errorDialog = true;
+                  this.loader = false;
+                });
                 
             fb.auth().onAuthStateChanged(user => {
                 if(user){
@@ -166,8 +174,6 @@
         },
         load(name){
             let storageRef = fb.storage().ref('dataOfUser/'+this.$store.getters.user.data.email+'/');
-            console.log('mail is');
-            console.log(this.$store.getters.user);
             var xhr = new XMLHttpRequest();
             const self = this;
             storageRef.child(name).getDownloadURL().then(function(url) {
@@ -182,8 +188,6 @@
                     self.$store.commit('ADD_BORNESETTINGS',new BorneSetting());
                     self.$router.replace("/ingredient");
                 }
-
-                console.log("file not found");
             });
         },
         SET_UP(name,data){
@@ -202,7 +206,6 @@
         ADD_CUSTOM(data){
             let file = data.split("\n");
             var res=[];
-            console.log(file);
             for(let x=0;x<file.length;x++)
                 if(file[x] !=''){
                 let storageRef = fb.storage().ref('dataOfUser/'+this.$store.getters.user.data.email+'/Custom/'+file[x]+'/recap.txt');

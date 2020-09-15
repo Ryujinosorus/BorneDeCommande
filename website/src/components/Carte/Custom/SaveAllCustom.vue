@@ -9,6 +9,7 @@
           v-bind="attrs"
           v-on="on"
           @click="getText()"
+          :loading='loader'
         >
           <v-icon>
               mdi-content-save
@@ -58,13 +59,26 @@ export default {
     data(){
         return{
             dialog:false,
-            textToShow : 'aaa'
+            textToShow : 'aaa',
+            loader : false
         }
     },
     methods:{
         save(){
+            this.loader = true;
           this.$store.dispatch('ADD_ALLCUSTOM_FB');
           this.dialog = false;
+          this.checkForLoader();
+        },
+        checkForLoader(){
+            let tmp = this.$store.getters.getAllCustom;
+            let again = false;
+            for(let i=0;i<tmp.length;i++)
+                if(tmp[i].pushHimToFb)
+                    again = true;
+            if(again)
+                setTimeout(this.checkForLoader, 1000);
+            else this.loader = false;
         },
         getText(){
             let res ='';

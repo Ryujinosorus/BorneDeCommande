@@ -185,7 +185,9 @@
             this.dialog = false;
         },
         uploadImage:function(e){
-            this.custom.picture = URL.createObjectURL(new Blob([e], {type: 'image/bmp'}));
+            console.log(e);
+            if(e!=undefined)this.custom.picture = URL.createObjectURL(new Blob([e], {type: 'image/bmp'}));
+            else this.custom.picture = undefined;
         },
         setCustomName:function(){
             let allCustom = this.$store.getters.getAllCustom;

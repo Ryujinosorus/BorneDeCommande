@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" fullscreen hide-overlay style="z-index:1000000000000000000" retain-focus transition="dialog-bottom-transition" persistent>
+    <v-dialog v-model="dialog" fullscreen style="z-index:1000000000000000000" transition="dialog-bottom-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           color="primary"
@@ -104,12 +104,12 @@ export default {
             this.tmpFile = e;
         },
         add(){
-          console.log(this.tmpFile);
-          let url = URL.createObjectURL(this.tmpFile);
-            this.$store.commit('ADD_CATEGORIE',[this.tmpText,url]);
-            console.log(this.tmpText,URL.createObjectURL(this.tmpFile));
-            this.tmpText = '';
-            this.dialogSave = false;
+          let url = 'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCategoriePicture.jpg?alt=media&token=8ed67476-31f0-468d-a092-b8f28a8d16b3';
+          if(this.tmpFile!=undefined)
+            url = URL.createObjectURL(this.tmpFile);
+          this.$store.commit('ADD_CATEGORIE',[this.tmpText,url]);
+          this.tmpText = '';
+          this.dialogSave = false;
         },
     },
     created(){

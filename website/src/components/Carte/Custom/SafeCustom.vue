@@ -60,8 +60,10 @@ export default {
     },
     methods : {
         save(){
-            console.log('EN TRAIN D AJOUTER');
-            this.$store.commit(this.action,[
+          if(this.custom.picture == undefined)
+            this.custom.picture = 'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334';
+          
+          this.$store.commit(this.action,[
                 this.custom,
                 this.index
             ]);

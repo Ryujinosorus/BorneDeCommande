@@ -28,8 +28,7 @@ export class Custom {
             this.uploadWithPicture(email);
         else this.uploadWithoutPicture(email);
     }
-    uploadWithoutPicture(email){ 
-        this.pushHimToFb = false;
+    uploadWithoutPicture(email){
         let res='';
         res += 'Nom : '  + this.nom + '\n';
         res += 'Prix : '  + this.prix + '\n';
@@ -40,7 +39,6 @@ export class Custom {
             for(let j=0;j< this.content[i].data.length;j++){
                 res += this.content[i].data[j].nom + ' - ' + this.content[i].data[j].url + ' - ' + this.content[i].data[j].price;
                 res += j==this.content[i].data.length-1 ? '' :', ';
-                console.log(this.content[i].data[j].nom);
             }
             res+='\n';
             if(this.content[i].payable)
@@ -65,7 +63,9 @@ export class Custom {
             res += 'NbSelection : ' + nbSelectionText;
 
        let route = fb.storage().ref('dataOfUser/' + email + '/Custom/'+ this.nom + '/recap.txt');
+       console.log('UOPLOADD'+ this.nom) ; 
        route.put(new Blob([res], {type: 'text/plain'}));
+       this.pushHimToFb = false;
     }
     uploadWithPicture(email){
         console.log('UPLOAD A PICTURE !');
@@ -90,7 +90,6 @@ export class Custom {
         xhr.send();
     }
     init(data){
-        console.log(data);
         this.nom = 'aaaaaa';
         let file = data.split('\n');
         for(let x=0;x<file.length;x++)

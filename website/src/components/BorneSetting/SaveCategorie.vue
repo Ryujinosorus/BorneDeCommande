@@ -1,10 +1,7 @@
 <template>
  <v-dialog
       v-model="dialog"
-      persistent
       width="500"
-      hide-overlay
-      retain-focus
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -12,6 +9,7 @@
           v-bind="attrs"
           v-on="on"
           @click="getText()"
+          :loading="loader"
         >
           <v-icon>
               mdi-content-save
@@ -62,11 +60,13 @@ export default {
     data(){
         return{
             dialog:false,
-            textToShow : 'aaa'
+            textToShow : 'aaa',
+            loader : false,
         }
     },
     methods:{
         save(){
+            this.loader = true;
             let bs = this.$store.getters.bornesettings;
 
 
@@ -76,10 +76,10 @@ export default {
                     nbBlob++;
 
             if(nbBlob == 0){
-                console.log('pass pas dans boulce');
                 let ref = fb.storage().ref('/dataOfUser/' + this.$store.getters.user.data.email+"/BorneSettings.txt");
                 ref.put(new Blob([JSON.stringify(bs)],{type: 'text/plain'}));
                 this.dialog = false;
+                this.loader = false;
                 return
             }
 
@@ -98,7 +98,7 @@ export default {
                         bs.categorie[i][1] = url;
                         nbBlobFound ++;
                         if(nbBlob == nbBlobFound){
-                            console.log('add depuis bouvl')
+                            self.loader = false;
                             let ref = fb.storage().ref('/dataOfUser/' + self.$store.getters.user.data.email+"/BorneSettings.txt");
                             ref.put(new Blob([JSON.stringify(bs)],{type: 'text/plain'}));
                         }
