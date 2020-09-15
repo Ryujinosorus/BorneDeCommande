@@ -3,6 +3,8 @@
       v-model="dialog"
       persistent
       width="500"
+      hide-overlay
+      retain-focus
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn

@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" fullscreen  transition="dialog-bottom-transition" persistent>
+    <v-dialog v-model="dialog" fullscreen hide-overlay style="z-index:1000000000000000000" retain-focus transition="dialog-bottom-transition" persistent>
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           color="primary"
@@ -50,6 +50,8 @@
                         <v-card-actions heigth="10px">
                             <v-card-title class="mx-auto title subtitle-1">{{data[0]}} </v-card-title>
                             <v-spacer></v-spacer>
+
+
                             <app-deletecategorie :nom="data[0]"></app-deletecategorie>
                         </v-card-actions>
                     </v-card>
@@ -66,48 +68,7 @@
                         </v-card-subtitle>
                         <v-card-actions heigth="10px">
                             <v-spacer></v-spacer>
-    <v-dialog
-      v-model="dialogSave"
-      width="500"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="blue"
-          v-bind="attrs"
-          v-on="on"
-        >
-          <v-icon>
-              mdi-plus
-          </v-icon>
-        </v-btn>
-      </template>
-
-      <v-card>
-        <v-card-title class="headline grey lighten-2">
-          Etes vous de vouloir ajouter {{tmpText}} en tant que catégorie ?
-        </v-card-title>
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-            <v-btn
-            color="primary"
-            text
-            @click="dialogSave = false"
-          >
-            Non
-          </v-btn>
-          <v-btn
-            color="primary"
-            text
-            @click="add()"
-          >
-            Oui
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+                            <v-btn @click="add()"></v-btn>
                         </v-card-actions>
                     </v-card>
                     <v-col cols="1">
@@ -156,7 +117,7 @@ export default {
     },
     computed:{
         filterCard(){
-            return this.allData.filter((card) => {
+            return this.$store.getters.categories.filter((card) => {
                 return card[0].toLowerCase().match(this.search.toLowerCase());
             });
         }
