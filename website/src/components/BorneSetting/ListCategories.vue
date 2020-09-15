@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+    <v-dialog v-model="dialog" fullscreen  transition="dialog-bottom-transition" persistent>
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           color="primary"
@@ -143,8 +143,10 @@ export default {
             this.tmpFile = e;
         },
         add(){
-            this.$store.commit('ADD_CATEGORIE',[this.tmpText,URL.createObjectURL(this.tmpFile)]);
-            this.tmpFile = null;
+          console.log(this.tmpFile);
+          let url = URL.createObjectURL(this.tmpFile);
+            this.$store.commit('ADD_CATEGORIE',[this.tmpText,url]);
+            console.log(this.tmpText,URL.createObjectURL(this.tmpFile));
             this.tmpText = '';
             this.dialogSave = false;
         },

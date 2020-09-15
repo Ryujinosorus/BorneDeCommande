@@ -298,7 +298,9 @@
             return;
           }
         fb.auth().createUserWithEmailAndPassword(this.form.signUp.email, this.form.signUp.password).then(data => {
-          data.user.updateProfile({displayName: this.form.signUp.name}).then(() => {});
+          data.user.updateProfile({displayName: this.form.signUp.name}).then(() => {
+            this.$emit("updateUser");
+          });
     })
     .catch(err => {
         this.error = err.message;

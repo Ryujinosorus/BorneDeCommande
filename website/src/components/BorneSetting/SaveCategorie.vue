@@ -1,6 +1,7 @@
 <template>
  <v-dialog
       v-model="dialog"
+      persistent
       width="500"
     >
       <template v-slot:activator="{ on, attrs }">
