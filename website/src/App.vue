@@ -57,6 +57,7 @@ export default {
       let self = this;
       firebase.auth().signOut().then(function() {
         self.$router.replace('/');
+        self.$store.commit('RESET_CUSTOM');
 }, function(error) {
   console.log(error);
 });

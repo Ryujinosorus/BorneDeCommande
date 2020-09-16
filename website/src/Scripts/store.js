@@ -115,6 +115,9 @@ mutations: {
     ADD_BORNESETTINGS(state,data){
         state.bornesettings = data;
     },
+    RESET_CUSTOM(state){
+        state.custom = [];
+    },
     ADD_FOOD(state,value){
         let index = -1 ;
         let isIn = false;
