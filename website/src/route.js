@@ -20,6 +20,7 @@ import EspaceClient from './components/Auth/EspaceClient.vue';
 import bornesetting from './components/BorneSetting/BorneSetting.vue';
 import supplements from './components/Ingredients/SubIngredients/supplements.vue'
 import Custom from './components/Carte/Custom.vue'
+import ListCategorie from './components/Carte/Categories/ListCategories';
 export default [
   {
     name:'home',
@@ -107,5 +108,9 @@ export default [
     {
       path: '/add/custom',
       component: Custom
-  }
+    },
+    {
+      path : '/add/categories',
+      component : ListCategorie
+    }
 ];

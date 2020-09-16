@@ -27,7 +27,6 @@
                     </p>
                 </div>
             </v-row>
-            <p>{{settings.icon}}</p>
         </v-container>
     </div>      
 </template>

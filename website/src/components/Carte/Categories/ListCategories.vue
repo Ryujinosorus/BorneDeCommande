@@ -1,30 +1,11 @@
 <template>
-  <v-row justify="center">
-    <v-dialog v-model="dialog" fullscreen style="z-index:1000000000000000000" transition="dialog-bottom-transition">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="primary"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Open Dialog
-        </v-btn>
-      </template>
-      <v-card>
-        <v-toolbar dark color="primary">
-          <v-btn icon dark @click="dialog = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-toolbar-title>Catégorie
-          </v-toolbar-title>
-        </v-toolbar>
 
   
 <v-container>
             <br>
             <br>
             <br>
+            
             <v-row>
                 <v-col cols ="10">
                     <v-card class="pa-2"
@@ -34,7 +15,7 @@
                     </v-card>
                 </v-col>
                 <v-col cols="1">
-                    <v-btn color="primary" class="white--text" small height="60" max-width="50" @click="dialog = false">
+                    <v-btn color="primary" class="white--text" small height="60" max-width="50" @click="goBack()">
                         <v-icon>mdi-arrow-left</v-icon>
                     </v-btn>
                 </v-col>
@@ -80,11 +61,6 @@
 
             </v-row>
         </v-container>
-
-
-      </v-card>
-    </v-dialog>
-  </v-row>
 </template>
 
 <script>
@@ -111,9 +87,9 @@ export default {
           this.tmpText = '';
           this.dialogSave = false;
         },
-    },
-    created(){
-        this.allData = this.$store.getters.categories;
+        goBack(){
+            this.$router.replace('/ingredient');
+        }
     },
     computed:{
         filterCard(){

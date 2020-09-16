@@ -1,7 +1,7 @@
 <template>
-<div :style="{backgroundColor : settings.list.recap.backgroundColorCate}" style="height : 100vh">
+<div style="height : 100vh">
   <app-commandeLeft :settings="settings"></app-commandeLeft>
-    <v-row>
+    <v-row :style="{backgroundColor : settings.list.recap.backgroundColorCate}">
       <div v-for="data in settings.categorie" :key="data[0]">
         <router-link :to="'Show/'+data[0]" v-if="canShow(data[0])">
         <v-card :height="settings.list['Organisé']['hauteur']" :width="settings.list['Organisé']['largeur']" :style="{

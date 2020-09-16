@@ -30,27 +30,49 @@
                 <div class="py-12"></div>
             </section>
 
-
-                    <section
+            <section
                 id="features"
                 class="grey lighten-3"
             >
                 <div class="py-12"></div>
 
                 <v-container class="text-center">
-                <h2 class="display-2 font-weight-bold mb-3">VOS CATEGORIES</h2>
+                <h2 class="display-2 font-weight-bold mb-3">VOS CATÉGORIES</h2>
 
                 <v-responsive
                     class="mx-auto mb-12"
                     width="56"
                 >
                     <v-divider class="mb-1"></v-divider>
-                    <v-row > 
-                    </v-row>
+
                     <v-divider></v-divider>
-                    
                 </v-responsive>
-                <app-listcategories></app-listcategories>
+
+                <v-row justify="center">
+                    
+                     <v-col
+                    cols="12"
+                    md="4"
+                    >
+                    <v-card
+                        class="py-12 px-4"
+                        color="grey lighten-5"
+                        flat
+                    >
+                        <v-theme-provider dark>
+                        <v-img src="https://image.freepik.com/photos-gratuite/burger-gros-plan-fond-noir_23-2148234990.jpg" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"></v-img>
+                        </v-theme-provider>
+
+                        <v-card-title
+                        class="justify-center font-weight-black text-uppercase"> CATÉGORIES </v-card-title>
+                        <v-card-text
+                        class="subtitle-1"
+                        > Créer vos catégories pour ensuite les assigné à a vos plats !</v-card-text>
+                        <v-card-actions class="justify-center"><v-btn x-large class="center white--text" color="#1976D2" @click="goTo('categories')">Acceder</v-btn></v-card-actions>
+                    </v-card>
+                    </v-col>
+                </v-row>
+                
                 </v-container>
 
                 <div class="py-12"></div>

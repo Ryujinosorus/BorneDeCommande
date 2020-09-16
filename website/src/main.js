@@ -32,7 +32,7 @@ import DisplayTypeForCustom from './components/Carte/Custom/DisplayTypeForCustom
 import AjouteCustom from './components/Carte/Custom/AjouteCustom';
 //import BorneFirstPage from './components/BorneSetting/firstPage.vue';
 import BorneSettingVue from './components/BorneSetting/BorneSetting.vue';
-import SaveCategorie from './components/BorneSetting/SaveCategorie.vue';
+import SaveCategorie from './components/Carte/Categories/SaveCategorie.vue';
 import DeleteMenu from './components/Carte/Menu/DeleteMenu';
 import FontPicker from './components/BorneSetting/BornePart/fontPicker.vue';
 import CarrouselSettings from './components/BorneSetting/BornePart/CarrouselSettings';
@@ -43,10 +43,10 @@ import SaveAllMenu from './components/Carte/Menu/SaveAllMenu';
 import ListSettings from './components/BorneSetting/BornePart/ListSettings.vue'
 import SafeBorneSettings from './components/BorneSetting/SaveBorneSettings.vue';
 import vuetify from './plugins/vuetify';
-import ListCategories from './components/BorneSetting/ListCategories';
-import DeleteCategories from './components/BorneSetting/DeleteCategorie';
 
 import RecapCommande from './components/BorneSetting/RecapCommande';
+
+import DeleteCategorie from './components/Carte/Categories/DeleteCategorie';
 
 import SafeCustom from './components/Carte/Custom/SafeCustom';
 import SaveAllCustom from './components/Carte/Custom/SaveAllCustom';
@@ -114,8 +114,6 @@ Vue.component('app-ajouteCustom',AjouteCustom)
 Vue.component('app-selectTypeForCustom',SelectTypeForCustom);
 Vue.component('fontPicker',FontPicker);
 Vue.component('app-listSettings',ListSettings);
-Vue.component('app-listcategories',ListCategories);
-Vue.component('app-deletecategorie',DeleteCategories);
 Vue.component('app-saveallplat',SaveAllPlat);
 Vue.component('app-saveallmenu',SaveAllMenu);
 Vue.component('app-deletemenu',DeleteMenu);
@@ -125,6 +123,7 @@ Vue.component('app-recapBTNCommander',RecapBTNCommander);
 Vue.component('app-recapPrix',RecapPrix);
 Vue.component('app-recap',Recap);
 Vue.component('app-listPlat',ListPlat);
+Vue.component('app-deletecategorie',DeleteCategorie);
 Vue.component('app-backCardMenu',BackCard);
 Vue.component('app-customToolbar',CustomToolbar);
 Vue.component('app-custom',CustomVue);
