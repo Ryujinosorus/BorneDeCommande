@@ -20,7 +20,7 @@
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
                         <app-deleteCustom :custom="custom" @CLOSE="reset()">></app-deleteCustom>
-                        <app-safeCustom :canBeSafe="custom.canBeSafe()" :custom="custom" :action="action" @CLOSE="reset()"></app-safeCustom>
+                        <app-safeCustom v-if="action == 'ADD_CUSTOM'" :custom="custom" :action="action" @CLOSE="reset()"></app-safeCustom>
                     </v-toolbar-items>
                 </v-toolbar>
                 <v-container class="grey lighten-5">
@@ -73,7 +73,7 @@
                             <v-select :items="items" label="Categorie" dense solo v-model="platCategorie" @change="custom.categorie = platCategorie"></v-select>
                             <v-textarea label="Prix � l'unit�" auto-grow outlined rows="1" row-height="10" v-model="platPrix" @change="custom.prix = platPrix"></v-textarea>
                         </v-col>
-                        <v-col c s="10" sm="6" md="4" lg="3" xl="2">
+                        <v-col c s="10" sm="6" md="4" lg="3" xl="2" >
                             <v-file-input
                                     :rules="rules"
                                     accept="image/png, image/jpeg, image/bmp"
@@ -85,7 +85,6 @@
                                 <v-img :src="custom.picture">
                                 </v-img>
                         </v-col>
-
                         <v-col  s="10" sm="6" md="4" lg="3" xl="2">
                             <v-card>
                                 <v-card-title>

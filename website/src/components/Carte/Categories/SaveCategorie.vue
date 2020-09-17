@@ -1,4 +1,5 @@
 <template>
+<div>
  <v-dialog
       v-model="dialog"
       width="500"
@@ -52,6 +53,39 @@
                 </v-card-actions>
             </v-card>
     </v-dialog>
+
+    <v-dialog
+    v-model="dialogError"
+    width="500"
+    >
+            <v-card>
+                <v-card-title
+                        class="headline grey lighten-2"
+                        primary-title
+                        >
+                    Erreur rencontré
+                </v-card-title>
+
+                <v-card-text>
+                    <v-textarea auto-grow outlined rows="1" row-height="10" value="Les noms de plats de ne peuvent pas contenir ' : '  Il ne peux pas y avoir deux plats avec le meme nom" readonly></v-textarea>
+                </v-card-text>
+
+                <v-divider></v-divider>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                            color="primary"
+                            text
+                            @click="dialogError = false;"
+                            outlined
+                            >
+                        Ok
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+    </v-dialog>
+</div>
 </template>
 
 <script>
@@ -62,6 +96,7 @@ export default {
             dialog:false,
             textToShow : 'aaa',
             loader : false,
+            dialogError : false
         }
     },
     methods:{
@@ -71,9 +106,23 @@ export default {
 
 
             let nbBlob = 0;
-            for(let i=0;i<bs.categorie.length;i++)
+            for(let i=0;i<bs.categorie.length;i++){
                 if(bs.categorie[i][1].startsWith('blob'))
                     nbBlob++;
+                if(bs.categorie[i][0].includes(' : ')){
+                    this.dialogError = true;
+                    this.dialog = false;
+                    this.loader = false;
+                    return;
+                }
+                for(let j=0;j<bs.categorie.length;j++)
+                    if(i!=j && bs.categorie[i][0] == bs.categorie[j][0]){
+                        this.dialogError = true;
+                        this.dialog = false;
+                        this.loader = false;
+                        return;
+                    }
+            }
 
             if(nbBlob == 0){
                 let ref = fb.storage().ref('/dataOfUser/' + this.$store.getters.user.data.email+"/BorneSettings.txt");

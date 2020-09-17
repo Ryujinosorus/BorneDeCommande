@@ -1,4 +1,5 @@
 import {fb} from '../main';
+import store from '../Scripts/store';
 export class Custom {
     constructor(){
         this.nom = "";
@@ -11,7 +12,14 @@ export class Custom {
         this.otherCustom = [];
     }
     canBeSafe(){
-        return true;
+        let j=0;
+        console.log(store.getters.getAllCustom);
+        for(let i=0;i<store.getters.getAllCustom.length;i++)
+            if(store.getters.getAllCustom[i].nom == this.nom){
+                console.log(this.nom + " " + store.getters.getAllCustom[i].nom);
+                j++;
+            }
+        return j==2 && !this.nom.includes(' : ');
     }
     toString(){
         let res='';
