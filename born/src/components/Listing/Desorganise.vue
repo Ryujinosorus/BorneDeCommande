@@ -1,7 +1,9 @@
 <template>
 <div style="height : 100vh">
   <app-commandeLeft :settings="settings"></app-commandeLeft>
-    <v-row :style="{backgroundColor : settings.list.recap.backgroundColorCate}">
+    <v-row :style="{backgroundColor : settings.list.recap.backgroundColorCate,
+                    minHeight : '100vh'
+                    }">
       <div v-for="data in settings.categorie" :key="data[0]">
         <router-link :to="'Show/'+data[0]" v-if="canShow(data[0])">
         <v-card :height="settings.list['Organisé']['hauteur']" :width="settings.list['Organisé']['largeur']" :style="{
@@ -11,26 +13,18 @@
           backgroundColor : settings.list.recap.cateBackgroundColor,
           borderRadius :settings.list.recap.rounded +'px',
           }"
-          v-if="settings.list.recap.textCate"
           :elevation="settings.list.recap.cateElevation"
           >
-          <v-img :src="data[1]" :height="settings.list['Organisé']['hauteur'] -settings.list.recap.cateTextHeight"></v-img>
-          <p :style="{textAlign : 'center',
+          <v-img :src="data[1]" 
+          :height="settings.list['Organisé']['hauteur'] -settings.list.recap.cateBorderSize*2 + (settings.list.recap.textCate ? -settings.list.recap.cateTextHeight : 0)"></v-img>
+          <p v-if="settings.list.recap.textCate" :style="{
+                      textAlign : 'center',
                       fontSize : settings.list.recap.cateTextFontSize +'px',
                       color : settings.list.recap.cateTextColor,
                       }"
               class="apply-font-cateTextFont"
                       >{{data[0]}}</p>
         </v-card>
-        <v-card :height="settings.list['Organisé']['hauteur']" :width="settings.list['Organisé']['largeur']" :style="{
-          marginLeft :settings.list['Organisé']['espacementG'] +'px',
-          marginTop :settings.list['Organisé']['espacementT'] +'px',
-          borderRadius :settings.list.recap.rounded +'px'
-          }"
-          :img="data[1]"
-          v-else
-          >
-        </v-card>  
         </router-link>
       
     

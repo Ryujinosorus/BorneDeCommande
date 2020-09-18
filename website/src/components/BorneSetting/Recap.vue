@@ -170,19 +170,6 @@
                          <v-color-picker mode="hexa" hide-mode-switch @update:color="changeBackgroundRecapColor" :value="borne.list['recap']['backgroundColorRecap']" class="ma-2"></v-color-picker>
                     </td>
                 </tr>
-
-
-
-
-
-                <tr>
-                    <td> Bordure du haut</td>
-                    <td>
-                        <v-checkbox
-                        v-model="borne.list['recap']['borderT']"
-                        ></v-checkbox>
-                    </td>
-                </tr>
                 <tr>
                     <td> Bordure de droite</td>
                     <td>
@@ -212,7 +199,7 @@
                     <td> Epaiseur bordure</td>
                     <td>
                          <v-slider
-                            v-model="borne.list['recap']['borderTCSize']"
+                            v-model="borne.list['recap']['borderSize']"
                             class="align-center"
                             :max="10"
                             :min="0"
@@ -220,7 +207,7 @@
                         >
                             <template v-slot:append>
                             <v-text-field
-                                v-model="borne.list['recap']['borderTCSize']"
+                                v-model="borne.list['recap']['borderSize']"
                                 class="mt-0 pt-0"
                                 hide-details
                                 single-line

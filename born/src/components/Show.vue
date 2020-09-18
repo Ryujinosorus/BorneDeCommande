@@ -10,7 +10,7 @@
     <app-commandeLeft :settings="settings"></app-commandeLeft>
     <v-row>
       <!-- RETOUR -->
-      <router-link to="/desorganise" v-if="settings.list.showFood.back.withText">
+      <router-link to="/desorganise">
         <v-card
           :height="settings.list.showFood.back.hauteur"
           :width="settings.list.showFood.back.largeur"
@@ -25,35 +25,22 @@
         >
           <v-img
             :src="settings.list.showFood.back.picture"
-            :height="settings.list.showFood.back.hauteur -settings.list.showFood.back.textHauteur"
+            :height="settings.list.showFood.back.hauteur + (  settings.list.showFood.back.withText ? -settings.list.showFood.back.textHauteur : 0) - settings.list.showFood.back.borderSize  *2"
           ></v-img>
           <p
+          v-if=" settings.list.showFood.back.withText"
             :style="{textAlign : 'center',
-                      fontSize : settings.list.showFood.menuTextFontSize +'px',
-                      color : settings.list.showFood.menuTextColor,
+                      fontSize : settings.list.showFood.back.fontSize +'px',
+                      color : settings.list.showFood.back.textColor,
                       }"
             class="apply-font-menuTextFont"
           >{{settings.list.showFood.back.text}}</p>
         </v-card>
       </router-link>
-      <router-link to="/desorganise" v-else>
-        <v-card
-          :height="settings.list['Organisé']['hauteur']"
-          :width="settings.list['Organisé']['largeur']"
-          :style="{
-            border :settings.list.showFood.menuBorderSize + 'px solid ' + settings.list.showFood.menuBorderColor,
-          marginLeft :settings.list['Organisé']['espacementG'] +'px',
-          marginTop :settings.list['Organisé']['espacementT'] +'px',
-          borderRadius :settings.list.recap.rounded +'px'
-          }"
-          :img="settings.list.showFood.back.picture"
-        ></v-card>
-      </router-link>
 
       <!-- CARD PART -->
       <div v-for="data in carte" :key="data.nom">
         <v-card
-          v-if="settings.list.showFood.textMenu"
           :height="settings.list.showFood.hauteur"
           :width="settings.list.showFood.largeur"
           :style="{
@@ -68,9 +55,10 @@
         >
           <v-img
             :src="data.picture"
-            :height="settings.list.showFood.hauteur -settings.list.showFood.menuTextHeight"
+            :height="settings.list.showFood.hauteur - ( settings.list.showFood.textMenu ? settings.list.showFood.menuTextHeight : 0) - settings.list.showFood.menuBorderSize*2"
           ></v-img>
           <p
+            v-if="settings.list.showFood.textMenu"
             :style="{textAlign : 'center',
                       fontSize : settings.list.showFood.menuTextFontSize +'px',
                       color : settings.list.showFood.menuTextColor,
@@ -78,19 +66,6 @@
             class="apply-font-menuTextFont"
           >{{data.nom}}</p>
         </v-card>
-        <v-card
-          @click="clickOnCard(data)"
-          v-else
-          :height="settings.list['Organisé']['hauteur']"
-          :width="settings.list['Organisé']['largeur']"
-          :style="{
-          border :settings.list.showFood.menuBorderSize + 'px solid ' + settings.list.showFood.menuBorderColor,
-          marginLeft :settings.list['Organisé']['espacementG'] +'px',
-          marginTop :settings.list['Organisé']['espacementT'] +'px',
-          borderRadius :settings.list.recap.rounded +'px'
-          }"
-          :img="data.picture"
-        ></v-card>
       </div>
     </v-row>
 
@@ -103,122 +78,6 @@
       :transition="settings.custom.transition + '-transition'"
     >
       <v-card :color="settings.custom.backgroundColor" style="min-height : 100vh;width : 100%">
-        <!--
-        <div
-          :style="{width : settings.custom.carousel.largeur +'px',
-                    marginTop :settings.custom.carousel.marginT + 'px',
-                    marginLeft: settings.custom.carousel.marginL + 'px'}"
-        >
-          <v-carousel
-            :continuous="false"
-            :height=" settings.custom.carousel.hauteur+'px'"
-            :hide-delimiters="!settings.custom.carousel.hideDelimiters"
-          >
-            <v-carousel-item v-for="i in data" :key="i">
-              <div
-                class="slide"
-                :style="{backgroundColor : settings.custom.carousel.backgroundColor}"
-              >
-                <div
-                  :style="{backgroundColor : settings.custom.carousel.textBackgroundColor,
-                              fontSize : settings.custom.carousel.fontSize +'px',
-                              height : settings.custom.carousel.textHeight +'px',
-                              color :settings.custom.carousel.textColor,
-                              textAlign : 'center'
-                    }"
-                >
-                  <h1 class="apply-font-carouselTitleFont">{{i}}</h1>
-                </div>
-                <div class="detail">
-
-                  <!- SAUCE ->
-
-                  <v-row v-if="i == 'sauce'">
-                    <v-card
-                      :height=" settings.custom.cardDetail.hauteur + 'px'"
-                      :style="{'width' : settings.custom.cardDetail.largeur + 'px',
-                              'marginLeft':settings.custom.cardDetail.marginL + 'px',
-                              'marginTop':settings.custom.cardDetail.marginT + 'px',
-                              backgroundColor : settings.custom.cardDetail.backgroundColor 
-                              }"
-                      v-for="(detail,index) in selectable.modifiable[i][0]"
-                      @click="addSauce(detail,index)"
-                      :key="detail">
-                      <v-img :height=" settings.custom.cardDetail.imgHeight+ 'px'" :src="getURL(i,detail)"></v-img>
-                    <v-card-actions>
-                       <h2 class="apply-font-detailTitreFont" :style="{
-                         fontSize :  settings.custom.cardDetail.fontSize+ 'px',
-                         color : settings.custom.cardDetail.imgHeight,
-                         }">{{detail}}</h2>
-                        <v-spacer></v-spacer>
-                        <v-checkbox dark v-model="sauceArray[index]" readonly ></v-checkbox>
-                      </v-card-actions>
-                    </v-card>
-                  </v-row>
-
-
-                  <!- LEGUMES ->
-
-
-
-                  <v-row v-if="i == 'legume'">
-                    <v-card
-                      :height=" settings.custom.cardDetail.hauteur + 'px'"
-                      :style="{'width' : settings.custom.cardDetail.largeur + 'px',
-                              'marginLeft':settings.custom.cardDetail.marginL + 'px',
-                              'marginTop':settings.custom.cardDetail.marginT + 'px',
-                              backgroundColor : settings.custom.cardDetail.backgroundColor 
-                              }"
-                      v-for="(detail,index) in selectable.modifiable[i][0]"
-                      @click="addLegume(detail,index)"
-                      :key="detail">
-                      <v-img :height=" settings.custom.cardDetail.imgHeight+ 'px'" :src="getURL(i,detail)"></v-img>
-                    <v-card-actions>
-                       <h2 class="apply-font-detailTitreFont" :style="{
-                         fontSize :  settings.custom.cardDetail.fontSize+ 'px',
-                         color : settings.custom.cardDetail.imgHeight,
-                         }">{{detail}}</h2>
-                        <v-spacer></v-spacer>
-                        <v-checkbox dark v-model="legumeArray[index]" readonly></v-checkbox>
-                      </v-card-actions>
-                    </v-card>
-                  </v-row>
-
-
-
-                  <!- supplement ->
-
-
-
-                  <v-row v-if="i == 'supplement'">
-                    <v-card
-                      :height=" settings.custom.cardDetail.hauteur + 'px'"
-                      :style="{'width' : settings.custom.cardDetail.largeur + 'px',
-                              'marginLeft':settings.custom.cardDetail.marginL + 'px',
-                              'marginTop':settings.custom.cardDetail.marginT + 'px',
-                              backgroundColor : settings.custom.cardDetail.backgroundColor 
-                              }"
-                      v-for="(detail,index) in selectable.modifiable[i][0]"
-                      @click="addSupplement(detail[1],index)"
-                      :key="detail[0]">
-                      <v-img :height=" settings.custom.cardDetail.imgHeight+ 'px'" :src="detail[2]"></v-img>
-                    <v-card-actions>
-                       <h2 class="apply-font-detailTitreFont" :style="{
-                         fontSize :  settings.custom.cardDetail.fontSize+ 'px',
-                         color : settings.custom.cardDetail.imgHeight,
-                         }">{{detail[0]}}</h2>
-                        <v-spacer></v-spacer>
-                        <v-checkbox dark v-model="supplementArray[index]" readonly></v-checkbox>
-                      </v-card-actions>
-                    </v-card>
-                  </v-row>
-
-                </div>
-              </div>
-            </v-carousel-item>
-          </v-carousel>
-        </div>
-        -->
         <div :style="{height : settings.custom.title.marginT + 'px'}"></div>
         <h1 class="apply-font-titleFont" :style="{
           fontSize : settings.custom.title.fontSize + 'px',

@@ -8,7 +8,7 @@
                     <div class="pictureLeft">
                         <v-img :src="settings.icon.iconOUT.url"></v-img>
                     </div>
-                    <p class="text apply-font-OUT" :style="{ fontSize: settings.icon.iconOUT.fontSize + 'px',
+                    <p v-if="settings.icon.iconOUT.withText" class="text apply-font-OUT" :style="{ fontSize: settings.icon.iconOUT.fontSize + 'px',
                                                 color : settings.icon.iconOUT.fontColor,
                                                 marginTop : settings.icon.iconOUT.marginTop +'px'
                      }">
@@ -19,7 +19,7 @@
                     <div class="pictureLeft">
                         <v-img :src="settings.icon.iconIN.url"></v-img>
                         </div>
-                    <p class="text apply-font-IN" :style="{ fontSize : settings.icon.iconIN.fontSize +'px',
+                    <p v-if="settings.icon.iconIN.withText" class="text apply-font-IN" :style="{ fontSize : settings.icon.iconIN.fontSize +'px',
                                             color : settings.icon.iconIN.fontColor,
                                             marginTop : settings.icon.iconIN.marginTop +'px'
                     }">

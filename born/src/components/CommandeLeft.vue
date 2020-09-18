@@ -1,8 +1,7 @@
 <template>
 <div>
-<div :style="{width : settings.list.recap.largeur+'px',height:'100vh',float :'right'}"></div>
+<div :style="{width : settings.list.recap.largeur+'px',minHeight:'500px',float :'right'}"></div>
     <div class="recap" :style="{
-      borderBottom :settings.list.recap.borderB ? settings.list.recap.borderSize+'px solid' +settings.list.recap.borderColor : '' ,
       borderTop :settings.list.recap.borderT ? settings.list.recap.borderSize+'px solid' +settings.list.recap.borderColor : '' ,
       borderLeft :settings.list.recap.borderG ? settings.list.recap.borderSize+'px solid' +settings.list.recap.borderColor : '' ,
       borderRight :settings.list.recap.borderD ? settings.list.recap.borderSize+'px solid' +settings.list.recap.borderColor : '' ,
@@ -14,7 +13,7 @@
     <div :style="{
       backgroundColor : settings.list.recap.backgroundColorTitle,
       height : settings.list.recap.heightTitle +'px',
-      borderBottom :settings.list.recap.borderTC ? settings.list.recap.borderTCSize+'px solid' +settings.list.recap.borderTCColor : '' 
+      borderBottom : settings.list.recap.borderTCSize+'px solid' +settings.list.recap.borderTCColor  
     }">
     <div :style="{height : settings.list.recap.heightTitle/2- settings.list.recap.fontSizeTitle + 'px',}"
     ></div>

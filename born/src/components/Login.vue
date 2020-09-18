@@ -103,7 +103,9 @@ export default {
         error : '',
         settings:null,
         loader : false,
-        dialogError : false
+        dialogError : false,
+        fontLoad : false,
+        picLoad : false,
     }
   },
   methods : {
@@ -179,6 +181,7 @@ export default {
           xhr.onload = function() {
             let bs = JSON.parse(xhr.response);
             self.settings = bs;
+            self.loadFont();
             self.$store.commit('ADD_BORNESETTINGS',bs);
             self.initPic();
           }
@@ -194,18 +197,28 @@ export default {
           console.log("file not found");
       });
     },
+    goNext(){
+      if(this.settings!=null && this.fontLoad && this.picLoad)
+        this.$router.replace('/Carrousel');
+      else setInterval(function(){
+        this.goNext();
+      },1000);
+    },
     initPic(){
       let pictureRef = fb.storage().ref('dataOfUser/' + this.$store.getters.user.email + '/BorneSetting/picure');
       const self = this;
-      const max = this.$store.getters.borneSettings.firstPage.nbDiapo; 
+      const max = self.settings.firstPage.nbDiapo; 
+      console.log(max);
       for(let x=0;x<max;x++){
         pictureRef.child('slide' + x + '.png').getDownloadURL().then(function(url) {
           let xhr = new XMLHttpRequest();
           xhr.responseType = 'blob';
           xhr.onload = function() {
             self.$store.commit('ADD_PICLINK',[x,URL.createObjectURL(xhr.response)]);
-            if(x==max - 1)
-              self.$router.replace('/Carrousel');
+            if(x==max - 1){
+              self.picLoad = true;
+              self.goNext();
+            }
           }
           xhr.open('GET',url);
           xhr.send();
@@ -350,6 +363,7 @@ export default {
           pickerId : 'diapoFont'
         },
     );
+    this.fontLoad = true;
     }
   }
 

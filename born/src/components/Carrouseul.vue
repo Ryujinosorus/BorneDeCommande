@@ -32,17 +32,6 @@ export default {
 	created: function() {
     console.log(this.settings);
     this.allPics = this.$store.getters.getAllPics;
-    for(let x=0;x<this.allPics.length;x++){
-      let xhr = new XMLHttpRequest();
-      xhr.responseType = 'blob';
-      const self= this;
-      xhr.onload = function() {
-       self.allPics[x] = URL.createObjectURL(xhr.response);
-      }
-      xhr.open('GET',this.allPics[x]);
-      xhr.send();
-    }
-
     let self = this;
 		setInterval(function() {
       self.tmp = (self.tmp+1) % self.settings.firstPage.nbDiapo ;
