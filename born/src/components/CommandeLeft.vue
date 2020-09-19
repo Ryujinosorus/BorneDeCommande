@@ -42,11 +42,12 @@
 
         <!-- + ET - -->
         <div>
-          <v-row>
+          <v-row :style="{marginLeft : '1px'}">
               <p class="apply-font-commandeDetail" :style="{
-              fontSize : settings.list.recap.commandeDetailSize +'px',
+              fontSize : '40px',
               color : settings.list.recap.commandeDetailColor,
-            }">Quantité :  </p>
+            }">  Quantité :  
+            </p>
           <v-btn elevation="0" @click="data.nb++" :height="settings.list.recap.btnPlus.hauteur" :style="{minWidth : '0px',width : settings.list.recap.btnPlus.largeur + 'px',
                                                                                                           marginTop : settings.list.recap.btnPlus.marginT + 'px',
                                                                                                           marginLeft : settings.list.recap.btnPlus.marginL + 'px',

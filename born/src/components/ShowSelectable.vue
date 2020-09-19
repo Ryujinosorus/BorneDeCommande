@@ -1,14 +1,16 @@
 <template>
     <div>
         <div>
-            <h1 :style="{fontSize : settings.custom.nomPlat.fontSize + 'px',
+            <h1 
+            class="apply-font-nomPlatFont"
+            :style="{fontSize : settings.custom.nomPlat.fontSize + 'px',
                         color : settings.custom.nomPlat.fontColor,
                         marginTop : settings.custom.nomPlat.marginT + 'px',
                         marginLeft : settings.custom.nomPlat.marginL + 'px',
             }">{{selectable.nom}}</h1>
         </div>
         <div v-for="(content) in selectable.content" :key="content.nom">
-        <h1  v-if="reRenderText" class="apply-font-nomPlatFont" :style="{
+        <h1  v-if="reRenderText" class="apply-font-nomDetailFont" :style="{
             color : settings.custom.nomDetail.fontColor,
             marginTop : settings.custom.nomDetail.marginT + 'px',
             marginLeft : settings.custom.nomDetail.marginL + 'px',
@@ -34,12 +36,12 @@
                 width : settings.custom.cardDetail.largeur + 'px',
                 marginLeft:settings.custom.cardDetail.marginL + 'px',
                 marginTop:settings.custom.cardDetail.marginT + 'px',
-                backgroundColor : 'blue'
+                backgroundColor : settings.custom.cardDetail.backgroundColor
                 }"
                 >
                 <v-img
                 :src='detail.url'
-                    :height="settings.custom.cardDetail.hauteur - 50"
+                    :height="settings.custom.cardDetail.imgHeight"
                 ></v-img>
                 <div>
                     <p

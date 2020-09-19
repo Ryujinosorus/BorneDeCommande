@@ -328,6 +328,7 @@ export default {
         limit: 150,
       }
     );
+    console.log(this.settings.custom.nomDetail.font);
 
     new FontPicker(
       "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",

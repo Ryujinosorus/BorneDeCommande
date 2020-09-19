@@ -195,8 +195,9 @@
         </div>
         </div>
           <div :style="{
-            height :  settings.custom.cancelBTN.hauteur + settings.custom.cancelBTN.borderSize > settings.custom.addBTN.hauteur + settings.custom.addBTN.borderSize ? settings.custom.cancelBTN.hauteur + settings.custom.cancelBTN.borderSize : settings.custom.addBTN.hauteur + settings.custom.addBTN.borderSize + 'px',
-            marginTop : settings.custom.cancelBTN.marginT + 'px',
+            height : getMaxHeight() + 'px',
+            backgroundColor : settings.custom.backgroundColor,
+            width : '100%'
             }"></div>
       </v-card>
     </v-dialog>
@@ -217,6 +218,11 @@ export default {
     };
   },
   methods: {
+    getMaxHeight(){
+      let cancelBtnHeight = this.settings.custom.cancelBTN.hauteur + this.settings.custom.cancelBTN.borderSize + this.settings.custom.cancelBTN.marginT;
+      let addBtnHeight = this.settings.custom.addBTN.hauteur + this.settings.custom.addBTN.borderSize + this.settings.custom.addBTN.marginT;
+      return cancelBtnHeight>addBtnHeight ? cancelBtnHeight : addBtnHeight;
+    },
     clickOnCard(data) {
       this.allSelectable = {...this.$store.getters.menuByPlat[data.nom]};
 
