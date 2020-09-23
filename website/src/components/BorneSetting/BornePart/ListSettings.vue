@@ -8,92 +8,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr id="dropdown-example">
-                <td> Type Affichage </td>
-                <td>
-                <v-overflow-btn 
-                v-model="type"
-                @change="setHaveRecap"
-                :items="dropdown_rooms" 
-                    filled
-                    label="Nothing Selected" 
-                    segmented 
-                        target="#dropdown-example">
-                </v-overflow-btn>
-                </td>
-            </tr>
-
-            <!-- VRAC -->
-                <tr v-for="largeur in getVrac" :key="largeur +'L'">
-                    <td style="max-width : 150px"><v-img :src="largeur[1]"></v-img></td>
-                    <td style="width :550px">
-                        <v-slider
-                            v-model="borne.list['Désorganisé'][largeur[0]]['largeur']"
-                            class="align-center"
-                            label="largeur"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
-                            hide-details
-                        >
-                            <template v-slot:append>
-                            <v-text-field
-                                v-model="borne.list['Désorganisé'][largeur[0]]['largeur']"
-                                class="mt-0 pt-0"
-                                hide-details
-                                single-line
-                                type="number"
-                                step='0.1'
-                                style="width: 60px"
-                            ></v-text-field>
-                            </template>
-                        </v-slider>
-                        <v-slider
-                            v-model="borne.list['Désorganisé'][largeur[0]]['hauteur']"
-                            class="align-center"
-                            label="Hauteur"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
-                            hide-details
-                        >
-                            <template v-slot:append>
-                            <v-text-field
-                                v-model="borne.list['Désorganisé'][largeur[0]]['hauteur']"
-                                class="mt-0 pt-0"
-                                hide-details
-                                single-line
-                                type="number"
-                                step='0.1'
-                                style="width: 60px"
-                            ></v-text-field>
-                            </template>
-                        </v-slider>
-
-                        <v-slider
-                        label="espacement"
-                            v-model="borne.list['Désorganisé'][largeur[0]]['espacement']"
-                            class="align-center"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
-                            hide-details
-                        >
-                            <template v-slot:append>
-                            <v-text-field
-                                v-model="borne.list['Désorganisé'][largeur[0]]['espacement']"
-                                class="mt-0 pt-0"
-                                hide-details
-                                single-line
-                                type="number"
-                                step='0.1'
-                                style="width: 60px"
-                            ></v-text-field>
-                            </template>
-                        </v-slider>
-
-
-                    </td>
-                </tr>
-            <!--  ALIGNE -->
-                <tr v-if="type == 'Organisé' || type =='Organisé + recap'">
+                <tr>
                     <td> Hauteur </td>
                     <td>
                          <v-slider
@@ -117,7 +32,7 @@
                         </v-slider>
                     </td>
                 </tr>
-                <tr v-if="type == 'Organisé' || type =='Organisé + recap'">
+                <tr>
                     <td >Largeur </td>
                     <td>
                          <v-slider
@@ -141,7 +56,7 @@
                         </v-slider>
                     </td>
                 </tr>
-                <tr v-if="type == 'Organisé' || type =='Organisé + recap'">
+                <tr>
                     <td >Espacement </td>
                     <td>
                          <v-slider
@@ -165,7 +80,7 @@
                         </v-slider>
                     </td>
                 </tr>
-                <tr v-if="type == 'Organisé' || type =='Organisé + recap'">
+                <tr >
                     <td>Espacement gauche</td>
                     <td>
                                                  <v-slider
@@ -178,145 +93,6 @@
                             <template v-slot:append>
                             <v-text-field
                                 v-model="borne.list['Organisé']['espacementG']"
-                                class="mt-0 pt-0"
-                                hide-details
-                                single-line
-                                type="number"
-                                step='0.1'
-                                style="width: 60px"
-                            ></v-text-field>
-                            </template>
-                        </v-slider>
-                    </td>
-                </tr>
-            <!--  MENU DEROULANTS -->
-                <tr v-if="type == 'Menu déroulant' || type == 'Menu déroulant + récap'">
-                    <td>Largeur case</td>
-                    <td>
-                         <v-slider
-                            v-model="borne.list['Menu déroulant']['largeur']"
-                            class="align-center"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
-                            hide-details
-                        >
-                            <template v-slot:append>
-                            <v-text-field
-                                v-model="borne.list['Menu déroulant']['largeur']"
-                                class="mt-0 pt-0"
-                                hide-details
-                                single-line
-                                type="number"
-                                step='0.1'
-                                style="width: 60px"
-                            ></v-text-field>
-                            </template>
-                        </v-slider>
-                    </td>
-                </tr>
-                <tr v-if="type == 'Menu déroulant' || type == 'Menu déroulant + récap'">
-                    <td>Hauteur case</td>
-                    <td>
-                         <v-slider
-                            v-model="borne.list['Menu déroulant']['hauteur']"
-                            class="align-center"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
-                            hide-details
-                        >
-                            <template v-slot:append>
-                            <v-text-field
-                                v-model="borne.list['Menu déroulant']['hauteur']"
-                                class="mt-0 pt-0"
-                                hide-details
-                                single-line
-                                type="number"
-                                step='0.1'
-                                style="width: 60px"
-                            ></v-text-field>
-                            </template>
-                        </v-slider>
-                    </td>
-                </tr>
-                <tr v-if="type == 'Menu déroulant' || type == 'Menu déroulant + récap'">
-                    <td>Decallage gauche</td>
-                    <td>
-                         <v-slider
-                            v-model="borne.list['Menu déroulant']['marin']"
-                            class="align-center"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
-                            hide-details
-                        >
-                            <template v-slot:append>
-                            <v-text-field
-                                v-model="borne.list['Menu déroulant']['margin']"
-                                class="mt-0 pt-0"
-                                hide-details
-                                single-line
-                                type="number"
-                                step='0.1'
-                                style="width: 60px"
-                            ></v-text-field>
-                            </template>
-                        </v-slider>
-                    </td>
-                </tr>
-                <tr v-if="type == 'Menu déroulant' || type == 'Menu déroulant + récap'">
-                    <td>Hauteur menu</td>
-                    <td>
-                         <v-slider
-                            v-model="borne.list['Menu déroulant']['hauteurMenu']"
-                            class="align-center"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
-                            hide-details
-                        >
-                            <template v-slot:append>
-                            <v-text-field
-                                v-model="borne.list['Menu déroulant']['hauteurMenu']"
-                                class="mt-0 pt-0"
-                                hide-details
-                                single-line
-                                type="number"
-                                step='0.1'
-                                style="width: 60px"
-                            ></v-text-field>
-                            </template>
-                        </v-slider>
-                    </td>
-                </tr>
-                <tr v-if="type == 'Menu déroulant' || type == 'Menu déroulant + récap'">
-                    <td>Avec text</td>
-                    <td> 
-                        <v-switch @change="switchWithText" :input-value="borne.list['Menu déroulant']['withText']"></v-switch>
-                    </td>
-                </tr>
-                <tr v-show="showTextDesc">
-                    <td>Font</td>
-                    <td>
-                        <div id="font-picker-menu"></div>
-                    </td>
-                </tr>
-                <tr v-if="showTextDesc">
-                    <td>Color</td>
-                    <td>
-                        <v-color-picker mode="hexa" hide-mode-switch @update:color="changeMenuColor" :value="borne.list['Menu déroulant']['fontColor']" class="ma-2"></v-color-picker>
-                    </td>
-                </tr>
-                <tr v-if="showTextDesc">
-                    <td>Font Size</td>
-                    <td>
-                         <v-slider
-                            v-model="borne.list['Menu déroulant']['fontSize']"
-                            class="align-center"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
-                            hide-details
-                        >
-                            <template v-slot:append>
-                            <v-text-field
-                                v-model="borne.list['Menu déroulant']['fontSize']"
                                 class="mt-0 pt-0"
                                 hide-details
                                 single-line
@@ -493,17 +269,6 @@ export default {
     props : ['borne','globalSettings'],
     data(){
         return{
-                  dropdown_rooms: [
-                { text: 'Désorganisé', callback: () => console.log('room1')},
-                { text: 'Désorganisé + récap', callback: () => console.log('room3') },
-                { text: 'Organisé', callback: () => console.log('room3') },
-                { text: 'Organisé + recap', callback: () => console.log('room3') },
-                { text: 'Menu déroulant', callback: () => console.log('room3') },
-                { text: 'Menu déroulant + recap', callback: () => console.log('room3') }
-            ],
-        type:'',
-        isVrac : false,
-        haveRecap : false,
         showTextDesc : false,
         }
     },
@@ -552,20 +317,7 @@ export default {
             else return [];
         }
     },
-    created(){
-        this.type = this.borne.type;
-        this.showTextDesc = this.borne.list['Menu déroulant']['withText'];
-    },
     mounted(){
-        let fontMenu = new FontPicker(
-            'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
-            this.borne.list['Menu déroulant']['font'],
-            {   
-                pickerId: "menu",
-                limit: this.globalSettings.nbFont 
-            },
-        );
-        fontMenu.setOnChange((font) => this.borne.list['Menu déroulant']['font'] = font.family);
     
         let fontTextCate = new FontPicker(
             'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 

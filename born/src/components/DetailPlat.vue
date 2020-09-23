@@ -7,7 +7,10 @@
         {{data.nom}}</h2>
     <div v-for="(content,index) in data.content" :key="index">
     <div>
-        <h1>{{content.nom}}</h1>
+        <h1 class="apply-font-nomCate" :style="{
+            fontSize : settings.list.recap.nomCateTitleSize + 'px',
+            color : settings.list.recap.nomCateColor
+            }">{{content.nom}}</h1>
         <p class="apply-font-commandeDetail" :style="{
         fontSize : settings.list.recap.commandeDetailSize +'px',
         color : settings.list.recap.commandeDetailColor,

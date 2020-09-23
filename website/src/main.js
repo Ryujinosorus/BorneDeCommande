@@ -73,7 +73,7 @@ import CustomAddBtn from './components/BorneSetting/CustomAddBtn';
 import CustomCancelBtn from './components/BorneSetting/CustomCancelBtn';
 import RecapBTNMinus from './components/BorneSetting/RecapBTNMinus';
 import RecapBTNPlus from './components/BorneSetting/RecapBTNPlus';
-
+import RecapNomCate from './components/BorneSetting/RecapNomCate';
 import DeleteCustom from './components/Carte/Custom/DeleteCustom'
 
 Vue.config.productionTip = false;
@@ -142,7 +142,7 @@ Vue.component('app-customTitleCate',CustomTitleCate);
 Vue.component('app-customTitlePlat',CustomTitlePlat);
 Vue.component('app-customAddBtn',CustomAddBtn);
 Vue.component('app-customCancelBtn',CustomCancelBtn);
-
+Vue.component('app-recapNomCate',RecapNomCate);
 Vue.component('app-deleteCustom',DeleteCustom);
 Vue.component('app-recapBTNMinus',RecapBTNMinus);
 Vue.component('app-recapBTNPlus',RecapBTNPlus);

@@ -92,6 +92,12 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
+          <v-expansion-panel-header>Récapitulatif d'une commande : Nom d'une catégorie</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-recapNomCate :borne="borne" :globalSettings="globalSettings"></app-recapNomCate>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
           <v-expansion-panel-header>Récapitulatif d'une commade : details</v-expansion-panel-header>
           <v-expansion-panel-content>
             <app-recapCommande :borne="borne" :globalSettings="globalSettings"></app-recapCommande>

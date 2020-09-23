@@ -149,8 +149,7 @@
             height : settings.custom.cancelBTN.hauteur + 'px',
             width : settings.custom.cancelBTN.largeur + 'px',
             marginTop : settings.custom.cancelBTN.marginT + 'px',
-            marginLeft : settings.custom.cancelBTN.marginG + 'px',
-            backgroundColor : settings.custom.cancelBTN.backgroundColor,
+            marginLeft : settings.custom.cancelBTN.marginD + 'px',
             backgroundImage :'url(' +  settings.custom.cancelBTN.url + ')',
             float :'left',
             backgroundSize : 'cover',
@@ -174,8 +173,7 @@
             height : settings.custom.addBTN.hauteur + 'px',
             width : settings.custom.addBTN.largeur + 'px',
             marginTop : settings.custom.addBTN.marginT + 'px',
-            marginRight : settings.custom.addBTN.marginR + 'px',
-            backgroundColor : settings.custom.addBTN.backgroundColor,
+            marginRight : settings.custom.addBTN.marginG + 'px',
             float : 'right',
             backgroundImage :'url(' +  settings.custom.addBTN.url + ')',
             backgroundSize : 'cover',
@@ -188,7 +186,7 @@
             }">
                 <h2 :style="{
                     textAlign :'center',
-                    fontSize : settings.vcustom.addBTN.fontSize +'px',
+                    fontSize : settings.custom.addBTN.fontSize +'px',
                     color : settings.custom.addBTN.fontColor
                     }" class="apply-font-nextFont">{{settings.custom.addBTN.text}}</h2>
             </div>

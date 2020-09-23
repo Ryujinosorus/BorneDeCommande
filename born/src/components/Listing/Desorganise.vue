@@ -1,12 +1,12 @@
 <template>
 <div style="height : 100vh">
   <app-commandeLeft :settings="settings"></app-commandeLeft>
+  <keep-alive>
     <v-row :style="{backgroundColor : settings.list.recap.backgroundColorCate,
                     minHeight : '100vh'
                     }">
       <div v-for="data in settings.categorie" :key="data[0]">
-        <router-link :to="'Show/'+data[0]" v-if="canShow(data[0])">
-        <v-card :height="settings.list['Organisé']['hauteur']" :width="settings.list['Organisé']['largeur']" :style="{
+        <v-card @click="goTo(data[0])" :height="settings.list['Organisé']['hauteur']" :width="settings.list['Organisé']['largeur']" :style="{
           marginLeft :settings.list['Organisé']['espacementG'] +'px',
           marginTop :settings.list['Organisé']['espacementT'] +'px',
           border :settings.list.recap.cateBorderSize + 'px solid ' + settings.list.recap.cateBorderColor,
@@ -25,11 +25,11 @@
               class="apply-font-cateTextFont"
                       >{{data[0]}}</p>
         </v-card>
-        </router-link>
       
     
       </div>
     </v-row>
+  </keep-alive>
     </div>
 </template>
 
@@ -37,8 +37,8 @@
   export default {
       props:['settings'],
       methods : {
-        canShow(){
-          return true;
+        goTo(name){
+          this.$router.replace('/Show/'+ name);
         }
       },
   }

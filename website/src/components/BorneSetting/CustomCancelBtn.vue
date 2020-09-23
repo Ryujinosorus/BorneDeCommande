@@ -80,7 +80,7 @@
       </tr>
       <tr>
           <td>
-              Espacement droit
+              Espacement gauche
           </td>
           <td>
             <v-slider
@@ -102,20 +102,6 @@
                 ></v-text-field>
               </template>
             </v-slider>
-          </td>
-      </tr>
-      <tr>
-          <td>
-              Couleur de fond
-          </td>
-          <td>
-            <v-color-picker
-              mode="hexa"
-              hide-mode-switch
-              @update:color="changeBackgrounBTNColor"
-              :value="borne.custom.cancelBTN.backgroundColor"
-              class="ma-2"
-            ></v-color-picker>   
           </td>
       </tr>
       <tr>
@@ -271,9 +257,6 @@ export default {
       }
     },
     methods : {
-        changeBackgrounBTNColor(e){
-            this.borne.custom.cancelBTN.backgroundColor = e.hexa;
-        },
         changeBTNTextColor(e){
           this.borne.custom.cancelBTN.fontColor = e.hexa;
         },

@@ -26,7 +26,10 @@
             fontSize : settings.custom.nomDetail.fontSize + 'px'
             }">Sauce {{content.modifiable.sauce[1].length + '/' + content.maxSauce}}</h3>-->
             <div>
-            <v-row>
+            <v-row :style="{
+                maxHeight : settings.custom.selectDiv.heightSelection + 'px',
+                overflowY: 'scroll'
+            }">
                 <v-card
                 v-for="(detail) in content.data"
                 @click="addDetail(detail,content)"

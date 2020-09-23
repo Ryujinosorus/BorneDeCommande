@@ -147,6 +147,33 @@
               <v-checkbox v-model="borne.custom.selectDiv.borderL"></v-checkbox>
             </td>
           </tr>
+
+          <tr>
+              <td>Hauteur max selection d'une catégorie</td>
+              <td>
+            <v-slider
+              v-model="borne.custom.selectDiv.heightSelection"
+              class="align-center"
+              :max="10000"
+              :min="borne.custom.selectDiv.hauteur + borne.custom.selectDiv.marginT + borne.custom.selectDiv.borderSize  "
+              hide-details
+            >
+              <template v-slot:append>
+                <v-text-field
+                  v-model="borne.custom.selectDiv.heightSelection"
+                  class="mt-0 pt-0"
+                  hide-details
+                  step="0.1"
+                  single-line
+                  type="number"
+                  style="width: 60px"
+                ></v-text-field>
+              </template>
+            </v-slider>
+              </td>
+          </tr>
+
+      
       </tbody>
   </table>
 </template>

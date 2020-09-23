@@ -46,45 +46,16 @@ export default class BorneSetting{
             }
             },
             this.categorie = [
+                ['exemple1','https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCategoriePicture.jpg?alt=media&token=8ed67476-31f0-468d-a092-b8f28a8d16b3'],
+                ['exemple2','https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCategoriePicture.jpg?alt=media&token=8ed67476-31f0-468d-a092-b8f28a8d16b3']
             ],
             this.list = {
-            "DÃ©sorganisÃ©":{
-            "Pain":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            },
-            "Pizza":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            },
-            "Gallette":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            },
-            "Dessert":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            },
-            "Accompagnement":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            },
-            "Boissons":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            }
-            },
             "Organisé":{
-            "hauteur":350,
-            "largeur":300,
-            "espacementT":100,
-            "espacementG":100
+                "hauteur":350,
+                "largeur":300,
+                "espacementT":100,
+                "espacementG":100,
+                'rounded' : 4
             },
             "Menu dÃ©roulant":{
             "largeur":50,

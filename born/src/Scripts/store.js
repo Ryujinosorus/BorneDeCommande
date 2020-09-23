@@ -103,6 +103,7 @@ const store = new Vuex.Store({
       }
       xhr5.open('GET', state.borneSettings.valid.nextBTN.url);
       xhr5.send();
+      return 2;
     },
     ADD_PICLINK(state, data) {
       if (state.allPics.length == 0)
@@ -157,6 +158,24 @@ const store = new Vuex.Store({
       (state.menuByPlat);
     },
     ADD_SELECTABLE(state,com){
+      
+      for(let i=0;i<state.commande.length;i++){
+        let curentCustom = state.commande[i];
+        let isTheSame = true;
+        let j=0;
+        if(curentCustom.nom != com.nom)
+          isTheSame = false;
+        while(isTheSame && j<com.content.length){
+          for(let k=0;k<com.content[j].data.length;k++)
+            if(com.content[j].data[k].selected !=curentCustom.content[j].data[k].selected)
+              isTheSame = false;
+          j++;
+        }
+        if(isTheSame){
+          curentCustom.nb++;
+          return;
+        }
+      }
       state.commande.push(com);
     },
     DEL_COMMANDE(state,com){

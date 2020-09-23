@@ -48,53 +48,11 @@ export default class BorneSetting{
             this.categorie = [
             ],
             this.list = {
-            "DÃ©sorganisÃ©":{
-            "Pain":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            },
-            "Pizza":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            },
-            "Gallette":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            },
-            "Dessert":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            },
-            "Accompagnement":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            },
-            "Boissons":{
-            "largeur":null,
-            "hauteur":null,
-            "espacement":null
-            }
-            },
             "Organisé":{
             "hauteur":350,
             "largeur":300,
             "espacementT":100,
             "espacementG":100
-            },
-            "Menu dÃ©roulant":{
-            "largeur":50,
-            "hauteur":50,
-            "margin":50,
-            "hauteurMenu":1000,
-            "withText":false,
-            "fontSize":15,
-            "fontColor":"#00FFF",
-            "font":"Open Sans"
             },
             "recap":{
                 "largeur":411,
@@ -142,6 +100,11 @@ export default class BorneSetting{
                 "cateBorderColor":"#CFC9C9FF",
                 "cateBackgroundColor":"#F79E55FF",
 
+
+                "nomCateColor" : '#E12A34',
+                "nomCateFont" : 'Calibri',
+                "nomCateTitleSize" : 20,
+                
                 'btnPlus' : {
                     'largeur' : 25,
                     'hauteur' : 25,
@@ -231,6 +194,7 @@ export default class BorneSetting{
                     'borderL' : true,
                     'borderT' : true,
                     'borderB' : true,
+                    'heightSelection' : 1000
                 },
                 'title' : {
                     'font' : 'Open sans',

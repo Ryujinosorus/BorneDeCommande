@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div v-if="settings == null">
+      <div v-if="!start">
         <section id="about-me">
             <div class="py-12"></div>
 
@@ -32,7 +32,7 @@
               <i class="fas fa-lock marginAuto"></i>
               <input type="password" placeholder="Mot de passe" v-model="password" />
             </div>
-            <v-btn :loading="loader" @click="login()">Connexion</v-btn>
+            <v-btn :disabled="loader" :loading="loader" @click="login()">Connexion</v-btn>
           </form>
 
             </v-card>
@@ -65,6 +65,9 @@
         <div id="font-picker-IN"></div>
         <div id="font-picker-OUT"></div>
         <div id="font-picker-diapoFont"></div>
+        <div id="font-picker-backFont"></div>
+        <div id="font-picker-nextFont"></div>
+        <div id="font-picker-nomCate"></div>
       </div>
 
     <v-dialog v-model="dialogError" persistent max-width="290">
@@ -103,6 +106,7 @@ export default {
         error : '',
         settings:null,
         loader : false,
+        start : false,
         dialogError : false,
         fontLoad : false,
         picLoad : false,
@@ -183,6 +187,7 @@ export default {
             self.settings = bs;
             self.loadFont();
             self.$store.commit('ADD_BORNESETTINGS',bs);
+            console.log(bs);
             self.initPic();
           }
 
@@ -192,17 +197,22 @@ export default {
         let bs = new BorneSetting();
         self.settings = bs;
         self.loadFont();
-          self.$store.commit('ADD_BORNESETTINGS', bs);
+          self.$store.commit('ADD_BORNESETTINGS', bs).then(x=> console.log(x));
           self.initPic();
           console.log("file not found");
       });
     },
     goNext(){
-      if(this.settings!=null && this.fontLoad && this.picLoad)
-        this.$router.replace('/Carrousel');
-      else setInterval(function(){
-        this.goNext();
-      },1000);
+      let self = this;
+      setTimeout(        
+        function(){
+          if(self.picLoad && self.fontLoad){
+            self.start = true;
+            self.$router.replace('/Carrousel');
+          }
+          else self.goNext();
+        },
+        1000);  
     },
     initPic(){
       let pictureRef = fb.storage().ref('dataOfUser/' + this.$store.getters.user.email + '/BorneSetting/picure');
@@ -228,7 +238,8 @@ export default {
           xhr.onload = function() {
             self.$store.commit('ADD_PICLINK',[x,URL.createObjectURL(xhr.response)]);
             if(x==max - 1){
-              self.$router.replace('/Carrousel');
+              self.picLoad = true;
+              self.goNext();
             }
           }
           xhr.open('GET','https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334');
@@ -364,6 +375,33 @@ export default {
           pickerId : 'diapoFont'
         },
     );
+
+    new FontPicker(
+        'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
+        this.settings.custom.cancelBTN.font, 
+        { 
+          limit: 150,
+          pickerId : 'backFont'
+        },
+    );
+    new FontPicker(
+        'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
+        this.settings.custom.addBTN.font, 
+        { 
+          limit: 150,
+          pickerId : 'nextFont'
+        },
+    );
+
+    new FontPicker(
+        'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
+        this.settings.list.recap.nomCateFont, 
+        { 
+          limit: 150,
+          pickerId : 'nomCate'
+        },      
+    )
+
     this.fontLoad = true;
     }
   }

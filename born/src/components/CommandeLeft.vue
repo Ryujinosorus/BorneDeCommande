@@ -83,9 +83,12 @@
         backgroundColor : settings.list.recap.backgroundColorBouttonCommander,
         color : settings.list.recap.fontColorBouttonCommander,
         fontSize : settings.list.recap.fontSizeBouttonCommander + 'px',
-        height : '100%'
+        height : windowHeight - settings.list.recap.heightTitle -  settings.list.recap.detailTitle + settings.list.recap.borderTCSize + 'px',
+        display : 'flex',
+        justifyContent : 'center',
+        alignItems : 'center'
         }">
-        <p class="apply-font-commandeBoutton centreMoiSaY">{{settings.list.recap.textBouttonCommander}} </p>
+        <p class="apply-font-commandeBoutton abso">{{settings.list.recap.textBouttonCommander}} </p>
       </div>
       </router-link>
     </div>
@@ -119,6 +122,7 @@ export default {
       return{
         dialog : false,
         data : null,
+        windowHeight: window.innerHeight,
       }
     },
     methods : {
@@ -142,6 +146,15 @@ export default {
         this.$store.commit('DEL_COMMANDE',this.data);
         this.dialog = false;
       },
+      onResize() {
+        this.windowHeight = window.innerHeight
+      }
+
+    },
+    mounted (){
+      this.$nextTick(() => {
+        window.addEventListener('resize', this.onResize);
+      })
     },
     computed : {
       getCommande(){
@@ -152,11 +165,7 @@ export default {
 }
 </script>
 <style>
-.centreMoiSaY{
-   height : 100%;
-   width: 100%;
+.abso{
    position: absolute;
-   margin-top: 25%;
-   text-align: center;
 }
 </style>
