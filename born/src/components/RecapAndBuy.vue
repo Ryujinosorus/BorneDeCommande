@@ -25,9 +25,48 @@
         </div>
         <div :style="{
             height : settings.valid.recap.hauteur - settings.valid.recap.titre.height -settings.valid.recap.titre.borderSize -settings.valid.recap.borderSize  + 'px',
-            backgroundColor : 'blue'
+            backgroundColor : settings.valid.recap.backgroundColor,
+            marginTop : - settings.valid.recap.detail.titre.marginT + 'px',
         }">
-
+            <div v-for="(com,index) in commande" :key="index">
+                <div style="display : inline-block">
+                <p 
+                :style="{
+                fontSize :  settings.valid.recap.detail.titre.fontSize + 'px',
+                color : settings.valid.recap.detail.titre.fontColor,
+                marginTop : settings.valid.recap.detail.titre.marginT + 'px',
+                marginLeft : settings.valid.recap.detail.titre.marginL + 'px'
+                }"
+                >{{com.nom}}</p>
+                <p>x2</p>
+                </div>
+                <div v-for="content in com.content" :key="content.nom">
+                    <p
+                    :style="{
+                    fontSize :  settings.valid.recap.detail.detailCategorie.fontSize + 'px',
+                    color : settings.valid.recap.detail.detailCategorie.fontColor,
+                    marginTop : settings.valid.recap.detail.detailCategorie.marginT + 'px',
+                    marginLeft : settings.valid.recap.detail.detailCategorie.marginL + 'px'
+                    }"
+                    >{{content.nom}}</p>
+                    <p
+                    :style="{
+                    fontSize :  settings.valid.recap.detail.categorie.fontSize + 'px',
+                    color : settings.valid.recap.detail.categorie.fontColor,
+                    marginTop : settings.valid.recap.detail.categorie.marginT + 'px',
+                    marginLeft : settings.valid.recap.detail.categorie.marginL + 'px'
+                    }"
+                    >{{fromArrayToString(content.data)}}</p>
+                </div>
+                <p
+                :style="{
+                fontSize :  settings.valid.recap.detail.prix.fontSize + 'px',
+                color : settings.valid.recap.detail.prix.fontColor,
+                marginTop : settings.valid.recap.detail.prix.marginT + 'px',
+                marginLeft : settings.valid.recap.detail.prix.marginL + 'px'
+                }"
+                >{{(parseFloat(getPrice(com))).toFixed(2)}}</p>
+            </div>
         </div>
         </v-card>
         <div>
@@ -111,6 +150,34 @@
 import FontPicker from 'font-picker'
 export default {
     props : ['settings'],
+    data(){
+        return{
+            commande : null
+        }
+    },
+    created(){
+        this.commande = this.$store.getters.commande;
+    },
+    methods:{
+      fromArrayToString(data){
+        let res='';
+        for(let i=0;i<data.length;i++)
+            if(data[i].selected)
+                res += data[i].nom + ', ';
+        if(res =='')
+            return 'Rien';
+        return res.slice(0,res.length-2);
+      },
+      getPrice(data){
+        let prix = parseFloat(data.prix);
+        for(let i=0;i<data.content.length;i++)
+          if(data.content[i].payable)
+            for(let j=0;j<data.content[i].data.length;j++)
+              if(data.content[i].data[j].selected)
+                prix += parseFloat(data.content[i].data[j].price);
+        return (prix);
+      }
+    },
     mounted(){
     new FontPicker(
       "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",

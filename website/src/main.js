@@ -28,6 +28,7 @@ import ListForMenu from './components/Carte/Menu/ListForMenu.vue'
 import ModifieMenu from './components/Carte/Menu/ModifieMenu.vue'
 import SelectTypeForCustom from './components/Carte/Custom/SelectTypeForCustom.vue'
 import DisplayTypeForCustom from './components/Carte/Custom/DisplayTypeForCustom.vue'
+import ValidCommandeRecapDetailsTitre from './components/BorneSetting/ValidCommandeRecapDetailsTitre';
 
 import AjouteCustom from './components/Carte/Custom/AjouteCustom';
 //import BorneFirstPage from './components/BorneSetting/firstPage.vue';
@@ -76,6 +77,9 @@ import RecapBTNPlus from './components/BorneSetting/RecapBTNPlus';
 import RecapNomCate from './components/BorneSetting/RecapNomCate';
 import DeleteCustom from './components/Carte/Custom/DeleteCustom'
 
+import ValidCommandeRecapDetailsPrix from './components/BorneSetting/ValidCommandeRecapDetailsPrix';
+import ValidCommandeRecapDetailsCategorie from './components/BorneSetting/ValidCommandeRecapDetailsCategorie';
+import ValidCommandeRecapDetailsDetailsCategorie from './components/BorneSetting/ValidCommandeRecapDetailsDetailsCategorie';
 Vue.config.productionTip = false;
 var firebaseConfig = {
     apiKey: "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
@@ -146,6 +150,10 @@ Vue.component('app-recapNomCate',RecapNomCate);
 Vue.component('app-deleteCustom',DeleteCustom);
 Vue.component('app-recapBTNMinus',RecapBTNMinus);
 Vue.component('app-recapBTNPlus',RecapBTNPlus);
+Vue.component('app-validCommandeRecapDetailsTitre',ValidCommandeRecapDetailsTitre);
+Vue.component('app-validCommandeRecapDetailsCategorie',ValidCommandeRecapDetailsCategorie);
+Vue.component('app-validCommandeRecapDetailsPrix',ValidCommandeRecapDetailsPrix);
+Vue.component('app-validCommandeRecapDetailsDetailsCategorie',ValidCommandeRecapDetailsDetailsCategorie);
 //Vue.component('app-bornefirstpage',BorneFirstPage);
 
 

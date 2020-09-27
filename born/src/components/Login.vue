@@ -197,7 +197,7 @@ export default {
         let bs = new BorneSetting();
         self.settings = bs;
         self.loadFont();
-          self.$store.commit('ADD_BORNESETTINGS', bs).then(x=> console.log(x));
+          self.$store.commit('ADD_BORNESETTINGS', bs);
           self.initPic();
           console.log("file not found");
       });

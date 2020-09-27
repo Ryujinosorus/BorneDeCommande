@@ -3,16 +3,16 @@ export default class BorneSetting{
         this.firstPage = {
             "nbDiapo":"3",
             'picture' : [
-                        'https://image.freepik.com/vecteurs-libre/ensemble-cadres-photo_98292-7012.jpg',
-                        'https://image.freepik.com/vecteurs-libre/ensemble-cadres-photo_98292-7012.jpg',
-                        'https://image.freepik.com/vecteurs-libre/ensemble-cadres-photo_98292-7012.jpg',
-                        'https://image.freepik.com/vecteurs-libre/ensemble-cadres-photo_98292-7012.jpg',
-                        'https://image.freepik.com/vecteurs-libre/ensemble-cadres-photo_98292-7012.jpg',
-                        'https://image.freepik.com/vecteurs-libre/ensemble-cadres-photo_98292-7012.jpg',
-                        'https://image.freepik.com/vecteurs-libre/ensemble-cadres-photo_98292-7012.jpg',
-                        'https://image.freepik.com/vecteurs-libre/ensemble-cadres-photo_98292-7012.jpg',
-                        'https://image.freepik.com/vecteurs-libre/ensemble-cadres-photo_98292-7012.jpg',
-                        'https://image.freepik.com/vecteurs-libre/ensemble-cadres-photo_98292-7012.jpg'
+                        'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334',
+                        'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334',
+                        'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334',
+                        'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334',
+                        'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334',
+                        'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334',
+                        'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334',
+                        'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334',
+                        'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334',
+                        'https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/data%2Fpicture%2FdefaultCustomPicture.jpg?alt=media&token=cfba1e04-2899-4a0d-9ece-bbc7d1773334',
             ],
             "fontColor":"#00FFF0FF",
             "panelColor":"#00AE55BA",
@@ -49,10 +49,21 @@ export default class BorneSetting{
             ],
             this.list = {
             "Organisé":{
-            "hauteur":350,
-            "largeur":300,
-            "espacementT":100,
-            "espacementG":100
+                "hauteur":350,
+                "largeur":300,
+                "espacementT":100,
+                "espacementG":100,
+                'rounded' : 4
+            },
+            "Menu dÃ©roulant":{
+            "largeur":50,
+            "hauteur":50,
+            "margin":50,
+            "hauteurMenu":1000,
+            "withText":false,
+            "fontSize":15,
+            "fontColor":"#00FFF",
+            "font":"Open Sans"
             },
             "recap":{
                 "largeur":411,
@@ -74,6 +85,7 @@ export default class BorneSetting{
                 "backgroundColorTitle":"#FF8A5DFF",
                 "backgroundColorRecap":"#F1CD92FF",
                 "heightTitle":120,
+                'detailTitle' : 600,
                 "commandeTitleSize":34,
                 "commandeTitleColor":"#FFB400FF",
                 "commandeTitleFont":"Open sans",
@@ -100,11 +112,6 @@ export default class BorneSetting{
                 "cateBorderColor":"#CFC9C9FF",
                 "cateBackgroundColor":"#F79E55FF",
 
-
-                "nomCateColor" : '#E12A34',
-                "nomCateFont" : 'Calibri',
-                "nomCateTitleSize" : 20,
-                
                 'btnPlus' : {
                     'largeur' : 25,
                     'hauteur' : 25,
@@ -194,7 +201,6 @@ export default class BorneSetting{
                     'borderL' : true,
                     'borderT' : true,
                     'borderB' : true,
-                    'heightSelection' : 1000
                 },
                 'title' : {
                     'font' : 'Open sans',
@@ -288,13 +294,42 @@ export default class BorneSetting{
                         'font' : 'Open Sans',
                         'fontSize' : 50,
                         'fontColor' : '#E5Q2A5',
-                        'text' : 'Récapitulatif de la commande',
+                        'text' : 'Votre commande ! ',
                         'borderSize' : 5,
                         'borderColor' : '#AEDC52',
                         'borderT' : true,
                         'borderB' : true,
                         'borderL' : true,
                         'borderR' : true,
+                    },
+                    'detail' : {
+                        'titre' : {
+                            'font' : 'Open Sans',
+                            'fontColor' : '#AE23FA',
+                            'fontSize' : '20',
+                            'marginT' : 5,
+                            'marginL' : 10
+                        },
+                        'categorie' : {
+                            'font' : 'Open Sans',
+                            'fontColor' : '#AE23FA',
+                            'fontSize' : '20',
+                            'marginT' : 5,
+                            'marginL' : 10
+                        },
+                        'detailCategorie' : {
+                            'font' : 'Open Sans',
+                            'fontColor' : '#AE23FA',
+                            'fontSize' : '20',
+                        },
+                        'prix' : {
+                            'font' : 'Open Sans',
+                            'fontColor' : '#AE23FA',
+                            'fontSize' : '20',
+                            'marginT' : 5,
+                            'marginL' : 10
+                        }
+
                     }
                 },
                 'backBTN' : {

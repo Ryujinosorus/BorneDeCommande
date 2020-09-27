@@ -244,12 +244,39 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
-          <v-expansion-panel-header>Validation Commande Récap Détails</v-expansion-panel-header>
+          <v-expansion-panel-header>Validation Commande Récap Détails : titre</v-expansion-panel-header>
           <v-expansion-panel-content>
-            <app-validCommandeRecapDetails
+            <app-validCommandeRecapDetailsTitre
               :borne="borne"
               :globalSettings="globalSettings"
-            ></app-validCommandeRecapDetails>
+            ></app-validCommandeRecapDetailsTitre>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Validation Commande Récap Détails : Nom d'une catégorie</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-validCommandeRecapDetailsCategorie
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-validCommandeRecapDetailsCategorie>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Validation Commande Récap Détails : Détails d'une catégorie</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-validCommandeRecapDetailsDetailsCategorie
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-validCommandeRecapDetailsDetailsCategorie>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Validation Commande Récap Détails : Prix</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-validCommandeRecapDetailsPrix
+              :borne="borne"
+              :globalSettings="globalSettings"
+            ></app-validCommandeRecapDetailsPrix>
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
