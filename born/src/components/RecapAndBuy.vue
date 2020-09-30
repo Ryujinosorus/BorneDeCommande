@@ -27,10 +27,14 @@
             height : settings.valid.recap.hauteur - settings.valid.recap.titre.height -settings.valid.recap.titre.borderSize -settings.valid.recap.borderSize  + 'px',
             backgroundColor : settings.valid.recap.backgroundColor,
             marginTop : - settings.valid.recap.detail.titre.marginT + 'px',
+            overflowY : 'scroll'
         }">
-            <div v-for="(com,index) in commande" :key="index">
-                <div style="display : inline-block">
-                <p 
+            <div v-for="(com,index) in commande" :key="index"
+            :style="{borderBottom : settings.valid.recap.detail.borderSize + 'px solid' + settings.valid.recap.detail.borderColor}"
+            >
+                <div>
+                <p
+                class="apply-font-recapAndBuyTitre" 
                 :style="{
                 fontSize :  settings.valid.recap.detail.titre.fontSize + 'px',
                 color : settings.valid.recap.detail.titre.fontColor,
@@ -38,27 +42,30 @@
                 marginLeft : settings.valid.recap.detail.titre.marginL + 'px'
                 }"
                 >{{com.nom}}</p>
-                <p>x2</p>
                 </div>
                 <div v-for="content in com.content" :key="content.nom">
                     <p
-                    :style="{
-                    fontSize :  settings.valid.recap.detail.detailCategorie.fontSize + 'px',
-                    color : settings.valid.recap.detail.detailCategorie.fontColor,
-                    marginTop : settings.valid.recap.detail.detailCategorie.marginT + 'px',
-                    marginLeft : settings.valid.recap.detail.detailCategorie.marginL + 'px'
-                    }"
-                    >{{content.nom}}</p>
-                    <p
+                    class="apply-font-recapAndBuyCategorie"
                     :style="{
                     fontSize :  settings.valid.recap.detail.categorie.fontSize + 'px',
                     color : settings.valid.recap.detail.categorie.fontColor,
                     marginTop : settings.valid.recap.detail.categorie.marginT + 'px',
                     marginLeft : settings.valid.recap.detail.categorie.marginL + 'px'
                     }"
+                    >
+                                            {{content.nom}}</p>
+                    <p
+                    class="apply-font-recapAndBuyDetailsCategorie"
+                    :style="{
+                    fontSize :  settings.valid.recap.detail.detailCategorie.fontSize + 'px',
+                    color : settings.valid.recap.detail.detailCategorie.fontColor,
+                    marginTop : settings.valid.recap.detail.detailCategorie.marginT + 'px',
+                    marginLeft : settings.valid.recap.detail.detailCategorie.marginL + 'px'
+                    }"
                     >{{fromArrayToString(content.data)}}</p>
                 </div>
                 <p
+                class="apply-font-recapAndBuyPrix"
                 :style="{
                 fontSize :  settings.valid.recap.detail.prix.fontSize + 'px',
                 color : settings.valid.recap.detail.prix.fontColor,

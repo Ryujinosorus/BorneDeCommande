@@ -88,6 +88,44 @@
             </v-slider>
                </td>
            </tr>
+           <tr>
+               <td>Epaisseur bordure entre chaque commande</td>
+               <td>
+            <v-slider
+              v-model="borne.valid.recap.detail.borderSize"
+              class="align-center"
+              :max="500"
+              :min="0"
+              hide-details
+            >
+              <template v-slot:append>
+                <v-text-field
+                  v-model="borne.valid.recap.detail.borderSize"
+                  class="mt-0 pt-0"
+                  hide-details
+                  step="0.1"
+                  single-line
+                  type="number"
+                  style="width: 60px"
+                ></v-text-field>
+              </template>
+            </v-slider>
+               </td>
+           </tr>
+          <tr>
+              <td>
+                  Couleur de la bordure
+              </td>
+              <td>
+            <v-color-picker
+              mode="hexa"
+              hide-mode-switch
+              @update:color="changeValidBorderColorCommandeRecap"
+              :value="borne.valid.recap.detail.borderColor"
+              class="ma-2"
+            ></v-color-picker>
+              </td>
+          </tr>
 
       </tbody>
   </table>
@@ -98,6 +136,9 @@ import FontPicker from 'font-picker'
 export default {
     props : ['borne','globalSettings'],
     methods : {
+      changeValidBorderColorCommandeRecap(e){
+        this.borne.valid.recap.detail.borderColor = e.hexa;
+      },
         changeValidBackgroundColor(e){
             this.borne.valid.backgroundColor = e.hexa
         },

@@ -43,6 +43,12 @@ export default class BorneSetting{
                 "fontColor":"#00FFF",
                 "marginTop":"50",
                 "bgColor":"#00FFF"
+            },
+            'title' : {
+                'fontSize' : 40,
+                'font' : 'Open Sans',
+                'fontColor' : 'E70D26',
+                'marginTop' : 100
             }
             },
             this.categorie = [
@@ -294,13 +300,22 @@ export default class BorneSetting{
                             'marginT' : 5,
                             'marginL' : 10
                         },
+                        'detailCategorie' : {
+                            'font' : 'Open Sans',
+                            'fontColor' : '#AE23FA',
+                            'fontSize' : '20',
+                            'marginT' : 5,
+                            'marginL' : 10
+                        },
                         'prix' : {
                             'font' : 'Open Sans',
                             'fontColor' : '#AE23FA',
                             'fontSize' : '20',
                             'marginT' : 5,
                             'marginL' : 10
-                        }
+                        },
+                        'borderSize' : 2,
+                        'borderColor' : '#fff',
 
                     }
                 },

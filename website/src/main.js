@@ -75,7 +75,9 @@ import CustomCancelBtn from './components/BorneSetting/CustomCancelBtn';
 import RecapBTNMinus from './components/BorneSetting/RecapBTNMinus';
 import RecapBTNPlus from './components/BorneSetting/RecapBTNPlus';
 import RecapNomCate from './components/BorneSetting/RecapNomCate';
-import DeleteCustom from './components/Carte/Custom/DeleteCustom'
+import DeleteCustom from './components/Carte/Custom/DeleteCustom';
+
+import WhereSettingsTitle from './components/BorneSetting/WhereSettingsTitle';
 
 import ValidCommandeRecapDetailsPrix from './components/BorneSetting/ValidCommandeRecapDetailsPrix';
 import ValidCommandeRecapDetailsCategorie from './components/BorneSetting/ValidCommandeRecapDetailsCategorie';
@@ -154,6 +156,8 @@ Vue.component('app-validCommandeRecapDetailsTitre',ValidCommandeRecapDetailsTitr
 Vue.component('app-validCommandeRecapDetailsCategorie',ValidCommandeRecapDetailsCategorie);
 Vue.component('app-validCommandeRecapDetailsPrix',ValidCommandeRecapDetailsPrix);
 Vue.component('app-validCommandeRecapDetailsDetailsCategorie',ValidCommandeRecapDetailsDetailsCategorie);
+
+Vue.component('app-whereSettingsTitle',WhereSettingsTitle);
 //Vue.component('app-bornefirstpage',BorneFirstPage);
 
 

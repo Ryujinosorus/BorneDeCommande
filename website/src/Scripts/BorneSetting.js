@@ -43,6 +43,12 @@ export default class BorneSetting{
             "fontColor":"#00FFF",
             "marginTop":"50",
             "bgColor":"#00FFF"
+            },
+            'title' : {
+                'fontSize' : 40,
+                'font' : 'Open Sans',
+                'fontColor' : 'E70D26',
+                'marginTop' : 100
             }
             },
             this.categorie = [
@@ -174,19 +180,6 @@ export default class BorneSetting{
             }
             },
             this.custom = {
-                /*
-                'toolbar' :{
-                    'height' : 150,
-                    'backgroundColor' : '#eee',
-                    'text' : 'Customisation',
-                    'textColor' :'#eee',
-                    'textSize' : 25,
-                    'font' :'Open Sans',
-                    'btnColor' : '#eee',
-                    'btnSize' : 15,
-                    'marginL' : 25
-                },
-                */
                 'backgroundColor' : '#EE8C01FF',
                 'transition' : 'scroll-y',
 
@@ -321,6 +314,8 @@ export default class BorneSetting{
                             'font' : 'Open Sans',
                             'fontColor' : '#AE23FA',
                             'fontSize' : '20',
+                            'marginT' : 5,
+                            'marginL' : 10
                         },
                         'prix' : {
                             'font' : 'Open Sans',
@@ -328,7 +323,9 @@ export default class BorneSetting{
                             'fontSize' : '20',
                             'marginT' : 5,
                             'marginL' : 10
-                        }
+                        },
+                        'borderSize' : 2,
+                        'borderColor' : '#fff',
 
                     }
                 },

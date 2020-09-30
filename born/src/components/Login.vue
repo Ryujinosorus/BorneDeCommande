@@ -68,6 +68,12 @@
         <div id="font-picker-backFont"></div>
         <div id="font-picker-nextFont"></div>
         <div id="font-picker-nomCate"></div>
+
+        <div id="font-picker-recapAndBuyTitre"></div>
+        <div id="font-picker-recapAndBuyCategorie"></div>
+        <div id="font-picker-recapAndBuyDetailsCategorie"></div>
+        <div id="font-picker-recapAndBuyPrix"></div>
+        <div id="font-picker-iconTitlleFont"></div>
       </div>
 
     <v-dialog v-model="dialogError" persistent max-width="290">
@@ -401,7 +407,46 @@ export default {
           pickerId : 'nomCate'
         },      
     )
-
+    new FontPicker(
+        'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
+        this.settings.valid.recap.detail.titre.font, 
+        { 
+          limit: 150,
+          pickerId : 'recapAndBuyTitre'
+        },      
+    )
+    new FontPicker(
+        'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
+        this.settings.valid.recap.detail.categorie.font, 
+        { 
+          limit: 150,
+          pickerId : 'recapAndBuyCategorie'
+        },      
+    )
+    new FontPicker(
+        'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
+        this.settings.valid.recap.detail.detailCategorie.font, 
+        { 
+          limit: 150,
+          pickerId : 'recapAndBuyDetailsCategorie'
+        },      
+    )
+    new FontPicker(
+        'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
+        this.settings.valid.recap.detail.prix.font, 
+        { 
+          limit: 150,
+          pickerId : 'recapAndBuyPrix'
+        },      
+    )
+    new FontPicker(
+        'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
+        this.settings.icon.title.font, 
+        { 
+          limit: 150,
+          pickerId : 'iconTitlleFont'
+        },      
+    )
     this.fontLoad = true;
     }
   }
