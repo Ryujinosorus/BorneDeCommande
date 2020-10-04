@@ -5,6 +5,7 @@ import Desorganise from './components/Listing/Desorganise';
 import ShowCate from './components/Show.vue';
 import RecapAndBuy from './components/RecapAndBuy';
 import LoadingData from './components/LoadingData';
+import HowPay from './components/HowPay';
 export default[
     {
       path: '/',
@@ -32,5 +33,9 @@ export default[
     {
       path : '/RecapAndBuy',
       component : RecapAndBuy
+    },
+    {
+      path : '/HowPay',
+      component : HowPay
     }
 ]

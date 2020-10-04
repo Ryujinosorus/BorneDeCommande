@@ -143,18 +143,11 @@
         </div>
         </router-link>
         </div>
-        <div class="hidden">
-            <div id="font-picker-textFont"></div>
-            <div id="font-picker-titreRecapFont"></div>
-            <div id="font-picker-backFont"></div>
-            <div id="font-picker-nextFont"></div>
-        </div>
     </div>
     
 </template>
 
 <script>
-import FontPicker from 'font-picker'
 export default {
     props : ['settings'],
     data(){
@@ -184,40 +177,6 @@ export default {
                 prix += parseFloat(data.content[i].data[j].price);
         return (prix);
       }
-    },
-    mounted(){
-    new FontPicker(
-      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
-      this.settings.valid.font,
-      {
-        pickerId: "textFont",
-        limit: 150,
-      }
-    );
-    new FontPicker(
-      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
-      this.settings.valid.recap.titre.font,
-      {
-        pickerId: "titreRecapFont",
-        limit: 150,
-      }
-    );
-    new FontPicker(
-      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
-      this.settings.valid.backBTN.font,
-      {
-        pickerId: "backFont",
-        limit: 150,
-      }
-    );
-    new FontPicker(
-      "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
-      this.settings.valid.nextBTN.font,
-      {
-        pickerId: "nextFont",
-        limit: 150,
-      }
-    );
     }
 }
 </script>

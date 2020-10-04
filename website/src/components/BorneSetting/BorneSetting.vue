@@ -43,9 +43,15 @@
       <h1>Sur place ou a emporter ?</h1>
       <v-expansion-panels focusable>
         <v-expansion-panel>
-          <v-expansion-panel-header>Where</v-expansion-panel-header>
+          <v-expansion-panel-header>Sur Place</v-expansion-panel-header>
           <v-expansion-panel-content>
-            <app-whereSettings :borne="borne" :globalSettings="globalSettings"></app-whereSettings>
+            <app-whereSettingsSurPlace :borne="borne" :globalSettings="globalSettings"></app-whereSettingsSurPlace>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>A emporter</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-whereSettingsEmporter :borne="borne" :globalSettings="globalSettings"></app-whereSettingsEmporter>
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
@@ -301,6 +307,27 @@
               :borne="borne"
               :globalSettings="globalSettings"
             ></app-validCommandeNext>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+      <h1>Ou voulez vous payer ?</h1>
+      <v-expansion-panels focusable>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Carte</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-howPayCB :borne="borne" :globalSettings="globalSettings"></app-howPayCB>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Liquide</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-howPayLiquide :borne="borne" :globalSettings="globalSettings"></app-howPayLiquide>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Where title</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-whereSettingsTitle :borne="borne" :globalSettings="globalSettings"></app-whereSettingsTitle>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>

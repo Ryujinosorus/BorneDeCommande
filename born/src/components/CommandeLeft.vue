@@ -133,7 +133,7 @@ export default {
             for(let j=0;j<data.content[i].data.length;j++)
               if(data.content[i].data[j].selected)
                 prix += parseFloat(data.content[i].data[j].price);
-        return (prix);
+        return (prix*data.nb);
       },
       minusNB(data){
         data.nb--;

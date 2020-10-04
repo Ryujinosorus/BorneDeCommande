@@ -7,7 +7,7 @@
           </td>
           <td>
             <v-slider
-              v-model="borne.icon.title.fontSize"
+              v-model="borne.icon.titleWhere.fontSize"
               class="align-center"
               max="75"
               min="0"
@@ -15,7 +15,7 @@
             >
               <template v-slot:append>
                 <v-text-field
-                  v-model="borne.icon.title.fontSize"
+                  v-model="borne.icon.titleWhere.fontSize"
                   class="mt-0 pt-0"
                   hide-details
                   step="0.1"
@@ -34,7 +34,7 @@
         <tr>
             <td>Couleur de la police</td>
             <td>
-                <v-color-picker mode="hexa" hide-mode-switch @update:color="changeWhereTitle" :value="borne.icon.title.fontColor" class="ma-2"></v-color-picker>
+                <v-color-picker mode="hexa" hide-mode-switch @update:color="changeWhereTitle" :value="borne.icon.titleWhere.fontColor" class="ma-2"></v-color-picker>
             </td>
         </tr>
       <tr>
@@ -43,7 +43,7 @@
           </td>
           <td>
             <v-slider
-              v-model="borne.icon.title.marginTop"
+              v-model="borne.icon.titleWhere.marginTop"
               class="align-center"
               max="250"
               min="0"
@@ -51,7 +51,7 @@
             >
               <template v-slot:append>
                 <v-text-field
-                  v-model="borne.icon.title.marginTop"
+                  v-model="borne.icon.titleWhere.marginTop"
                   class="mt-0 pt-0"
                   hide-details
                   step="0.1"
@@ -73,19 +73,19 @@ export default {
     props : ['borne','globalSettings'],
     methods : {
         changeWhereTitle(){
-            this.borne.icon.title.fontColor;
+            this.borne.icon.titleWhere.fontColor;
         }
     },
     mounted(){
         let iconTitleFont = new FontPicker(
             'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
-            this.borne.icon.title.font,
+            this.borne.icon.titleWhere.font,
             {   
                 pickerId: "iconTitleFont",
                 limit: this.globalSettings.nbFont 
             },
         );
-        iconTitleFont.setOnChange((font) => this.borne.icon.title.font = font.family);
+        iconTitleFont.setOnChange((font) => this.borne.icon.titleWhere.font = font.family);
     }
 }
 </script>

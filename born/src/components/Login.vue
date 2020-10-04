@@ -441,7 +441,7 @@ export default {
     )
     new FontPicker(
         'AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg', 
-        this.settings.icon.title.font, 
+        this.settings.icon.titleWhere.font, 
         { 
           limit: 150,
           pickerId : 'iconTitlleFont'

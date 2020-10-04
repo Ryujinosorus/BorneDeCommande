@@ -77,7 +77,13 @@ import RecapBTNPlus from './components/BorneSetting/RecapBTNPlus';
 import RecapNomCate from './components/BorneSetting/RecapNomCate';
 import DeleteCustom from './components/Carte/Custom/DeleteCustom';
 
+import WhereSettingsSurPlace from './components/BorneSetting/WhereSettingsSurPlace';
 import WhereSettingsTitle from './components/BorneSetting/WhereSettingsTitle';
+import WhereSettingsEmporter from './components/BorneSetting/WhereSettingsEmporter';
+
+import HowPayLiquide from './components/BorneSetting/HowPayLiquide';
+
+import HowPayCB from './components/BorneSetting/HowPayCB';
 
 import ValidCommandeRecapDetailsPrix from './components/BorneSetting/ValidCommandeRecapDetailsPrix';
 import ValidCommandeRecapDetailsCategorie from './components/BorneSetting/ValidCommandeRecapDetailsCategorie';
@@ -156,7 +162,11 @@ Vue.component('app-validCommandeRecapDetailsTitre',ValidCommandeRecapDetailsTitr
 Vue.component('app-validCommandeRecapDetailsCategorie',ValidCommandeRecapDetailsCategorie);
 Vue.component('app-validCommandeRecapDetailsPrix',ValidCommandeRecapDetailsPrix);
 Vue.component('app-validCommandeRecapDetailsDetailsCategorie',ValidCommandeRecapDetailsDetailsCategorie);
+Vue.component('app-howPayLiquide',HowPayLiquide);
+Vue.component('app-howPayCB',HowPayCB);
 
+Vue.component('app-whereSettingsSurPlace',WhereSettingsSurPlace);
+Vue.component('app-whereSettingsEmporter',WhereSettingsEmporter);
 Vue.component('app-whereSettingsTitle',WhereSettingsTitle);
 //Vue.component('app-bornefirstpage',BorneFirstPage);
 

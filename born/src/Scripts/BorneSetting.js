@@ -44,11 +44,37 @@ export default class BorneSetting{
                 "marginTop":"50",
                 "bgColor":"#00FFF"
             },
-            'title' : {
+            'iconCB' : {
+                "url":"https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2FiconIN%2F615BycIO7gL._AC_SX450_.jpg?alt=media&token=05bba819-b6a7-4da5-8e25-43721b9ad9b2",
+                "withText":false,
+                "text":"En carte",
+                "font":"Open Sans",
+                "fontSize":"50",
+                "fontColor":"#00FFF",
+                "marginTop":"50",
+                "bgColor":"#00FFF"
+            },
+            'iconLiquide' : {
+                "url":"https://firebasestorage.googleapis.com/v0/b/bornekebab.appspot.com/o/picture%2FiconSelector%2FiconIN%2F615BycIO7gL._AC_SX450_.jpg?alt=media&token=05bba819-b6a7-4da5-8e25-43721b9ad9b2",
+                "withText":false,
+                "text":"En liquide",
+                "font":"Open Sans",
+                "fontSize":"50",
+                "fontColor":"#00FFF",
+                "marginTop":"50",
+                "bgColor":"#00FFF"
+            },
+            'titleWhere' : {
                 'fontSize' : 40,
                 'font' : 'Open Sans',
                 'fontColor' : 'E70D26',
                 'marginTop' : 100
+            },
+            'titleModeDePaiement' : {
+                'fontSize' : 40,
+                'font' : 'Open Sans',
+                'fontColor' : 'E70D26',
+                'marginTop' : 100         
             }
             },
             this.categorie = [
