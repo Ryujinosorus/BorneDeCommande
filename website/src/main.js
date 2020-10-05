@@ -14,12 +14,11 @@ import Routes from './route'
 import Vuetify from 'vuetify'
 import vuetify from './plugins/vuetify';
 
-//import BorneFirstPage from './components/BorneSetting/firstPage.vue';
+
 
 /* CATEGORIES */
 import DeleteCategorie from './components/Carte/Categories/DeleteCategorie';
 import SaveCategorie from './components/Carte/Categories/SaveCategorie.vue';
-
 
 Vue.component('app-savecategorie',SaveCategorie);
 Vue.component('app-deletecategorie',DeleteCategorie);
@@ -44,89 +43,123 @@ Vue.component('app-deleteCustom',DeleteCustom);
 
 /* BORNE SETTINGS */
 import BorneSettingVue from './components/BorneSetting/BorneSetting.vue';
-import CarrouselSettings from './components/BorneSetting/BornePart/CarrouselSettings';
-import WhereSettings from './components/BorneSetting/BornePart/WhereSettings';
-import IconSelector from './components/BorneSetting/BornePart/IconSelector';
-import ListSettings from './components/BorneSetting/BornePart/ListSettings.vue'
 import SafeBorneSettings from './components/BorneSetting/SaveBorneSettings.vue';
-import ValidCommandeRecapDetailsTitre from './components/BorneSetting/ValidCommandeRecapDetailsTitre';
-import RecapCommande from './components/BorneSetting/RecapCommande';
-import RecapTitre from './components/BorneSetting/RecapTitre';
-import RecapBTNCommander from './components/BorneSetting/RecapBTNCommander';
-import RecapPrix from './components/BorneSetting/RecapPrix';
-import Recap from './components/BorneSetting/Recap'
-import ListPlat from './components/BorneSetting/ListPlat';
-import BackCard from './components/BorneSetting/BackCardMenu';
-import CustomToolbar from './components/BorneSetting/CustomToolbar'
-import CustomVue from './components/BorneSetting/Custom'
-import CustomCarrouselTitle from './components/BorneSetting/CustomCarrouselTitle';
-import CustomSelect from './components/BorneSetting/CustomSelect'
-import CustomCardDeatils from './components/BorneSetting/CustomCardDetail'
-import ValidCommandeGeneral from './components/BorneSetting/ValidCommandeGeneral';
-import ValidCommandeRecap from './components/BorneSetting/ValidCommandeRecap';
-import ValidCommandeRecapTitre from './components/BorneSetting/ValidCommandeRecapTitre';
-import ValidCommandeRecapDetails from './components/BorneSetting/ValidCommandeRecapDetails';
-import ValidCommandeBack from './components/BorneSetting/ValidCommandeBack';
-import ValidCommandeNext from './components/BorneSetting/ValidCommandeNext';
-import CustomTitleCate from './components/BorneSetting/CustomTitleCate';
-import CustomTitlePlat from './components/BorneSetting/CustomTitlePlat';
-import CustomAddBtn from './components/BorneSetting/CustomAddBtn';
-import CustomCancelBtn from './components/BorneSetting/CustomCancelBtn';
-import RecapBTNMinus from './components/BorneSetting/RecapBTNMinus';
-import RecapBTNPlus from './components/BorneSetting/RecapBTNPlus';
-import RecapNomCate from './components/BorneSetting/RecapNomCate';
-import WhereSettingsSurPlace from './components/BorneSetting/WhereSettingsSurPlace';
-import WhereSettingsTitle from './components/BorneSetting/WhereSettingsTitle';
-import WhereSettingsEmporter from './components/BorneSetting/WhereSettingsEmporter';
-import HowPayLiquide from './components/BorneSetting/HowPayLiquide';
-import HowPayCB from './components/BorneSetting/HowPayCB';
-import ValidCommandeRecapDetailsPrix from './components/BorneSetting/ValidCommandeRecapDetailsPrix';
-import ValidCommandeRecapDetailsCategorie from './components/BorneSetting/ValidCommandeRecapDetailsCategorie';
-import ValidCommandeRecapDetailsDetailsCategorie from './components/BorneSetting/ValidCommandeRecapDetailsDetailsCategorie';
 
 Vue.component('app-bornesetting',BorneSettingVue);
 Vue.component('app-safebornesettings',SafeBorneSettings);
-Vue.component('app-whereSettings',WhereSettings)
-Vue.component('app-carrouselSettings',CarrouselSettings);
-Vue.component('app-iconSelector',IconSelector);
-Vue.component('app-listSettings',ListSettings);
-Vue.component('app-recapTitre',RecapTitre);
-Vue.component('app-recapCommande',RecapCommande);
-Vue.component('app-recapBTNCommander',RecapBTNCommander);
-Vue.component('app-recapPrix',RecapPrix);
-Vue.component('app-recap',Recap);
-Vue.component('app-listPlat',ListPlat);
-Vue.component('app-backCardMenu',BackCard);
-Vue.component('app-customToolbar',CustomToolbar);
-Vue.component('app-custom',CustomVue);
-Vue.component('app-customCarrouselTitle',CustomCarrouselTitle);
-Vue.component('app-customSelect',CustomSelect);
-Vue.component('app-customCardDeatils',CustomCardDeatils);
-Vue.component('app-validCommandeGeneral',ValidCommandeGeneral);
-Vue.component('app-validCommandeRecap',ValidCommandeRecap);
-Vue.component('app-validCommandeRecapTitre',ValidCommandeRecapTitre);
-Vue.component('app-validCommandeRecapDetails',ValidCommandeRecapDetails);
-Vue.component('app-validCommandeBack',ValidCommandeBack);
-Vue.component('app-validCommandeNext',ValidCommandeNext);
-Vue.component('app-customTitleCate',CustomTitleCate);
-Vue.component('app-customTitlePlat',CustomTitlePlat);
-Vue.component('app-customAddBtn',CustomAddBtn);
-Vue.component('app-customCancelBtn',CustomCancelBtn);
-Vue.component('app-recapNomCate',RecapNomCate);
-Vue.component('app-recapBTNMinus',RecapBTNMinus);
-Vue.component('app-recapBTNPlus',RecapBTNPlus);
-Vue.component('app-validCommandeRecapDetailsTitre',ValidCommandeRecapDetailsTitre);
-Vue.component('app-validCommandeRecapDetailsCategorie',ValidCommandeRecapDetailsCategorie);
-Vue.component('app-validCommandeRecapDetailsPrix',ValidCommandeRecapDetailsPrix);
-Vue.component('app-validCommandeRecapDetailsDetailsCategorie',ValidCommandeRecapDetailsDetailsCategorie);
-Vue.component('app-howPayLiquide',HowPayLiquide);
-Vue.component('app-howPayCB',HowPayCB);
-Vue.component('app-whereSettingsSurPlace',WhereSettingsSurPlace);
-Vue.component('app-whereSettingsEmporter',WhereSettingsEmporter);
-Vue.component('app-whereSettingsTitle',WhereSettingsTitle);
+
+    /* CARROUSEL */
+    import CarrouselSettings from './components/BorneSetting/BornePart/CarrouselSettings';
+
+    Vue.component('app-carrouselSettings',CarrouselSettings);
+
+    /* WHERE */
+    import WhereSettingsSurPlace from './components/BorneSetting/Where/WhereSettingsSurPlace';
+    import WhereSettingsTitle from './components/BorneSetting/Where/WhereSettingsTitle';
+    import WhereSettingsEmporter from './components/BorneSetting/Where/WhereSettingsEmporter';
+
+    Vue.component('app-whereSettingsSurPlace',WhereSettingsSurPlace);
+    Vue.component('app-whereSettingsEmporter',WhereSettingsEmporter);
+    Vue.component('app-whereSettingsTitle',WhereSettingsTitle);
+    
+    /* RECAP */
+    import RecapCommande from './components/BorneSetting/Recap/RecapCommande';
+    import RecapTitre from './components/BorneSetting/Recap/RecapTitre';
+    import RecapBTNCommander from './components/BorneSetting/Recap/RecapBTNCommander';
+    import RecapPrix from './components/BorneSetting/Recap/RecapPrix';
+    import Recap from './components/BorneSetting/Recap/Recap';
+    import RecapBTNMinus from './components/BorneSetting/Recap/RecapBTNMinus';
+    import RecapBTNPlus from './components/BorneSetting/Recap/RecapBTNPlus';
+    import RecapNomCate from './components/BorneSetting/Recap/RecapNomCate';
+
+    Vue.component('app-recapTitre',RecapTitre);
+    Vue.component('app-recapCommande',RecapCommande);
+    Vue.component('app-recapBTNCommander',RecapBTNCommander);
+    Vue.component('app-recapPrix',RecapPrix);
+    Vue.component('app-recap',Recap);
+    Vue.component('app-recapNomCate',RecapNomCate);
+    Vue.component('app-recapBTNMinus',RecapBTNMinus);
+    Vue.component('app-recapBTNPlus',RecapBTNPlus);
+
+    /* LIST CATEGORIES */
+    import ListSettings from './components/BorneSetting/BornePart/ListSettings.vue'
+
+    Vue.component('app-listSettings',ListSettings);
+
+    /* LIST DES PLATS */
+    import ListPlat from './components/BorneSetting/ListPlat';
+    import BackCard from './components/BorneSetting/BackCardMenu';
+
+    Vue.component('app-listPlat',ListPlat);
+    Vue.component('app-backCardMenu',BackCard);
+
+    /* HOW PAY*/
+    import HowPayLiquide from './components/BorneSetting/HowPay/HowPayLiquide';
+    import HowPayCB from './components/BorneSetting/HowPay/HowPayCB';
+
+    Vue.component('app-howPayLiquide',HowPayLiquide);
+    Vue.component('app-howPayCB',HowPayCB);
+
+    /* VALIDATION DE LA COMMANDE */
+    import ValidCommandeRecapDetailsPrix from './components/BorneSetting/ValidationCommande/ValidCommandeRecapDetailsPrix';
+    import ValidCommandeRecapDetailsCategorie from './components/BorneSetting/ValidationCommande/ValidCommandeRecapDetailsCategorie';
+    import ValidCommandeRecapDetailsDetailsCategorie from './components/BorneSetting/ValidationCommande/ValidCommandeRecapDetailsDetailsCategorie';
+    import ValidCommandeGeneral from './components/BorneSetting/ValidationCommande/ValidCommandeGeneral';
+    import ValidCommandeRecap from './components/BorneSetting/ValidationCommande/ValidCommandeRecap';
+    import ValidCommandeRecapTitre from './components/BorneSetting/ValidationCommande/ValidCommandeRecapTitre';
+    import ValidCommandeRecapDetails from './components/BorneSetting/ValidationCommande/ValidCommandeRecapDetails';
+    import ValidCommandeBack from './components/BorneSetting/ValidationCommande/ValidCommandeBack';
+    import ValidCommandeNext from './components/BorneSetting/ValidationCommande/ValidCommandeNext';
+    import ValidCommandeRecapDetailsTitre from './components/BorneSetting/ValidationCommande/ValidCommandeRecapDetailsTitre';
+
+    Vue.component('app-validCommandeGeneral',ValidCommandeGeneral);
+    Vue.component('app-validCommandeRecap',ValidCommandeRecap);
+    Vue.component('app-validCommandeRecapTitre',ValidCommandeRecapTitre);
+    Vue.component('app-validCommandeRecapDetails',ValidCommandeRecapDetails);
+    Vue.component('app-validCommandeBack',ValidCommandeBack);
+    Vue.component('app-validCommandeNext',ValidCommandeNext);
+    Vue.component('app-validCommandeRecapDetailsTitre',ValidCommandeRecapDetailsTitre);
+    Vue.component('app-validCommandeRecapDetailsCategorie',ValidCommandeRecapDetailsCategorie);
+    Vue.component('app-validCommandeRecapDetailsPrix',ValidCommandeRecapDetailsPrix);
+    Vue.component('app-validCommandeRecapDetailsDetailsCategorie',ValidCommandeRecapDetailsDetailsCategorie);
+
+    /* CUSTOM */
+    import CustomVue from './components/BorneSetting/Custom'
+    import CustomCarrouselTitle from './components/BorneSetting/CustomCarrouselTitle';
+    import CustomSelect from './components/BorneSetting/CustomSelect'
+    import CustomCardDeatils from './components/BorneSetting/CustomCardDetail'
+    import CustomTitleCate from './components/BorneSetting/CustomTitleCate';
+    import CustomTitlePlat from './components/BorneSetting/CustomTitlePlat';
+    import CustomAddBtn from './components/BorneSetting/CustomAddBtn';
+    import CustomCancelBtn from './components/BorneSetting/CustomCancelBtn';
+
+    Vue.component('app-custom',CustomVue);
+    Vue.component('app-customCarrouselTitle',CustomCarrouselTitle);
+    Vue.component('app-customSelect',CustomSelect);
+    Vue.component('app-customCardDeatils',CustomCardDeatils);
+    Vue.component('app-customTitleCate',CustomTitleCate);
+    Vue.component('app-customTitlePlat',CustomTitlePlat);
+    Vue.component('app-customAddBtn',CustomAddBtn);
+    Vue.component('app-customCancelBtn',CustomCancelBtn);
+
+    /* MENU CUSTOM BORN */
+    import MenuCustomBorn from './components/myBorn/MenuCustomBorn';
+
+    Vue.component('app-menuCustomBorn',MenuCustomBorn);
+    /* BORN PART */
+    import Carrousel from './components/myBorn/BornPart/Carrousel'
+
+    Vue.component('app-born-carrousel',Carrousel);
+
+    /* AUTRES */
+    import IconSelector from './components/BorneSetting/BornePart/IconSelector';
+
+    Vue.component('app-iconSelector',IconSelector);
+
 
 Vue.config.productionTip = false;
-var firebaseConfig = {
+
+export const fb = firebase.initializeApp({
     apiKey: "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
     authDomain: "bornekebab.firebaseapp.com",
     databaseURL: "https://bornekebab.firebaseio.com",
@@ -135,8 +168,7 @@ var firebaseConfig = {
     messagingSenderId: "441985689557",
     appId: "1:441985689557:web:26bef45bd1c62783b83f5c",
     measurementId: "G-P8VCV1GMQ4"
-};
-export const fb = firebase.initializeApp(firebaseConfig);
+})
 
 Vue.use(VueResource);
 Vue.use(VueRouter);

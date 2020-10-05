@@ -22,10 +22,16 @@
         <div class="py-12"></div>
       </v-container>
 
-      <div class="py-12"></div>
+    <div class="py-12"></div>
     </section>
+    <div class="rightSide">
+      <div class="containerOfBorn">
+        <app-showBorn :borne="borne"></app-showBorn>
+      </div>
+    </div>
     <v-container fluid class="grey lighten-3">
       <app-safebornesettings @save="upload()"></app-safebornesettings>
+      <div style="width : 50%">
       <h1> Diaporama</h1>
       <v-expansion-panels focusable>
         <v-expansion-panel>
@@ -331,6 +337,7 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
+      </div>
     </v-container>
   </div>
 </template>
@@ -448,6 +455,18 @@ export default {
 </script>
 
 <style>
+
+.containerOfBorn{
+}
+.rightSide{
+  background-color: violet;
+  float : left;
+  margin-left: 50%;
+  position: absolute;
+  max-height: 30%;
+  width: 50%;
+  overflow: scroll;
+}
 table {
   border-collapse: collapse;
   margin-left: auto;

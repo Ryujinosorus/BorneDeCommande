@@ -6,7 +6,7 @@ import bornesetting from './components/BorneSetting/BorneSetting.vue';
 import Custom from './components/Carte/Custom.vue'
 import ListCategorie from './components/Carte/Categories/ListCategories';
 
-
+import Carrousel from './components/myBorn/BornPart/Carrousel';
 export default [
   {
     name:'home',
@@ -37,5 +37,9 @@ export default [
     {
       path : '/add/categories',
       component : ListCategorie
+    },
+    {
+      path : '/born/carrousel',
+      component : Carrousel
     }
 ];

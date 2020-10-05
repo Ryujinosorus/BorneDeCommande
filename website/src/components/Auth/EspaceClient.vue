@@ -58,7 +58,7 @@
                     max-width="720"
                 >
                 <br><br>
-                <router-link to="/borneSetting">
+                <router-link to="/born/carrousel">
                     <v-btn outlined color="#0D0D0D--text">Y acceder</v-btn>
                 </router-link>
                 </v-responsive>

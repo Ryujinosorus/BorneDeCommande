@@ -1,8 +1,11 @@
 <template>
+<div style="z-index : 100">
+  <app-menuCustomBorn>
+    <h1>a</h1>
+  </app-menuCustomBorn>
     <div class="all">
       <div class="bg" :style="{backgroundImage : 'url(' +  allPics[tmp] + ')'}"></div>
       <router-link to="/where">
-      
       <div class="footer" :style="{
                             backgroundColor: settings.firstPage.panelColor,
                             height: settings.firstPage.panelHeight + '%',
@@ -13,25 +16,28 @@
           'margin-top': settings.firstPage.marginTop + 'px',
           }">{{settings.firstPage.text}}</p>
       </div>
+
       </router-link>
     </div>
+</div>
 </template> 
 
 <script>
 export default {
   name: 'Carrousel',
-  props:['settings'],
 
   data() {
       return {
         allPics : [],
         tmp : 0,
-        fontPicker : null
+        fontPicker : null,
+        settings:null
     }
   },
 	created: function() {
-    console.log(this.settings);
-    this.allPics = this.$store.getters.getAllPics;
+    this.settings = this.$store.getters.bornesettings;
+    for(let i=0;i<this.settings.firstPage.nbDiapo;i++)
+      this.allPics.push(this.settings.firstPage.picture[i]);
     let self = this;
 		setInterval(function() {
       self.tmp = (self.tmp+1) % self.settings.firstPage.nbDiapo ;

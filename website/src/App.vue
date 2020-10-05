@@ -98,7 +98,7 @@ body {
   box-shadow: 0 2px 15px rgba(71, 120, 120, 0.5);
   transform: translate3d(0, 0, 0);
   transition: 0.1s all ease-out;
-  z-index: 2000000000;
+  z-index: 10;
 }
 .navbar.navbar--hidden {
   box-shadow: none;
