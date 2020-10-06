@@ -24,7 +24,7 @@
 
     <div class="py-12"></div>
     </section>
-    <div class="rightSide">
+    <div>
       <div class="containerOfBorn">
         <app-showBorn :borne="borne"></app-showBorn>
       </div>
@@ -455,9 +455,6 @@ export default {
 </script>
 
 <style>
-
-.containerOfBorn{
-}
 .rightSide{
   background-color: violet;
   float : left;
@@ -489,6 +486,10 @@ table td {
 }
 table tbody tr {
   border-bottom: 1px solid #dddddd;
+  max-width: 500px;
+}
+table tbody tr td{
+  max-width: 900px;
 }
 table tbody tr:nth-last-of-type(even) {
   background-color: #f3f3f3;

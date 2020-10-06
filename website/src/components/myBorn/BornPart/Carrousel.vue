@@ -1,11 +1,10 @@
 <template>
 <div style="z-index : 100">
-  <app-menuCustomBorn>
-    <h1>a</h1>
+  <app-menuCustomBorn name="app-customCarrousel" @REFRESH="refresh()">
   </app-menuCustomBorn>
     <div class="all">
       <div class="bg" :style="{backgroundImage : 'url(' +  allPics[tmp] + ')'}"></div>
-      <router-link to="/where">
+      <router-link to="/born/where">
       <div class="footer" :style="{
                             backgroundColor: settings.firstPage.panelColor,
                             height: settings.firstPage.panelHeight + '%',
@@ -31,7 +30,8 @@ export default {
         allPics : [],
         tmp : 0,
         fontPicker : null,
-        settings:null
+        settings:null,
+        fun : null
     }
   },
 	created: function() {
@@ -39,9 +39,22 @@ export default {
     for(let i=0;i<this.settings.firstPage.nbDiapo;i++)
       this.allPics.push(this.settings.firstPage.picture[i]);
     let self = this;
-		setInterval(function() {
+		this.fun = setInterval(function() {
       self.tmp = (self.tmp+1) % self.settings.firstPage.nbDiapo ;
     }, (this.settings.firstPage.interval)*1000);
+  },
+  methods : {
+    refresh(){
+    this.allPics = [];
+    for(let i=0;i<this.settings.firstPage.nbDiapo;i++)
+      this.allPics.push(this.settings.firstPage.picture[i]);
+    
+    clearInterval(this.fun);
+    let self = this;
+		this.fun = setInterval(function() {
+      self.tmp = (self.tmp+1) % self.settings.firstPage.nbDiapo ;
+    }, (this.settings.firstPage.interval)*1000);
+    }
   }
 };
 </script>

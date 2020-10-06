@@ -146,10 +146,19 @@ Vue.component('app-safebornesettings',SafeBorneSettings);
     import MenuCustomBorn from './components/myBorn/MenuCustomBorn';
 
     Vue.component('app-menuCustomBorn',MenuCustomBorn);
+
+        /* COMPONENT CUSTOM BORN */
+        import CustomCarrousel from './components/myBorn/BornGroup/CustomCarrousel';
+        import CustomWhere from './components/myBorn/BornGroup/CustomWhere';
+
+        Vue.component('app-customWhere',CustomWhere);
+        Vue.component('app-customCarrousel',CustomCarrousel);
     /* BORN PART */
     import Carrousel from './components/myBorn/BornPart/Carrousel'
+    import Where from './components/myBorn/BornPart/Where'
 
     Vue.component('app-born-carrousel',Carrousel);
+    Vue.component('app-born-where',Where);
 
     /* AUTRES */
     import IconSelector from './components/BorneSetting/BornePart/IconSelector';

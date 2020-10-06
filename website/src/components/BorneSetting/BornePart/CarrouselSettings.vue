@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table>
+    <table v-if="resetPicture" @click="changeOpacity">
       <thead>
         <tr>
           <th>Instruction</th>
@@ -14,17 +14,16 @@
             <v-text-field
               type="number"
               :value="borne.firstPage.nbDiapo"
-              :min="globalSettings.diapo.min"
-              :max="globalSettings.diapo.max"
-              @chane="getAllIndex"
+              min="1"
+              max="10"
               v-model="borne.firstPage.nbDiapo"
             ></v-text-field>
           </td>
         </tr>
-        <tr v-for="(item,index) in getAllIndex" :key="item + index">
+        <tr v-for="index in range(borne.firstPage.nbDiapo)" :key="index">
           <td>Image {{index+1}}</td>
           <td>
-            <v-img :src="item"></v-img>
+            <v-img class="reSize" :src="borne.firstPage.picture[index]"></v-img>
             <v-file-input
               @change="changePicture"
               @click="tmpIndex = index"
@@ -60,8 +59,8 @@
             <v-slider
               v-model="borne.firstPage.fontSize"
               class="align-center"
-              :max="globalSettings.fontSize.max"
-              :min="globalSettings.fontSize.min"
+              max="100"
+              min="10"
               hide-details
             >
               <template v-slot:append>
@@ -81,19 +80,19 @@
         <tr>
           <td>Interval du carrousel</td>
           <td>
-            <v-text-field type="number" v-model="borne.firstPage.interval" step="0.1" min="2"></v-text-field>
+            <v-text-field  @change="emitrefresh" type="number" v-model="borne.firstPage.interval" step="0.1" min="2"></v-text-field>
           </td>
         </tr>
         <tr>
           <td>Font</td>
           <td>
-            <div id="font-picker-carousel"></div>
+            <div id="font-picker-diapoFont"></div>
           </td>
         </tr>
         <tr>
           <td>Text carrousel</td>
           <td>
-            <v-text-field v-model="borne.firstPage.text" counter="20" class="apply-font-carousel"></v-text-field>
+            <v-text-field v-model="borne.firstPage.text" counter="20" class="apply-font-diapoFont"></v-text-field>
           </td>
         </tr>
         <tr>
@@ -126,8 +125,8 @@
             <v-slider
               v-model="borne.firstPage.marginTop"
               class="align-center"
-              :max="globalSettings.paddingTop.max"
-              :min="globalSettings.paddingTop.min"
+              :max="5000"
+              :min="0"
               hide-details
             >
               <template v-slot:append>
@@ -158,25 +157,33 @@ export default {
   data() {
     return {
       tmpIndex: "null",
+      resetPicture : true,
     };
   },
   methods: {
     changePicture(e) {
-      this.$emit("changePicture", [e, this.tmpIndex]);
-      this.getAllIndex;
-      this.borne.firstPage.nbDiapo++;
-      this.borne.firstPage.nbDiapo--;
+      console.log(this.tmpIndex);
+      console.log(e);
+      this.borne.firstPage.picture[this.tmpIndex] = URL.createObjectURL(new Blob([e], { type: "image/bmp" }));
+      this.resetPicture = false;
+      this.resetPicture = true;
+      this.emitrefresh();
     },
-  },
-  computed: {
-    getAllIndex() {
-      let res = [];
-      for (let x = 0; x < this.borne.firstPage.nbDiapo; x++)
-        res.push(this.tmpPicture[x]);
+    range(e){
+      let res=[];
+      for(let i=0;i<e;i++)
+        res.push(i);
       return res;
     },
+    emitrefresh(){
+      this.$emit("REFRESH");
+    },
+    changeOpacity(){
+      this.$emit("changeOpacity");
+    }
   },
   created() {
+    console.log("CREATED");
     console.log(this.tmpPicture);
     this.$on("savePicture", () => console.log("save moi sa"));
   },
@@ -185,7 +192,7 @@ export default {
       "AIzaSyC3uuRDz7_GmCS506tXPYLqey0O7QrXItg",
       this.borne.firstPage.font,
       {
-        pickerId: "carousel",
+        pickerId: "diapoFont",
         limit: this.globalSettings.nbFont,
       }
     );
@@ -195,4 +202,7 @@ export default {
 </script>
 
 <style>
+.reSize{
+  width : 45%;
+}
 </style>

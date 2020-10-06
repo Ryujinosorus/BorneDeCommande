@@ -28,8 +28,8 @@
                 <td> <v-slider
                         v-model="borne.icon.iconIN.fontSize"
                         class="align-center"
-                        :max="globalSettings.fontSize.max"
-                        :min="globalSettings.fontSize.min"
+                        max="75"
+                        min="0"
                         hide-details>
                         <template v-slot:append>
                         <v-text-field
@@ -68,8 +68,8 @@
                     <v-slider
                         v-model="borne.icon.iconIN.marginTop"
                         class="align-center"
-                        :max="globalSettings.paddingTop.max"
-                        :min="globalSettings.paddingTop.min"
+                        max="750"
+                        min="0"
                         hide-details
                     >
                         <template v-slot:append>

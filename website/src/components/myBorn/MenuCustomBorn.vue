@@ -31,25 +31,43 @@
           <v-toolbar-title>Settings</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn
-              dark
-              text
-              @click="dialog = false"
-            >
-              Save
-            </v-btn>
+            <app-safebornesettings :borne="borne"></app-safebornesettings>
           </v-toolbar-items>
         </v-toolbar>
+        <component 
+        :is="name"
+        :borne="borne"
+        globalSettings="globalSettings"
+        @REFRESH="refresh"
+        ></component>
       </v-card>
     </v-dialog>
 </template>
 
 <script>
+import BorneSetting from "../../Scripts/BorneSetting";
 export default {
+    props : ['name'],
     data(){
         return{
-            dialog : false
+            dialog : false,
+            borne : null,
+            globalSettings : null,
+            tmpDiapoPicture : [],
+            opacity : 1
         }
+    },
+    created(){
+    let tmp = this.$store.getters.bornesettings;
+    if (tmp == null) this.borne = new BorneSetting();
+    else this.borne = tmp;
+    this.tmpDiapoPicture = this.borne.firstPage.picture;
+    this.globalSettings = this.$store.getters.globalSettings;
+    },
+    methods : {
+      refresh(){
+        this.$emit("REFRESH");
+      },
     }
 }
  

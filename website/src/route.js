@@ -7,6 +7,7 @@ import Custom from './components/Carte/Custom.vue'
 import ListCategorie from './components/Carte/Categories/ListCategories';
 
 import Carrousel from './components/myBorn/BornPart/Carrousel';
+import Where from './components/myBorn/BornPart/Where';
 export default [
   {
     name:'home',
@@ -41,5 +42,9 @@ export default [
     {
       path : '/born/carrousel',
       component : Carrousel
+    },
+    {
+      path : '/born/where',
+      component : Where
     }
 ];
