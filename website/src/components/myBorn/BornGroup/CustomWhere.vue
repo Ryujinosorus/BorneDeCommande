@@ -3,15 +3,15 @@
       <h1>Sur place ou a emporter ?</h1>
       <v-expansion-panels focusable>
         <v-expansion-panel>
-          <v-expansion-panel-header>Sur Place</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <app-whereSettingsSurPlace :borne="borne" :globalSettings="globalSettings"></app-whereSettingsSurPlace>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-        <v-expansion-panel>
           <v-expansion-panel-header>A emporter</v-expansion-panel-header>
           <v-expansion-panel-content>
             <app-whereSettingsEmporter :borne="borne" :globalSettings="globalSettings"></app-whereSettingsEmporter>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+          <v-expansion-panel>
+          <v-expansion-panel-header>Sur Place</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <app-whereSettingsSurPlace :borne="borne" :globalSettings="globalSettings"></app-whereSettingsSurPlace>
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>

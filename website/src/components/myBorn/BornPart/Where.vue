@@ -9,7 +9,7 @@
                     <div class="pictureLeft" :style="{marginTop :  parseInt(settings.icon.titleWhere.marginTop)  + parseInt(settings.icon.iconOUT.marginTop) + 'px'}">
                         <v-img :src="settings.icon.iconOUT.url"></v-img>
                     </div>
-                    <p v-if="settings.icon.iconOUT.withText" class="text apply-font-OUT" :style="{ fontSize: settings.icon.iconOUT.fontSize + 'px',
+                    <p v-if="settings.icon.iconOUT.withText" class="text apply-font-fontOUT" :style="{ fontSize: settings.icon.iconOUT.fontSize + 'px',
                                                 color : settings.icon.iconOUT.fontColor,
                                                 marginTop : settings.icon.iconOUT.marginTop +'px'
                      }">
