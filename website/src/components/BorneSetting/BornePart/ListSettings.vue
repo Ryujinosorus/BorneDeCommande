@@ -14,8 +14,8 @@
                          <v-slider
                             v-model="borne.list['Organisé']['hauteur']"
                             class="align-center"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
+                            :max="1000"
+                            :min="100"
                             hide-details
                         >
                             <template v-slot:append>
@@ -38,8 +38,8 @@
                          <v-slider
                             v-model="borne.list['Organisé']['largeur']"
                             class="align-center"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
+                            max="1000"
+                            min="100"
                             hide-details
                         >
                             <template v-slot:append>
@@ -62,8 +62,8 @@
                          <v-slider
                             v-model="borne.list['Organisé']['espacementT']"
                             class="align-center"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
+                            max="500"
+                            min="0"
                             hide-details
                         >
                             <template v-slot:append>
@@ -83,11 +83,11 @@
                 <tr >
                     <td>Espacement gauche</td>
                     <td>
-                                                 <v-slider
+                        <v-slider
                             v-model="borne.list['Organisé']['espacementG']"
                             class="align-center"
-                            :max="globalSettings.panelHeight.max"
-                            :min="globalSettings.panelHeight.min"
+                            max="500"
+                            min="0"
                             hide-details
                         >
                             <template v-slot:append>

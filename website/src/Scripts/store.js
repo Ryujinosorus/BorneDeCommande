@@ -12,6 +12,7 @@ export default new Vuex.Store({
         food:{
         },
         custom : [],
+        commande : [],
         bornesettings:null,
         globalSettings:{
             'nbFont' :200,
@@ -65,6 +66,9 @@ export default new Vuex.Store({
         },
         icon(state){
             return state.icon;
+        },
+        commande(state){
+            return state.commande;
         }
     },
     mutations: {

@@ -42,7 +42,7 @@ export default {
     methods : {
         changeWhere : function(wh){
             this.$store.commit('SET_WHERE',wh);
-            this.$router.replace('/desorganise');
+            this.$router.replace('/born/desorganise');
         }
     },
     created(){

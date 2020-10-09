@@ -8,6 +8,9 @@ import ListCategorie from './components/Carte/Categories/ListCategories';
 
 import Carrousel from './components/myBorn/BornPart/Carrousel';
 import Where from './components/myBorn/BornPart/Where';
+import Desorganise from './components/myBorn/BornPart/Desorganise';
+import Show from './components/myBorn/BornPart/Show';
+
 export default [
   {
     name:'home',
@@ -46,5 +49,13 @@ export default [
     {
       path : '/born/where',
       component : Where
+    },
+    {
+      path : '/born/Desorganise',
+      component : Desorganise
+    },
+    {
+      path : '/born/born/Show/:id',
+      component : Show
     }
 ];
